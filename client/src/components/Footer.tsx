@@ -23,6 +23,7 @@ export default function Footer() {
     { label: t('footer.cookies'), href: '/cookie-policy' },
     { label: t('footer.data'), href: '/data-protection' },
     { label: t('footer.terms'), href: '/terms-of-service' },
+    { label: t('footer.careers'), href: '/careers' },
   ];
 
   return (

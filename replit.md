@@ -153,6 +153,23 @@ All content migrated from iniciolog.ru website:
 - **Student counts**: CIS (25,740), EU (10,000), China (2,340), USA (2,150)
 - **Learning platform**: https://iniciolog.com/members/login
 
+## Recent Updates (October 2025)
+
+### Careers Page
+New page added for recruitment and cooperation:
+- **Route**: /careers
+- **Position**: Инициолог - консультант (Initiologist - Consultant)
+- **Benefits** (6 items):
+  1. Official contract with the Academy
+  2. Employee ID of the International Academy of Initiology
+  3. Listing in Academy branches and staff directories
+  4. Right to advertise using Academy benefits as a branch
+  5. Ability to officially work and accept client payments on the Academy website
+  6. Freedom from tax burden
+- **Applications**: WhatsApp (+19297174941) or Email (initiology@gmail.com)
+- **Link location**: Footer Legal section
+- **Multilingual**: Full EN/DE/RU translations
+
 ## New Sections (Recently Added)
 
 ### ChannelsSection

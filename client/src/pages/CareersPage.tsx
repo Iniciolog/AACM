@@ -1,0 +1,80 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Check, Briefcase } from 'lucide-react';
+import { Link } from 'wouter';
+
+export default function CareersPage() {
+  const { t } = useLanguage();
+
+  const benefits = [
+    t('careers.position.benefit1'),
+    t('careers.position.benefit2'),
+    t('careers.position.benefit3'),
+    t('careers.position.benefit4'),
+    t('careers.position.benefit5'),
+    t('careers.position.benefit6'),
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="max-w-4xl mx-auto px-6 py-20">
+        <Link href="/">
+          <Button variant="ghost" className="mb-8" data-testid="button-back-home">
+            ← {t('nav.home')}
+          </Button>
+        </Link>
+
+        <div className="text-center mb-12">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4" data-testid="text-careers-title">
+            {t('careers.title')}
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            {t('careers.subtitle')}
+          </p>
+        </div>
+
+        <Card className="mb-8" data-testid="card-job-position">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <Briefcase className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle className="text-2xl">{t('careers.position.title')}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <h3 className="font-semibold text-lg mb-4">{t('careers.position.benefits.title')}</h3>
+            <ul className="space-y-3">
+              {benefits.map((benefit, index) => (
+                <li key={index} className="flex items-start gap-3" data-testid={`benefit-${index}`}>
+                  <div className="mt-0.5">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  </div>
+                  <span className="text-muted-foreground">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex gap-4">
+              <a href={`https://wa.me/19297174941`} target="_blank" rel="noopener noreferrer" className="flex-1">
+                <Button className="w-full" data-testid="button-apply-whatsapp">
+                  {t('careers.apply')}
+                </Button>
+              </a>
+              <a href={`mailto:${t('footer.email')}`} className="flex-1">
+                <Button variant="outline" className="w-full" data-testid="button-apply-email">
+                  {t('footer.email')}
+                </Button>
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="text-center text-sm text-muted-foreground">
+          <p>{t('footer.contact')}: {t('footer.phone')}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
