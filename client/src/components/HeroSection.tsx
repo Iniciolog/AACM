@@ -71,6 +71,65 @@ export default function HeroSection() {
         onMouseLeave={() => setIsHovering(false)}
       />
       
+      {countries.map((country, index) => {
+        const angleRad = (country.angle * Math.PI) / 180;
+        const globeRadius = 320;
+        const x = Math.sin(angleRad) * globeRadius;
+        const y = -Math.cos(angleRad) * globeRadius;
+
+        return (
+          <div key={index} className="absolute z-20" style={{ left: '50%', top: '50%' }}>
+            <button
+              className="absolute text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
+              style={{
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
+              }}
+              onMouseEnter={() => {
+                setHoveredCountry(country);
+                setHoveredIndex(index);
+              }}
+              onMouseLeave={() => {
+                setHoveredCountry(null);
+                setHoveredIndex(null);
+              }}
+              data-testid={`flag-marker-${index}`}
+            >
+              {country.flag}
+            </button>
+
+            {hoveredCountry === country && hoveredIndex === index && (
+              <div
+                className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
+                style={{
+                  transform: `translate(calc(-50% + ${x}px + 80px), calc(-50% + ${y}px))`,
+                }}
+                data-testid="country-tooltip"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{hoveredCountry.flag}</span>
+                  <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
+                </div>
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p>
+                    <span className="font-medium">
+                      {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
+                    </span>{' '}
+                    {hoveredCountry.specialists}
+                  </p>
+                  <p>
+                    <span className="font-medium">
+                      {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
+                    </span>{' '}
+                    {hoveredCountry.students}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
         <h1
           className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight"
@@ -81,62 +140,6 @@ export default function HeroSection() {
         <p className="text-lg md:text-xl mb-16 text-gray-200 max-w-3xl mx-auto leading-relaxed">
           {t('hero.subtitle')}
         </p>
-
-        <div className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 flex flex-col gap-6">
-          {countries.map((country, index) => {
-            const angleRad = (country.angle * Math.PI) / 180;
-            const curveOffset = Math.sin(angleRad) * 40;
-
-            return (
-              <div key={index} className="relative">
-                <button
-                  className="text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
-                  style={{
-                    transform: `translateX(${curveOffset}px)`,
-                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
-                  }}
-                  onMouseEnter={() => {
-                    setHoveredCountry(country);
-                    setHoveredIndex(index);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredCountry(null);
-                    setHoveredIndex(null);
-                  }}
-                  data-testid={`flag-marker-${index}`}
-                >
-                  {country.flag}
-                </button>
-
-                {hoveredCountry === country && hoveredIndex === index && (
-                  <div
-                    className="absolute left-full ml-4 top-1/2 -translate-y-1/2 z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
-                    data-testid="country-tooltip"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">{hoveredCountry.flag}</span>
-                      <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
-                    </div>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <p>
-                        <span className="font-medium">
-                          {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
-                        </span>{' '}
-                        {hoveredCountry.specialists}
-                      </p>
-                      <p>
-                        <span className="font-medium">
-                          {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
-                        </span>{' '}
-                        {hoveredCountry.students}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
 
         <Button
           size="lg"
