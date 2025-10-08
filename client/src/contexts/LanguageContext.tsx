@@ -13,6 +13,8 @@ const translations = {
     // Header
     'nav.home': 'Home',
     'nav.research': 'Research',
+    'nav.method': 'Method',
+    'nav.program': 'Program',
     'nav.articles': 'Articles',
     'nav.studies': 'Studies',
     'nav.conclusions': 'Scientific Conclusions',
@@ -179,6 +181,8 @@ const translations = {
     // Header
     'nav.home': 'Startseite',
     'nav.research': 'Forschung',
+    'nav.method': 'Methode',
+    'nav.program': 'Programm',
     'nav.articles': 'Artikel',
     'nav.studies': 'Studien',
     'nav.conclusions': 'Wissenschaftliche Schlussfolgerungen',
@@ -345,6 +349,8 @@ const translations = {
     // Header
     'nav.home': 'Главная',
     'nav.research': 'Исследования',
+    'nav.method': 'Метод',
+    'nav.program': 'Программа',
     'nav.articles': 'Статьи',
     'nav.studies': 'Научные работы',
     'nav.conclusions': 'Научные заключения',

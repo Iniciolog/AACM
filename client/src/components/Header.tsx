@@ -55,19 +55,19 @@ export default function Header() {
             </button>
             
             <button
-              onClick={() => scrollToSection('education')}
+              onClick={() => scrollToSection('method')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-education"
+              data-testid="nav-method"
             >
-              {t('nav.education')}
+              {t('nav.method')}
             </button>
 
             <button
-              onClick={() => scrollToSection('books')}
+              onClick={() => scrollToSection('education-program')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-books"
+              data-testid="nav-program"
             >
-              {t('nav.books')}
+              {t('nav.program')}
             </button>
 
             <button
@@ -87,19 +87,11 @@ export default function Header() {
             </button>
 
             <button
-              onClick={() => scrollToSection('rmt')}
+              onClick={() => scrollToSection('awards')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-rmt"
+              data-testid="nav-awards"
             >
-              {t('nav.rmt')}
-            </button>
-
-            <button
-              onClick={() => scrollToSection('faq')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-faq"
-            >
-              {t('nav.faq')}
+              {t('nav.awards')}
             </button>
 
             <button
@@ -108,14 +100,6 @@ export default function Header() {
               data-testid="nav-contact"
             >
               {t('nav.contact')}
-            </button>
-
-            <button
-              onClick={() => scrollToSection('about')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-about"
-            >
-              {t('nav.about')}
             </button>
           </nav>
 
