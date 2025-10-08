@@ -52,14 +52,20 @@ const translations = {
     'books.title': 'Publications & Books',
     'books.subtitle': 'Authoritative texts shaping the field of initiology',
     
+    // About
+    'about.title': 'Founder',
+    'about.name': 'Vyacheslav Lazarenko',
+    'about.role': 'Founder & Master Teacher',
+    'about.bio': 'Vyacheslav Lazarenko is the founder and developer of the Initiology energy practice system. With over 25,000 students across CIS countries and a global presence spanning the EU, China, and USA, his work has transformed the lives of thousands. The methodology is based on working with cosmic energy channels, enabling physical healing, energy structure cleansing, and holistic life improvement. His research and teaching have established Initiology as a recognized energy practice worldwide.',
+    
     // FAQ
     'faq.title': 'Frequently Asked Questions',
-    'faq.q1': 'What is the International Academy of Initiology?',
-    'faq.a1': 'We are a leading research institution dedicated to advancing the science of initiology through rigorous research, education, and international collaboration.',
-    'faq.q2': 'How can I access your educational resources?',
-    'faq.a2': 'Our educational platform offers courses and materials for researchers and practitioners. Contact us for enrollment information.',
-    'faq.q3': 'Where is the Academy located?',
-    'faq.a3': 'We maintain research facilities and partnerships across the EU, CIS, China, and USA.',
+    'faq.q1': 'What is Initiology in simple terms?',
+    'faq.a1': 'Initiology is an energy practice aimed at healing and improving quality of life. The method is based on interaction with energy channels through which cosmic energy flows. These flows positively affect all areas of human life. Through working with channels, physical healing, cleansing of subtle energy structures, and qualitative improvement of all life areas occur.',
+    'faq.q2': 'Will I be able to learn the Initiology method?',
+    'faq.a2': 'Anyone who wishes can learn to work with channels and master the Initiology method. No special abilities or talents are required. Access to energy channels is transferred from master-teacher to student through initiation (attunement, connection), after which the student can immediately begin working with channels and receiving corresponding results. Channels are transferred once and access to them is retained for life.',
+    'faq.q3': 'How does Initiology differ from other energy practices?',
+    'faq.a3': 'An initiologist does not expend their own energy working with problems or illnesses. All work is done by channels through which cosmic energy flows. The channel resource is limitless. Channels provide energy protection from the transfer of pathogenic information and negative programs from the patient to the initiologist during sessions. Initiology has an arsenal of targeted channels, purposefully working with specific diseases and types of problems.',
     
     // Footer
     'footer.about': 'About Academy',
@@ -127,14 +133,20 @@ const translations = {
     'books.title': 'Publikationen & Bücher',
     'books.subtitle': 'Maßgebliche Texte, die das Feld der Initiologie prägen',
     
+    // About
+    'about.title': 'Gründer',
+    'about.name': 'Vjatscheslaw Lasarenko',
+    'about.role': 'Gründer & Meisterlehrer',
+    'about.bio': 'Vjatscheslaw Lasarenko ist der Gründer und Entwickler des Initiologie-Energiepraxis-Systems. Mit über 25.000 Schülern in den GUS-Ländern und weltweiter Präsenz in der EU, China und den USA hat seine Arbeit das Leben von Tausenden verändert. Die Methodik basiert auf der Arbeit mit kosmischen Energiekanälen und ermöglicht körperliche Heilung, Reinigung der Energiestrukturen und ganzheitliche Lebensverbesserung. Seine Forschung und Lehre haben die Initiologie als weltweit anerkannte Energiepraxis etabliert.',
+    
     // FAQ
     'faq.title': 'Häufig gestellte Fragen',
-    'faq.q1': 'Was ist die Internationale Akademie für Initiologie?',
-    'faq.a1': 'Wir sind eine führende Forschungseinrichtung, die sich der Förderung der Initiologie-Wissenschaft durch rigorose Forschung, Bildung und internationale Zusammenarbeit widmet.',
-    'faq.q2': 'Wie kann ich auf Ihre Bildungsressourcen zugreifen?',
-    'faq.a2': 'Unsere Bildungsplattform bietet Kurse und Materialien für Forscher und Praktiker. Kontaktieren Sie uns für Informationen zur Einschreibung.',
-    'faq.q3': 'Wo befindet sich die Akademie?',
-    'faq.a3': 'Wir unterhalten Forschungseinrichtungen und Partnerschaften in der EU, der GUS, China und den USA.',
+    'faq.q1': 'Was ist Initiologie in einfachen Worten?',
+    'faq.a1': 'Initiologie ist eine Energiepraxis, die auf Heilung und Verbesserung der Lebensqualität abzielt. Die Methode basiert auf der Interaktion mit Energiekanälen, durch die kosmische Energie fließt. Diese Ströme wirken sich positiv auf alle Lebensbereiche aus. Durch die Arbeit mit Kanälen kommt es zur körperlichen Heilung, Reinigung subtiler Energiestrukturen und qualitativer Verbesserung aller Lebensbereiche.',
+    'faq.q2': 'Kann ich die Initiologie-Methode erlernen?',
+    'faq.a2': 'Jeder, der möchte, kann lernen, mit Kanälen zu arbeiten und die Initiologie-Methode zu beherrschen. Es sind keine besonderen Fähigkeiten oder Talente erforderlich. Der Zugang zu Energiekanälen wird vom Meister-Lehrer durch Initiation (Einstimmung, Verbindung) an den Schüler übertragen, wonach der Schüler sofort mit der Arbeit mit Kanälen beginnen und entsprechende Ergebnisse erzielen kann. Kanäle werden einmal übertragen und der Zugang zu ihnen bleibt lebenslang erhalten.',
+    'faq.q3': 'Wie unterscheidet sich Initiologie von anderen Energiepraktiken?',
+    'faq.a3': 'Ein Initiologe verbraucht keine eigene Energie bei der Arbeit mit Problemen oder Krankheiten. Alle Arbeit wird von Kanälen geleistet, durch die kosmische Energie fließt. Die Kanalressource ist grenzenlos. Kanäle bieten energetischen Schutz vor der Übertragung krankhafter Informationen und negativer Programme vom Patienten auf den Initiologen während der Sitzungen. Initiologie verfügt über ein Arsenal gezielter Kanäle, die gezielt mit bestimmten Krankheiten und Problemtypen arbeiten.',
     
     // Footer
     'footer.about': 'Über die Akademie',
@@ -202,14 +214,20 @@ const translations = {
     'books.title': 'Публикации и книги',
     'books.subtitle': 'Авторитетные труды, формирующие область инициологии',
     
+    // About
+    'about.title': 'Основатель',
+    'about.name': 'Вячеслав Лазаренко',
+    'about.role': 'Основатель и Мастер-Преподаватель',
+    'about.bio': 'Вячеслав Лазаренко — основатель и разработчик системы энергетической практики Инициология. С более чем 25 000 учениками в странах СНГ и глобальным присутствием в ЕС, Китае и США, его работа преобразила жизни тысяч людей. Методология основана на работе с каналами космической энергии, обеспечивая физическое оздоровление, очищение энергетических структур и целостное улучшение жизни. Его исследования и преподавание утвердили Инициологию как признанную энергетическую практику во всем мире.',
+    
     // FAQ
     'faq.title': 'Часто задаваемые вопросы',
-    'faq.q1': 'Что такое Международная Академия Инициологии?',
-    'faq.a1': 'Мы ведущий научно-исследовательский институт, посвящённый развитию науки инициологии через строгие исследования, образование и международное сотрудничество.',
-    'faq.q2': 'Как получить доступ к вашим образовательным ресурсам?',
-    'faq.a2': 'Наша образовательная платформа предлагает курсы и материалы для исследователей и практиков. Свяжитесь с нами для получения информации о регистрации.',
-    'faq.q3': 'Где находится Академия?',
-    'faq.a3': 'У нас есть исследовательские центры и партнёрства в ЕС, СНГ, Китае и США.',
+    'faq.q1': 'Что такое инициология простыми словами?',
+    'faq.a1': 'Инициология — это энергетическая практика, направленная на оздоровление и улучшение качества жизни. Метод основан на взаимодействии с энергетическими каналами, по которым идет поток космической энергии. Данные потоки благоприятно влияют на все сферы жизни человека. Через работу с каналами происходит физическое оздоровление, очищение тонких энергетических структур и качественное улучшение всех сфер жизни.',
+    'faq.q2': 'Смогу ли я обучиться методу инициологии?',
+    'faq.a2': 'Научиться работать с каналами и освоить метод инициологии может любой желающий. Для этого не требуется каких-то особых способностей или талантов. Доступ к энергетическим каналам передается от мастера-преподавателя ученику посредством инициации (настройки, подключения), после чего ученик сразу может приступать к работе с каналами и получать соответствующие результаты. Каналы передаются один раз, и доступ к ним сохраняется на всю жизнь.',
+    'faq.q3': 'Чем инициология отличается от других энергетических практик?',
+    'faq.a3': 'Инициолог не расходует собственную энергию, работая с проблемами или болезнями. Вся работа ведётся каналами, по которым идёт поток космической энергии. Ресурс канала безграничный. Каналы обеспечивают энергозащиту от переноса болезнетворной информации и негативных программ с пациента на инициолога во время сеансов. Инициология имеет арсенал узконаправленных каналов, целенаправленно работающих с конкретными заболеваниями и видами проблем.',
     
     // Footer
     'footer.about': 'Об Академии',
