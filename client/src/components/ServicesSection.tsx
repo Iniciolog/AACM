@@ -107,6 +107,15 @@ export default function ServicesSection() {
         </div>
 
         <div className="text-center mt-12">
+          <div className="max-w-3xl mx-auto mb-8 p-6 bg-card rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">{t('services.booking.title')}</h3>
+            <div className="space-y-2 text-sm text-muted-foreground">
+              <p className="font-medium text-foreground">{t('services.booking.pricing')}</p>
+              <p>{t('services.booking.standard')}</p>
+              <p>{t('services.booking.targeted')}</p>
+              <p>{t('services.booking.consultation')}</p>
+            </div>
+          </div>
           <Button size="lg" asChild data-testid="button-book-session">
             <a href="https://api.whatsapp.com/send/?phone=79258298223" target="_blank" rel="noopener noreferrer">
               {t('services.cta')}

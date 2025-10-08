@@ -124,6 +124,11 @@ const translations = {
     'services.habits.eating.title': 'Eating Behavior',
     'services.habits.eating.desc': 'Refusal from undesirable products',
     'services.cta': 'Book a Session',
+    'services.booking.title': 'Personal Online Appointment with Vyacheslav Lazarenko',
+    'services.booking.pricing': 'Pricing:',
+    'services.booking.standard': 'Standard service fee - $2,000',
+    'services.booking.targeted': 'Targeted work - $2,000 to $5,000',
+    'services.booking.consultation': 'Initial consultation - $50',
     
     // RMT
     'rmt.title': 'RMT Technology',
@@ -308,6 +313,11 @@ const translations = {
     'services.habits.eating.title': 'Essverhalten',
     'services.habits.eating.desc': 'Verzicht auf unerwünschte Produkte',
     'services.cta': 'Sitzung buchen',
+    'services.booking.title': 'Persönlicher Online-Termin mit Vjatscheslaw Lasarenko',
+    'services.booking.pricing': 'Preise:',
+    'services.booking.standard': 'Standard-Servicegebühr - $2.000',
+    'services.booking.targeted': 'Gezielte Arbeit - $2.000 bis $5.000',
+    'services.booking.consultation': 'Erstberatung - $50',
     
     // RMT
     'rmt.title': 'RMT-Technologie',
@@ -492,6 +502,11 @@ const translations = {
     'services.habits.eating.title': 'Пищевое поведение',
     'services.habits.eating.desc': 'Отказ от нежелательных продуктов на установленный срок',
     'services.cta': 'Записаться на сеанс',
+    'services.booking.title': 'Запись на личный онлайн прием к Вячеславу Лазаренко',
+    'services.booking.pricing': 'Стоимость услуг:',
+    'services.booking.standard': 'Стандартизированная стоимость услуги - $2,000',
+    'services.booking.targeted': 'Targeted work от $2,000 до $5,000',
+    'services.booking.consultation': 'Первичная консультация - $50',
     
     // RMT
     'rmt.title': 'РМТ Технология',
