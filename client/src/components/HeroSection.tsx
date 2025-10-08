@@ -15,7 +15,6 @@ interface CountryMarker {
 export default function HeroSection() {
   const { t, language } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
-  const [hoveredCountry, setHoveredCountry] = useState<CountryMarker | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [flagPositions, setFlagPositions] = useState([
@@ -124,13 +123,11 @@ export default function HeroSection() {
               }}
               onMouseEnter={() => {
                 if (!isEditMode) {
-                  setHoveredCountry(country);
                   setHoveredIndex(index);
                 }
               }}
               onMouseLeave={() => {
                 if (!isEditMode) {
-                  setHoveredCountry(null);
                   setHoveredIndex(null);
                 }
               }}
@@ -156,7 +153,7 @@ export default function HeroSection() {
               </div>
             )}
 
-            {hoveredCountry === country && hoveredIndex === index && (
+            {!isEditMode && hoveredIndex === index && (
               <div
                 className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
                 style={{
@@ -165,21 +162,21 @@ export default function HeroSection() {
                 data-testid="country-tooltip"
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{hoveredCountry.flag}</span>
-                  <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
+                  <span className="text-2xl">{country.flag}</span>
+                  <h3 className="font-serif font-semibold text-foreground">{country.name}</h3>
                 </div>
                 <div className="space-y-1 text-sm text-muted-foreground">
                   <p>
                     <span className="font-medium">
                       {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
                     </span>{' '}
-                    {hoveredCountry.specialists}
+                    {country.specialists}
                   </p>
                   <p>
                     <span className="font-medium">
                       {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
                     </span>{' '}
-                    {hoveredCountry.students}
+                    {country.students}
                   </p>
                 </div>
               </div>
