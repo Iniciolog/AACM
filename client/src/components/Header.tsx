@@ -39,11 +39,8 @@ export default function Header() {
           >
             <img src={logoImage} alt="Academy Logo" className="h-12 w-12 rounded-md" />
             <div className="hidden md:block">
-              <div className="font-serif text-lg font-semibold leading-tight">
-                {t('hero.title').split(' ').slice(0, 2).join(' ')}
-              </div>
-              <div className="font-serif text-sm text-muted-foreground">
-                {t('hero.title').split(' ').slice(2).join(' ')}
+              <div className="font-serif font-semibold text-[14px] text-[#0c317d]">
+                {t('hero.title')}
               </div>
             </div>
           </button>
