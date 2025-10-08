@@ -161,9 +161,22 @@ export default function EducationProgramSection() {
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4" data-testid="text-program-title">
             {data.title}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
             {data.subtitle}
           </p>
+          
+          <div className="flex justify-center mb-12">
+            <div 
+              className="w-80 h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl"
+              data-testid="img-students"
+            >
+              <img 
+                src="https://static.tildacdn.com/tild6164-6339-4762-b930-363935356538/333.jpeg"
+                alt="Academy Students"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
