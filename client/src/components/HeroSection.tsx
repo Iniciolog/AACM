@@ -82,21 +82,17 @@ export default function HeroSection() {
           {t('hero.subtitle')}
         </p>
 
-        <div className="relative inline-block mb-16">
-          <div className="relative w-[400px] h-[400px] mx-auto">
-            {countries.map((country, index) => {
-              const angleRad = (country.angle * Math.PI) / 180;
-              const x = Math.sin(angleRad) * radius;
-              const y = -Math.cos(angleRad) * radius;
+        <div className="absolute left-8 md:left-16 top-1/2 -translate-y-1/2 flex flex-col gap-6">
+          {countries.map((country, index) => {
+            const angleRad = (country.angle * Math.PI) / 180;
+            const curveOffset = Math.sin(angleRad) * 40;
 
-              return (
+            return (
+              <div key={index} className="relative">
                 <button
-                  key={index}
-                  className="absolute text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
+                  className="text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
                   style={{
-                    left: '50%',
-                    top: '50%',
-                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                    transform: `translateX(${curveOffset}px)`,
                     filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
                   }}
                   onMouseEnter={() => {
@@ -111,40 +107,35 @@ export default function HeroSection() {
                 >
                   {country.flag}
                 </button>
-              );
-            })}
 
-            {hoveredCountry !== null && hoveredIndex !== null && (
-              <div
-                className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
-                style={{
-                  left: '50%',
-                  top: '100%',
-                  transform: 'translate(-50%, 20px)',
-                }}
-                data-testid="country-tooltip"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{hoveredCountry.flag}</span>
-                  <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
-                </div>
-                <div className="space-y-1 text-sm text-muted-foreground">
-                  <p>
-                    <span className="font-medium">
-                      {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
-                    </span>{' '}
-                    {hoveredCountry.specialists}
-                  </p>
-                  <p>
-                    <span className="font-medium">
-                      {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
-                    </span>{' '}
-                    {hoveredCountry.students}
-                  </p>
-                </div>
+                {hoveredCountry === country && hoveredIndex === index && (
+                  <div
+                    className="absolute left-full ml-4 top-1/2 -translate-y-1/2 z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
+                    data-testid="country-tooltip"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-2xl">{hoveredCountry.flag}</span>
+                      <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
+                    </div>
+                    <div className="space-y-1 text-sm text-muted-foreground">
+                      <p>
+                        <span className="font-medium">
+                          {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
+                        </span>{' '}
+                        {hoveredCountry.specialists}
+                      </p>
+                      <p>
+                        <span className="font-medium">
+                          {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
+                        </span>{' '}
+                        {hoveredCountry.students}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            );
+          })}
         </div>
 
         <Button
