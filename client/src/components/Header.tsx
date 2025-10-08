@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useEditMode } from '@/contexts/EditModeContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
+import { Button } from '@/components/ui/button';
+import { Edit, Check } from 'lucide-react';
 import logoImage from '@assets/academy-logo.jpeg';
 
 export default function Header() {
@@ -30,7 +33,7 @@ export default function Header() {
       }`}
       data-testid="header-main"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 bg-[#0062f230]">
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('hero')}

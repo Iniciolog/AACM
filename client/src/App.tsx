@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { EditModeProvider } from "@/contexts/EditModeContext";
 import HomePage from "@/pages/HomePage";
 import NotFound from "@/pages/not-found";
 
@@ -21,8 +22,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LanguageProvider>
-          <Toaster />
-          <Router />
+          <EditModeProvider>
+            <Toaster />
+            <Router />
+          </EditModeProvider>
         </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
