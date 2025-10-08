@@ -18,7 +18,12 @@ export default function HeroSection() {
   const [hoveredCountry, setHoveredCountry] = useState<CountryMarker | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [flagAngles, setFlagAngles] = useState<number[]>([-45, -15, 15, 45]);
+  const [flagPositions, setFlagPositions] = useState([
+    { x: 150, y: -280 },
+    { x: 180, y: -100 },
+    { x: 180, y: 100 },
+    { x: 150, y: 280 },
+  ]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
   const scrollToResearch = () => {
@@ -33,14 +38,13 @@ export default function HeroSection() {
     
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
-    const dx = e.clientX - centerX;
-    const dy = e.clientY - centerY;
-    const angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
+    const x = e.clientX - centerX;
+    const y = e.clientY - centerY;
     
-    setFlagAngles(prev => {
-      const newAngles = [...prev];
-      newAngles[draggingIndex] = angle;
-      return newAngles;
+    setFlagPositions(prev => {
+      const newPositions = [...prev];
+      newPositions[draggingIndex] = { x, y };
+      return newPositions;
     });
   };
 
@@ -65,32 +69,30 @@ export default function HeroSection() {
       flag: '🇪🇺',
       specialists: 245,
       students: 1850,
-      angle: flagAngles[0],
+      angle: 0,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
       specialists: 180,
       students: 1420,
-      angle: flagAngles[1],
+      angle: 0,
     },
     {
       name: language === 'ru' ? 'Китай' : language === 'de' ? 'China' : 'China',
       flag: '🇨🇳',
       specialists: 320,
       students: 2340,
-      angle: flagAngles[2],
+      angle: 0,
     },
     {
       name: language === 'ru' ? 'США' : language === 'de' ? 'USA' : 'USA',
       flag: '🇺🇸',
       specialists: 290,
       students: 2150,
-      angle: flagAngles[3],
+      angle: 0,
     },
   ];
-
-  const radius = 240;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -106,10 +108,9 @@ export default function HeroSection() {
       />
       
       {countries.map((country, index) => {
-        const angleRad = (country.angle * Math.PI) / 180;
-        const globeRadius = 320;
-        const x = Math.sin(angleRad) * globeRadius;
-        const y = -Math.cos(angleRad) * globeRadius;
+        const pos = flagPositions[index];
+        const x = pos.x;
+        const y = pos.y;
 
         return (
           <div key={index} className="absolute z-20" style={{ left: '50%', top: '50%' }}>
@@ -151,7 +152,7 @@ export default function HeroSection() {
                   transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px + 50px))`,
                 }}
               >
-                {country.angle.toFixed(1)}°
+                x:{x.toFixed(0)}, y:{y.toFixed(0)}
               </div>
             )}
 
@@ -247,12 +248,12 @@ export default function HeroSection() {
         <div className="fixed top-36 right-6 z-50 bg-card/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs">
           <h3 className="font-semibold mb-2 text-sm">Позиции флагов:</h3>
           <pre className="text-xs bg-muted p-2 rounded overflow-auto max-h-48">
-            {`const flagAngles = [
-  ${flagAngles.map(a => a.toFixed(1)).join(',\n  ')}
+            {`const flagPositions = [
+  ${flagPositions.map(p => `{ x: ${p.x.toFixed(0)}, y: ${p.y.toFixed(0)} }`).join(',\n  ')}
 ];`}
           </pre>
           <p className="text-xs text-muted-foreground mt-2">
-            Перетащите флаги на нужные позиции
+            Перетащите флаги в любую точку экрана
           </p>
         </div>
       )}
