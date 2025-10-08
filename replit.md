@@ -36,7 +36,8 @@ Preferred communication style: Simple, everyday language.
 - Multilingual support (English, German, Russian) with React Context
 - Interactive globe visualization showing global presence
 - Editable content sections (future implementation)
-- Responsive navigation with smooth scrolling
+- Responsive navigation with smooth scrolling and mobile dropdown menu
+- Mobile dropdown menu with hover functionality (appears on hover for tablet/mobile screens)
 - Image upload capability for content management
 
 ### Backend Architecture
@@ -69,10 +70,10 @@ Preferred communication style: Simple, everyday language.
 **Page Structure:**
 - Single-page application with section-based navigation
 - HomePage composed of reusable section components:
-  - Header (sticky navigation with language/theme controls)
+  - Header (sticky navigation with language/theme controls, mobile dropdown menu on hover)
   - HeroSection (interactive globe, global statistics)
   - ResearchSection (article cards with imagery)
-  - EducationSection (platform features and preview)
+  - EducationSection (platform features and preview with students photo in oval shape)
   - BooksSection (publication showcase)
   - ChannelsSection (43+ energy channels in 5 categories with tabs)
   - ServicesSection (healing services and sessions)
