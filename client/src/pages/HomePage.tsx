@@ -10,6 +10,7 @@ import ServicesSection from '@/components/ServicesSection';
 import RMTBusinessSection from '@/components/RMTBusinessSection';
 import CelebritiesSection from '@/components/CelebritiesSection';
 import AboutSection from '@/components/AboutSection';
+import AwardsSection from '@/components/AwardsSection';
 import FAQSection from '@/components/FAQSection';
 import FilialsSection from '@/components/FilialsSection';
 import Footer from '@/components/Footer';
@@ -30,6 +31,7 @@ export default function HomePage() {
         <RMTBusinessSection />
         <CelebritiesSection />
         <AboutSection />
+        <AwardsSection />
         <FAQSection />
         <FilialsSection />
       </main>
