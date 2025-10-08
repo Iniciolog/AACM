@@ -228,6 +228,10 @@ const translations = {
     'careers.position3.benefit1': 'Freelance position for external collaborators',
     'careers.position3.benefit2': 'Positioning of Initiology in mass media',
     
+    // Cooperation Section
+    'careers.cooperation.title': 'Cooperation',
+    'careers.cooperation.text': 'Academy students are accepted as full Members of the Academy with the issuance of a certificate. To join, one must meet high standards of training quality and knowledge of the Initiology method. Members can participate in Academy meetings and consultations.',
+    
     'careers.apply': 'Apply Now',
   },
   de: {
@@ -449,6 +453,10 @@ const translations = {
     'careers.position3.benefit1': 'Freiberufliche Position für externe Mitarbeiter',
     'careers.position3.benefit2': 'Positionierung der Initiologie in den Massenmedien',
     
+    // Cooperation Section
+    'careers.cooperation.title': 'Zusammenarbeit',
+    'careers.cooperation.text': 'Akademiestudenten werden als Vollmitglieder der Akademie mit Ausstellung einer Bescheinigung aufgenommen. Für den Beitritt muss man hohe Standards der Ausbildungsqualität und Kenntnisse der Initiologie-Methode erfüllen. Mitglieder können an Akademieversammlungen und Beratungen teilnehmen.',
+    
     'careers.apply': 'Jetzt bewerben',
   },
   ru: {
@@ -669,6 +677,10 @@ const translations = {
     'careers.position3.benefits.title': 'Преимущества должности',
     'careers.position3.benefit1': 'Для внештатных сотрудников',
     'careers.position3.benefit2': 'Позиционирование Инициологии в масс медиа',
+    
+    // Cooperation Section
+    'careers.cooperation.title': 'Сотрудничество',
+    'careers.cooperation.text': 'Осуществляется в рабочем порядке прием студентов Академии в действительные Члены Академии с вручением удостоверения. Для вступления нужно соответствовать высоким стандартам качества подготовки и знания метода Инициологии. Члены могут участвовать в собраниях и консилиумах Академии.',
     
     'careers.apply': 'Подать заявку',
   },

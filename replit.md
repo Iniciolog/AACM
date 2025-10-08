@@ -181,6 +181,9 @@ New page added for recruitment and cooperation:
   1. Freelance position for external collaborators
   2. Positioning of Initiology in mass media
 
+**Cooperation Section:**
+Academy students are accepted as full Members of the Academy with the issuance of a certificate. To join, one must meet high standards of training quality and knowledge of the Initiology method. Members can participate in Academy meetings and consultations.
+
 ## New Sections (Recently Added)
 
 ### ChannelsSection

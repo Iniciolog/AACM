@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Briefcase } from 'lucide-react';
+import { Check, Briefcase, Users } from 'lucide-react';
 import { Link } from 'wouter';
 
 export default function CareersPage() {
@@ -100,6 +100,36 @@ export default function CareersPage() {
             </Card>
           ))}
         </div>
+
+        <Card className="mt-8" data-testid="card-cooperation">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                <Users className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle className="text-2xl" data-testid="title-cooperation">
+                {t('careers.cooperation.title')}
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed" data-testid="text-cooperation">
+              {t('careers.cooperation.text')}
+            </p>
+            <div className="mt-8 flex gap-4">
+              <a href={`https://wa.me/19297174941`} target="_blank" rel="noopener noreferrer" className="flex-1">
+                <Button className="w-full" data-testid="button-apply-whatsapp-cooperation">
+                  {t('careers.apply')}
+                </Button>
+              </a>
+              <a href={`mailto:${t('footer.email')}`} className="flex-1">
+                <Button variant="outline" className="w-full" data-testid="button-apply-email-cooperation">
+                  {t('footer.email')}
+                </Button>
+              </a>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="text-center text-sm text-muted-foreground mt-8">
           <p>{t('footer.contact')}: {t('footer.phone')}</p>
