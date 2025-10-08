@@ -6,12 +6,20 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { EditModeProvider } from "@/contexts/EditModeContext";
 import HomePage from "@/pages/HomePage";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import CookiePolicy from "@/pages/CookiePolicy";
+import DataProtection from "@/pages/DataProtection";
+import TermsOfService from "@/pages/TermsOfService";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/cookie-policy" component={CookiePolicy} />
+      <Route path="/data-protection" component={DataProtection} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route component={NotFound} />
     </Switch>
   );

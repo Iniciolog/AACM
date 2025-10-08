@@ -19,10 +19,10 @@ export default function Footer() {
   ];
 
   const legal = [
-    { label: t('footer.privacy'), href: '#' },
-    { label: t('footer.cookies'), href: '#' },
-    { label: t('footer.data'), href: '#' },
-    { label: t('footer.terms'), href: '#' },
+    { label: t('footer.privacy'), href: '/privacy-policy' },
+    { label: t('footer.cookies'), href: '/cookie-policy' },
+    { label: t('footer.data'), href: '/data-protection' },
+    { label: t('footer.terms'), href: '/terms-of-service' },
   ];
 
   return (
