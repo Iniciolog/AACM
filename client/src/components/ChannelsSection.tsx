@@ -33,7 +33,7 @@ const channelsData = {
       { name: 'Aum-Ra-Ke', desc: 'Removes witchcraft, curses, love magic, energy vampire connections' },
       { name: 'Sutram', desc: 'Removes ancestral karma, past life karma, personal karma' },
       { name: 'Farum', desc: 'Breaks necrotic connections with deceased, removes ancestral curse' },
-      { name: 'Arus', desc: 'Protection against any energy negativity, creates protective shell' },
+      { name: 'Arus', desc: 'Protection against energy negativity, creates protective shell' },
     ],
     social: [
       { name: 'Tantra-Nen', desc: 'Tunes to frequency of luck, removes from failure streak' },
@@ -55,6 +55,26 @@ const channelsData = {
       { name: 'Ratron', desc: '100 frequencies. Cleanses from negativity, spine, weight normalization' },
       { name: 'Pleiades Block', desc: 'DNA activation, chakra development, beam therapy, rejuvenation' },
       { name: 'Kryon Block', desc: 'Energy cosmetology, magnetic service, magnetism increase' },
+      { name: 'Initiologist Protection', desc: 'Blocks negative thought flows, transforms envy into luck, automatic defense' },
+    ],
+    higher: [
+      { name: 'Rang', desc: 'Path clearing, catastrophe prevention, super-powerful protection, disease prevention' },
+      { name: 'Aeshma-Deva', desc: 'Restores love bonds, strengthens marriage, attracts love, prevents infidelity' },
+      { name: 'Ra-Eligos', desc: 'Favorable legal outcomes, business/financial success, reveals hidden enemies' },
+      { name: 'Astarkhad', desc: 'Powerful channel of material well-being and wealth' },
+      { name: 'Raj Deva', desc: 'Super-powerful wealth channel, triple power of Astarkhad and Jidu' },
+      { name: 'Thor', desc: 'Victory in disputes, future vision, opens hidden knowledge' },
+      { name: 'Rikhtu', desc: 'Gift of influence over people/events, enhanced insight, psychic protection' },
+      { name: 'Vega', desc: 'Opens access for travels through higher dimensions' },
+      { name: 'Vajra', desc: 'Eliminates thought reading, closes portals to other worlds, repairs astral field' },
+      { name: 'Anoid', desc: 'Grants cosmic consciousness, changes destiny, professional growth' },
+      { name: 'Raja Sutra', desc: 'Unlocks supernatural abilities and superpowers' },
+      { name: 'Arum Est', desc: 'Ancient channel of supreme power and authority' },
+      { name: 'A-Oranta', desc: 'Channel of supreme justice and retribution, no reverse action' },
+    ],
+    special: [
+      { name: 'Artra-Ven', desc: 'Social block working with root causes of problems' },
+      { name: 'Metatron', desc: 'Frequency multi-channel amplifier of the main block' },
     ],
   },
   de: {
@@ -87,7 +107,7 @@ const channelsData = {
       { name: 'Aum-Ra-Ke', desc: 'Entfernt Hexerei, Flüche, Liebesmagie, Energievampir-Verbindungen' },
       { name: 'Sutram', desc: 'Entfernt Ahnenkarma, Karma vergangener Leben, persönliches Karma' },
       { name: 'Farum', desc: 'Bricht nekrotische Verbindungen zu Verstorbenen, entfernt Ahnenfluch' },
-      { name: 'Arus', desc: 'Schutz gegen jegliche Energienegativität, schafft Schutzschale' },
+      { name: 'Arus', desc: 'Schutz gegen Energienegativität, schafft Schutzschale' },
     ],
     social: [
       { name: 'Tantra-Nen', desc: 'Stimmt auf Glücksfrequenz ein, beseitigt Pechsträhne' },
@@ -109,6 +129,26 @@ const channelsData = {
       { name: 'Ratron', desc: '100 Frequenzen. Reinigt von Negativität, Wirbelsäule, Gewichtsnormalisierung' },
       { name: 'Pleiades Block', desc: 'DNA-Aktivierung, Chakra-Entwicklung, Strahltherapie, Verjüngung' },
       { name: 'Kryon Block', desc: 'Energie-Kosmetologie, magnetischer Service, Magnetismus-Erhöhung' },
+      { name: 'Initiologie-Schutz', desc: 'Blockiert negative Gedankenströme, transformiert Neid in Glück, automatische Abwehr' },
+    ],
+    higher: [
+      { name: 'Rang', desc: 'Wegräumung, Katastrophenprävention, supermächtiger Schutz, Krankheitsprävention' },
+      { name: 'Aeshma-Deva', desc: 'Stellt Liebesbande wieder her, stärkt Ehe, zieht Liebe an, verhindert Untreue' },
+      { name: 'Ra-Eligos', desc: 'Günstige Gerichtsergebnisse, geschäftlicher/finanzieller Erfolg, enthüllt verborgene Feinde' },
+      { name: 'Astarkhad', desc: 'Mächtiger Kanal des materiellen Wohlstands und Reichtums' },
+      { name: 'Raj Deva', desc: 'Supermächtiger Reichtumskanal, dreifache Kraft von Astarkhad und Jidu' },
+      { name: 'Thor', desc: 'Sieg in Streitigkeiten, Zukunftsvision, öffnet verborgenes Wissen' },
+      { name: 'Rikhtu', desc: 'Gabe des Einflusses auf Menschen/Ereignisse, erweiterte Einsicht, psychischer Schutz' },
+      { name: 'Vega', desc: 'Öffnet Zugang für Reisen durch höhere Dimensionen' },
+      { name: 'Vajra', desc: 'Eliminiert Gedankenlesen, schließt Portale zu anderen Welten, repariert Astralfeld' },
+      { name: 'Anoid', desc: 'Verleiht kosmisches Bewusstsein, ändert Schicksal, berufliches Wachstum' },
+      { name: 'Raja Sutra', desc: 'Entfesselt übernatürliche Fähigkeiten und Superkräfte' },
+      { name: 'Arum Est', desc: 'Uralter Kanal höchster Macht und Autorität' },
+      { name: 'A-Oranta', desc: 'Kanal höchster Gerechtigkeit und Vergeltung, keine Rückwirkung' },
+    ],
+    special: [
+      { name: 'Artra-Ven', desc: 'Sozialer Block, der mit Ursachen von Problemen arbeitet' },
+      { name: 'Metatron', desc: 'Frequenz-Mehrkanal-Verstärker des Hauptblocks' },
     ],
   },
   ru: {
@@ -141,7 +181,7 @@ const channelsData = {
       { name: 'Аум-Ра-Ке', desc: 'Снимает колдовство, проклятия, любовную магию, подключки энерговампиров' },
       { name: 'Сутрам', desc: 'Снимает карму рода, прошлых воплощений, личную карму' },
       { name: 'Фарум', desc: 'Разрывает некротические связи с умершими, снимает родовое проклятье' },
-      { name: 'Арус', desc: 'Защита от любого энергетического негатива, создает защитную оболочку' },
+      { name: 'Арус', desc: 'Защита от энергетического негатива, создает защитную оболочку' },
     ],
     social: [
       { name: 'Тантра-Нэн', desc: 'Настраивает на частоту удачи, выводит из полосы неудач' },
@@ -163,6 +203,26 @@ const channelsData = {
       { name: 'Ратрон', desc: '100 частот. Очищает от негатива, позвоночник, нормализация веса' },
       { name: 'Блок Плеяды', desc: 'Активация ДНК, развитие чакр, лучевая терапия, омоложение' },
       { name: 'Блок Крайон', desc: 'Энергокосметология, магнетическая служба, увеличение магнетизма' },
+      { name: 'Защита Инициолога', desc: 'Блокирует негативные потоки мыслей, трансформирует зависть в удачу, автоматическая защита' },
+    ],
+    higher: [
+      { name: 'Ранг', desc: 'Расчистка пути, предотвращение катастроф, сверхмощная защита, предупреждение болезней' },
+      { name: 'Аэшма-Дэва', desc: 'Восстанавливает любовные узы, укрепляет брак, привлекает любовь, защита от измен' },
+      { name: 'Ра-Элигос', desc: 'Благоприятный исход судебных дел, деловой/финансовый успех, проявляет скрытых врагов' },
+      { name: 'Астархад', desc: 'Мощный канал материального благополучия и богатства' },
+      { name: 'Радж Дэва', desc: 'Супермощный канал богатства, тройная мощность Астархад и Джиду' },
+      { name: 'Тор', desc: 'Победа в спорах, видение будущего, открывает скрытые знания' },
+      { name: 'Рихту', desc: 'Дар влияния на людей/события, усиленная проницательность, психическая защита' },
+      { name: 'Вега', desc: 'Открывает выход для путешествий по высшим измерениям' },
+      { name: 'Ваджра', desc: 'Устраняет считывание мыслей, закрывает порты в другие миры, латает дыры астрального поля' },
+      { name: 'Аноид', desc: 'Наделяет космическим сознанием, меняет предназначение, профессиональный рост' },
+      { name: 'Раджа сутра', desc: 'Раскрывает сверхъестественные способности и сверхвозможности' },
+      { name: 'Арум Эст', desc: 'Древний канал высшей власти и авторитета' },
+      { name: 'А-Оранта', desc: 'Канал высшей справедливости и возмездия, не имеет обратного хода' },
+    ],
+    special: [
+      { name: 'Артра-Вэн', desc: 'Социальный блок, работающий с причинами проблем' },
+      { name: 'Метатрон', desc: 'Частотный многоканальный усилитель основного блока' },
     ],
   },
 };
@@ -177,7 +237,22 @@ export default function ChannelsSection() {
     { id: 'social', key: 'social' },
     { id: 'informational', key: 'informational' },
     { id: 'impact', key: 'impact' },
+    { id: 'higher', key: 'higher' },
+    { id: 'special', key: 'special' },
   ];
+
+  const getCategoryTitle = (id: string) => {
+    const titles: Record<string, Record<string, string>> = {
+      restorative: { en: 'Restorative', de: 'Wiederherstellend', ru: 'Восстановительные' },
+      cleansing: { en: 'Cleansing', de: 'Reinigend', ru: 'Очистительные' },
+      social: { en: 'Social', de: 'Sozial', ru: 'Социальные' },
+      informational: { en: 'Informational', de: 'Informativ', ru: 'Информационные' },
+      impact: { en: 'Impact', de: 'Impact', ru: 'Ударные' },
+      higher: { en: 'Higher Initiology', de: 'Höhere Initiologie', ru: 'Высшая инициология' },
+      special: { en: 'Special Initiology', de: 'Spezielle Initiologie', ru: 'Специальная инициология' },
+    };
+    return titles[id]?.[language] || id;
+  };
 
   return (
     <section id="channels" className="py-20 md:py-32 bg-card">
@@ -192,32 +267,14 @@ export default function ChannelsSection() {
         </div>
 
         <Tabs defaultValue="restorative" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8" data-testid="tabs-channels">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 mb-8" data-testid="tabs-channels">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
                 data-testid={`tab-${category.id}`}
               >
-                {language === 'ru' ? 
-                  category.id === 'restorative' ? 'Восстановительные' :
-                  category.id === 'cleansing' ? 'Очистительные' :
-                  category.id === 'social' ? 'Социальные' :
-                  category.id === 'informational' ? 'Информационные' :
-                  'Ударные'
-                : language === 'de' ?
-                  category.id === 'restorative' ? 'Wiederherstellend' :
-                  category.id === 'cleansing' ? 'Reinigend' :
-                  category.id === 'social' ? 'Sozial' :
-                  category.id === 'informational' ? 'Informativ' :
-                  'Impact'
-                :
-                  category.id === 'restorative' ? 'Restorative' :
-                  category.id === 'cleansing' ? 'Cleansing' :
-                  category.id === 'social' ? 'Social' :
-                  category.id === 'informational' ? 'Informational' :
-                  'Impact'
-                }
+                {getCategoryTitle(category.id)}
               </TabsTrigger>
             ))}
           </TabsList>

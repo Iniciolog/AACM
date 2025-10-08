@@ -155,17 +155,21 @@ All content migrated from iniciolog.ru website:
 ## New Sections (Recently Added)
 
 ### ChannelsSection
-Displays 43+ professional energy channels organized in 5 categories:
+Displays 58 professional energy channels organized in 7 categories:
 - **Restorative** (23 channels): Physical healing channels for various body systems
-  - Examples: Sey-Lin (urogenital), Farist (cardiovascular), Sharot (neoplasms)
+  - Examples: Sey-Lin (urogenital), Farist (cardiovascular), Sharot (neoplasms), Vedium (HIV/AIDS)
 - **Cleansing** (4 channels): Energy clearing and protection channels
-  - Examples: Aum-Ra-Ke (witchcraft removal), Sutram (karma removal)
+  - Examples: Aum-Ra-Ke (witchcraft removal), Sutram (karma removal), Farum, Arus
 - **Social** (7 channels): Life improvement and success channels
-  - Examples: Tantra-Nen (luck), Tetragrammaton (wishes), Arbatel (wealth)
+  - Examples: Tantra-Nen (luck), Tetragrammaton (wishes), Arbatel (wealth), Zolt, Dar
 - **Informational** (2 channels): Information field access
   - Examples: Viartan, Buddha-Universum
-- **Impact** (6 blocks): Advanced channel blocks with multiple frequencies
-  - Examples: Cirion (50 frequencies), Christos, Solomon (120 frequencies)
+- **Impact** (7 blocks): Advanced channel blocks with multiple frequencies
+  - Examples: Cirion (50 frequencies), Christos, Solomon (120 frequencies), Initiologist Protection
+- **Higher Initiology** (13 channels): Advanced channels for masters (4th+ level)
+  - Examples: Rang (path clearing), Aeshma-Deva (love), Ra-Eligos (legal success), Astarkhad/Raj Deva (wealth), Thor (warrior), Vega (cosmic travel), Vajra (astral protection)
+- **Special Initiology** (2 channels): Specialized enhancement blocks
+  - Examples: Artra-Ven (social root causes), Metatron (frequency amplifier)
 
 **Implementation:**
 - Uses shadcn Tabs component for category switching
