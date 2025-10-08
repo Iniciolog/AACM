@@ -20,7 +20,7 @@ export default function HeroSection() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [flagPositions, setFlagPositions] = useState([
     { x: 150, y: -280 },
-    { x: 250, y: -180 },
+    { x: -250, y: -100 },
     { x: 180, y: 320 },
     { x: 150, y: 180 },
   ]);
