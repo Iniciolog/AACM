@@ -28,28 +28,28 @@ export default function HeroSection() {
     {
       name: language === 'ru' ? 'Европейский Союз' : language === 'de' ? 'Europäische Union' : 'European Union',
       flag: '🇪🇺',
-      specialists: 245,
+      specialists: 745,
       students: 10000,
       angle: 0,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
-      specialists: 180,
+      specialists: 680,
       students: 25740,
       angle: 0,
     },
     {
       name: language === 'ru' ? 'Китай' : language === 'de' ? 'China' : 'China',
       flag: '🇨🇳',
-      specialists: 320,
+      specialists: 820,
       students: 2340,
       angle: 0,
     },
     {
       name: language === 'ru' ? 'США' : language === 'de' ? 'USA' : 'USA',
       flag: '🇺🇸',
-      specialists: 290,
+      specialists: 790,
       students: 2150,
       angle: 0,
     },
@@ -97,7 +97,7 @@ export default function HeroSection() {
                   <div className="space-y-1 text-sm text-muted-foreground">
                     <p>
                       <span className="font-medium">
-                        {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
+                        {language === 'ru' ? 'Мастера Инициологии' : language === 'de' ? 'Meister der Initiologie' : 'Masters of Initiology'}:
                       </span>{' '}
                       {country.specialists}
                     </p>
