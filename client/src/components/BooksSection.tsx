@@ -20,7 +20,7 @@ export default function BooksSection() {
           <div className="flex flex-col md:flex-row items-center gap-8 bg-card p-8 rounded-lg shadow-xl">
             <div className="md:w-1/3">
               <img
-                src="https://thb.tildacdn.com/tild6661-6133-4536-b164-363337353833/-/empty/71_5rwwCdQL_SY466__1.jpg"
+                src="https://store.ridero.ru/images/w350?bucket=yc:store-raw-data.ridero.store&key=ridero/sku/2016-03/56d9304fe13a300600a0f915/rev.2023-08-07T11:31:28.497Z/cover-front.png&format=original"
                 alt={t('books.book1.title')}
                 className="w-full rounded-lg shadow-lg"
                 data-testid="img-book-cover"

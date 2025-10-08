@@ -141,6 +141,13 @@ Preferred communication style: Simple, everyday language.
 - Static images stored in `attached_assets` directory
 - Generated academic imagery for sections
 
+### Content Sources
+All content migrated from iniciolog.ru website:
+- **Book cover**: https://store.ridero.ru/images/w350?bucket=yc:store-raw-data.ridero.store&key=ridero/sku/2016-03/56d9304fe13a300600a0f915/rev.2023-08-07T11:31:28.497Z/cover-front.png&format=original
+- **Research study image**: https://static.tildacdn.com/tild6132-3436-4166-b739-353336393030/research.jpeg
+- **Founder photo**: https://static.tildacdn.com/tild3662-6238-4132-b034-633134363066/222.png
+- **Student counts**: CIS (25,740), EU (10,000), China (2,340), USA (2,150)
+
 ### Database
 - **PostgreSQL** (via Neon): Primary production database
 - **Drizzle Kit**: Database migration and schema management
