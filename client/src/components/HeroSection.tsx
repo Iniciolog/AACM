@@ -21,8 +21,8 @@ export default function HeroSection() {
   const [flagPositions, setFlagPositions] = useState([
     { x: 150, y: -280 },
     { x: 180, y: -100 },
-    { x: 180, y: 100 },
-    { x: 150, y: 280 },
+    { x: 180, y: 320 },
+    { x: 150, y: 180 },
   ]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
