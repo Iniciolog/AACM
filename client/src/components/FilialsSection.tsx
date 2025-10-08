@@ -68,7 +68,7 @@ export default function FilialsSection() {
                   <FaTelegramPlane size={20} />
                 </a>
                 <a
-                  href={`https://wa.me/initiology_${country.key}`}
+                  href="https://api.whatsapp.com/send/?phone=19297174941"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact-icon whatsapp"
