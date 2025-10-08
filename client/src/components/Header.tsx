@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useEditMode } from '@/contexts/EditModeContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
-import { Button } from '@/components/ui/button';
-import { Edit, Check } from 'lucide-react';
 import logoImage from '@assets/academy-logo.jpeg';
 
 export default function Header() {
   const { t } = useLanguage();
-  const { isEditMode, toggleEditMode } = useEditMode();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -119,25 +115,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button
-              size="sm"
-              variant={isEditMode ? "default" : "outline"}
-              onClick={toggleEditMode}
-              className="gap-2"
-              data-testid="button-edit-mode"
-            >
-              {isEditMode ? (
-                <>
-                  <Check className="h-4 w-4" />
-                  Готово
-                </>
-              ) : (
-                <>
-                  <Edit className="h-4 w-4" />
-                  Редактор
-                </>
-              )}
-            </Button>
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
