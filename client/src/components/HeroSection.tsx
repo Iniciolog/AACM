@@ -68,14 +68,14 @@ export default function HeroSection() {
       name: language === 'ru' ? 'Европейский Союз' : language === 'de' ? 'Europäische Union' : 'European Union',
       flag: '🇪🇺',
       specialists: 245,
-      students: 1850,
+      students: 10000,
       angle: 0,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
       specialists: 180,
-      students: 1420,
+      students: 25740,
       angle: 0,
     },
     {
