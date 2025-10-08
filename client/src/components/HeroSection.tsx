@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import globeImage from '@assets/stock_images/clean_elegant_earth__5f141e95.jpg';
+import globeImage from '@assets/stock_images/planet_earth_globe_f_671ad280.jpg';
 
 interface CountryMarker {
   name: string;
