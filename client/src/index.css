@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -77,7 +79,7 @@
   --chart-5: 280 40% 40%;
 
   --font-sans: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: Playfair Display, Georgia, serif;
+  --font-serif: Poppins, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: Menlo, Monaco, monospace;
   --radius: .5rem;
   --shadow-2xs: 0px 1px 2px 0px hsl(220 45% 20% / 0.04);
