@@ -18,7 +18,11 @@ const translations = {
     'nav.conclusions': 'Scientific Conclusions',
     'nav.education': 'Educational Platform',
     'nav.books': 'Books',
+    'nav.awards': 'Awards',
+    'nav.services': 'Services',
     'nav.faq': 'FAQ',
+    'nav.contact': 'Contact',
+    'nav.about': 'About Us',
     
     // Hero
     'hero.title': 'International Academy of Initiology',
@@ -89,7 +93,11 @@ const translations = {
     'nav.conclusions': 'Wissenschaftliche Schlussfolgerungen',
     'nav.education': 'Bildungsplattform',
     'nav.books': 'Bücher',
+    'nav.awards': 'Auszeichnungen',
+    'nav.services': 'Dienstleistungen',
     'nav.faq': 'FAQ',
+    'nav.contact': 'Kontakt',
+    'nav.about': 'Über uns',
     
     // Hero
     'hero.title': 'Internationale Akademie für Initiologie',
@@ -160,7 +168,11 @@ const translations = {
     'nav.conclusions': 'Научные заключения',
     'nav.education': 'Образовательная платформа',
     'nav.books': 'Книги',
+    'nav.awards': 'Награды',
+    'nav.services': 'Услуги',
     'nav.faq': 'Вопросы и ответы',
+    'nav.contact': 'Контакты',
+    'nav.about': 'О нас',
     
     // Hero
     'hero.title': 'Международная Академия Инициологии',

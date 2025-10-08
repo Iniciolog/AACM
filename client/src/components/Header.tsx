@@ -2,15 +2,6 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
-import { Button } from '@/components/ui/button';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
 import logoImage from '@assets/academy-logo.jpeg';
 
 export default function Header() {
@@ -58,91 +49,69 @@ export default function Header() {
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger data-testid="nav-research">
-                    {t('nav.research')}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-64 gap-1 p-2">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <button
-                            onClick={() => scrollToSection('research')}
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate w-full text-left"
-                            data-testid="nav-articles"
-                          >
-                            <div className="text-sm font-medium">{t('nav.articles')}</div>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Latest research articles
-                            </p>
-                          </button>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <button
-                            onClick={() => scrollToSection('research')}
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate w-full text-left"
-                            data-testid="nav-studies"
-                          >
-                            <div className="text-sm font-medium">{t('nav.studies')}</div>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Scientific studies
-                            </p>
-                          </button>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <button
-                            onClick={() => scrollToSection('research')}
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover-elevate w-full text-left"
-                            data-testid="nav-conclusions"
-                          >
-                            <div className="text-sm font-medium">{t('nav.conclusions')}</div>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Research conclusions
-                            </p>
-                          </button>
-                        </NavigationMenuLink>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+            <button
+              onClick={() => scrollToSection('research')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-research"
+            >
+              {t('nav.research')}
+            </button>
+            
+            <button
+              onClick={() => scrollToSection('education')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-education"
+            >
+              {t('nav.education')}
+            </button>
 
-                <NavigationMenuItem>
-                  <button
-                    onClick={() => scrollToSection('education')}
-                    className="inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-                    data-testid="nav-education"
-                  >
-                    {t('nav.education')}
-                  </button>
-                </NavigationMenuItem>
+            <button
+              onClick={() => scrollToSection('books')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-books"
+            >
+              {t('nav.books')}
+            </button>
 
-                <NavigationMenuItem>
-                  <button
-                    onClick={() => scrollToSection('books')}
-                    className="inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-                    data-testid="nav-books"
-                  >
-                    {t('nav.books')}
-                  </button>
-                </NavigationMenuItem>
+            <button
+              onClick={() => scrollToSection('awards')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-awards"
+            >
+              {t('nav.awards')}
+            </button>
 
-                <NavigationMenuItem>
-                  <button
-                    onClick={() => scrollToSection('faq')}
-                    className="inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-                    data-testid="nav-faq"
-                  >
-                    {t('nav.faq')}
-                  </button>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <button
+              onClick={() => scrollToSection('services')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-services"
+            >
+              {t('nav.services')}
+            </button>
+
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-faq"
+            >
+              {t('nav.faq')}
+            </button>
+
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-contact"
+            >
+              {t('nav.contact')}
+            </button>
+
+            <button
+              onClick={() => scrollToSection('about')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-about"
+            >
+              {t('nav.about')}
+            </button>
           </nav>
 
           <div className="flex items-center gap-2">
