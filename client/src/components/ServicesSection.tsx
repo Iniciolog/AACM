@@ -117,7 +117,7 @@ export default function ServicesSection() {
             </div>
           </div>
           <Button size="lg" asChild data-testid="button-book-session">
-            <a href="https://api.whatsapp.com/send/?phone=79258298223" target="_blank" rel="noopener noreferrer">
+            <a href="https://api.whatsapp.com/send/?phone=19297174941" target="_blank" rel="noopener noreferrer">
               {t('services.cta')}
             </a>
           </Button>

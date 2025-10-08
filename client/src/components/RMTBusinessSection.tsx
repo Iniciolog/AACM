@@ -75,7 +75,7 @@ export default function RMTBusinessSection() {
                   asChild
                   data-testid={`button-consult-${plan.key}`}
                 >
-                  <a href="https://api.whatsapp.com/send/?phone=79258298223" target="_blank" rel="noopener noreferrer">
+                  <a href="https://api.whatsapp.com/send/?phone=19297174941" target="_blank" rel="noopener noreferrer">
                     {t('rmt.plans.cta')}
                   </a>
                 </Button>

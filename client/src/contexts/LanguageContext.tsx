@@ -178,7 +178,7 @@ const translations = {
     'footer.contact': 'Contact',
     'footer.address': '35 Angell\'s Avenue',
     'footer.email': 'initiology@gmail.com',
-    'footer.phone': '+7 (925) 829 82 23',
+    'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Subscribe to Newsletter',
     'footer.copyright': '© 2024 International Academy of Initiology. All rights reserved.',
     
@@ -367,7 +367,7 @@ const translations = {
     'footer.contact': 'Kontakt',
     'footer.address': '35 Angell\'s Avenue',
     'footer.email': 'initiology@gmail.com',
-    'footer.phone': '+7 (925) 829 82 23',
+    'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Newsletter abonnieren',
     'footer.copyright': '© 2024 Internationale Akademie für Initiologie. Alle Rechte vorbehalten.',
     
@@ -556,7 +556,7 @@ const translations = {
     'footer.contact': 'Контакты',
     'footer.address': '35 Angell\'s Avenue',
     'footer.email': 'initiology@gmail.com',
-    'footer.phone': '+7 (925) 829 82 23',
+    'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Подписаться на рассылку',
     'footer.copyright': '© 2024 Международная Академия Инициологии. Все права защищены.',
     
