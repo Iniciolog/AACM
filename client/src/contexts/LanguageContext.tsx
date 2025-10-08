@@ -202,14 +202,32 @@ const translations = {
     // Careers
     'careers.title': 'Careers & Cooperation',
     'careers.subtitle': 'Join our team of professionals',
-    'careers.position.title': 'Initiologist - Consultant',
-    'careers.position.benefits.title': 'Position Benefits',
-    'careers.position.benefit1': 'Official contract with the Academy',
-    'careers.position.benefit2': 'Employee ID of the International Academy of Initiology',
-    'careers.position.benefit3': 'Listing in Academy branches and staff directories',
-    'careers.position.benefit4': 'Right to advertise using Academy benefits as a branch',
-    'careers.position.benefit5': 'Ability to officially work and accept client payments on the Academy website',
-    'careers.position.benefit6': 'Freedom from tax burden',
+    
+    // Position 1: Initiologist - Consultant
+    'careers.position1.title': 'Initiologist - Consultant',
+    'careers.position1.benefits.title': 'Position Benefits',
+    'careers.position1.benefit1': 'Official contract with the Academy',
+    'careers.position1.benefit2': 'Employee ID of the International Academy of Initiology',
+    'careers.position1.benefit3': 'Listing in Academy branches and staff directories',
+    'careers.position1.benefit4': 'Right to advertise using Academy benefits as a branch',
+    'careers.position1.benefit5': 'Ability to officially work and accept client payments on the Academy website',
+    'careers.position1.benefit6': 'Freedom from tax burden',
+    
+    // Position 2: Research Associate
+    'careers.position2.title': 'Research Associate',
+    'careers.position2.benefits.title': 'Position Benefits',
+    'careers.position2.benefit1': 'Official contract with the Academy',
+    'careers.position2.benefit2': 'Research Associate ID certificate',
+    'careers.position2.benefit3': 'Execution of job duties in the field of research on the specifics of channel effects under different conditions',
+    'careers.position2.benefit4': 'Submission of scientific research work',
+    'careers.position2.benefit5': 'Alternative participation option: financial compensation for one-sided use of preferences as an alternative form of contribution to the development and strengthening of the Academy on the world stage',
+    
+    // Position 3: Expert Analyst
+    'careers.position3.title': 'Expert Analyst',
+    'careers.position3.benefits.title': 'Position Benefits',
+    'careers.position3.benefit1': 'Freelance position for external collaborators',
+    'careers.position3.benefit2': 'Positioning of Initiology in mass media',
+    
     'careers.apply': 'Apply Now',
   },
   de: {
@@ -405,14 +423,32 @@ const translations = {
     // Careers
     'careers.title': 'Karriere & Zusammenarbeit',
     'careers.subtitle': 'Werden Sie Teil unseres professionellen Teams',
-    'careers.position.title': 'Initiologe - Berater',
-    'careers.position.benefits.title': 'Stellenvorteile',
-    'careers.position.benefit1': 'Offizieller Vertrag mit der Akademie',
-    'careers.position.benefit2': 'Mitarbeiterausweis der Internationalen Akademie für Initiologie',
-    'careers.position.benefit3': 'Aufnahme in die Filial- und Mitarbeiterverzeichnisse der Akademie',
-    'careers.position.benefit4': 'Recht auf Werbung mit den Vorteilen der Akademie als Filiale',
-    'careers.position.benefit5': 'Möglichkeit, offiziell zu arbeiten und Kundenzahlungen auf der Akademie-Website zu akzeptieren',
-    'careers.position.benefit6': 'Befreiung von der Steuerlast',
+    
+    // Position 1: Initiologist - Consultant
+    'careers.position1.title': 'Initiologe - Berater',
+    'careers.position1.benefits.title': 'Stellenvorteile',
+    'careers.position1.benefit1': 'Offizieller Vertrag mit der Akademie',
+    'careers.position1.benefit2': 'Mitarbeiterausweis der Internationalen Akademie für Initiologie',
+    'careers.position1.benefit3': 'Aufnahme in die Filial- und Mitarbeiterverzeichnisse der Akademie',
+    'careers.position1.benefit4': 'Recht auf Werbung mit den Vorteilen der Akademie als Filiale',
+    'careers.position1.benefit5': 'Möglichkeit, offiziell zu arbeiten und Kundenzahlungen auf der Akademie-Website zu akzeptieren',
+    'careers.position1.benefit6': 'Befreiung von der Steuerlast',
+    
+    // Position 2: Research Associate
+    'careers.position2.title': 'Wissenschaftlicher Mitarbeiter',
+    'careers.position2.benefits.title': 'Stellenvorteile',
+    'careers.position2.benefit1': 'Offizieller Vertrag mit der Akademie',
+    'careers.position2.benefit2': 'Ausweis des wissenschaftlichen Mitarbeiters',
+    'careers.position2.benefit3': 'Erfüllung der Arbeitsanweisungen im Bereich der Erforschung der Spezifika der Kanalwirkungen unter verschiedenen Bedingungen',
+    'careers.position2.benefit4': 'Abgabe wissenschaftlicher Forschungsarbeiten',
+    'careers.position2.benefit5': 'Alternative Teilnahmeoption: finanzielle Entschädigung für einseitige Nutzung von Präferenzen als alternative Form des Beitrags zur Entwicklung und Stärkung der Akademie auf der Weltbühne',
+    
+    // Position 3: Expert Analyst
+    'careers.position3.title': 'Experte - Analyst',
+    'careers.position3.benefits.title': 'Stellenvorteile',
+    'careers.position3.benefit1': 'Freiberufliche Position für externe Mitarbeiter',
+    'careers.position3.benefit2': 'Positionierung der Initiologie in den Massenmedien',
+    
     'careers.apply': 'Jetzt bewerben',
   },
   ru: {
@@ -608,14 +644,32 @@ const translations = {
     // Careers
     'careers.title': 'Вакансии и сотрудничество',
     'careers.subtitle': 'Присоединяйтесь к нашей команде профессионалов',
-    'careers.position.title': 'Инициолог - консультант',
-    'careers.position.benefits.title': 'Преимущества должности',
-    'careers.position.benefit1': 'Заключение официального договора с Академией',
-    'careers.position.benefit2': 'Удостоверение сотрудника Международной Академии Инициологии',
-    'careers.position.benefit3': 'Размещение в списках филиалов и сотрудников академии',
-    'careers.position.benefit4': 'Право на рекламу с использованием плюсов Академии на правах филиала',
-    'careers.position.benefit5': 'Возможность официально работать и принимать платежи клиентов на сайте Академии',
-    'careers.position.benefit6': 'Освобождение от налогового бремени',
+    
+    // Position 1: Initiologist - Consultant
+    'careers.position1.title': 'Инициолог - консультант',
+    'careers.position1.benefits.title': 'Преимущества должности',
+    'careers.position1.benefit1': 'Заключение официального договора с Академией',
+    'careers.position1.benefit2': 'Удостоверение сотрудника Международной Академии Инициологии',
+    'careers.position1.benefit3': 'Размещение в списках филиалов и сотрудников академии',
+    'careers.position1.benefit4': 'Право на рекламу с использованием плюсов Академии на правах филиала',
+    'careers.position1.benefit5': 'Возможность официально работать и принимать платежи клиентов на сайте Академии',
+    'careers.position1.benefit6': 'Освобождение от налогового бремени',
+    
+    // Position 2: Research Associate
+    'careers.position2.title': 'Научный сотрудник Академии',
+    'careers.position2.benefits.title': 'Преимущества должности',
+    'careers.position2.benefit1': 'Заключение официального договора с Академией',
+    'careers.position2.benefit2': 'Вручение удостоверения научного сотрудника',
+    'careers.position2.benefit3': 'Выполнение должностных инструкций в области исследований специфики воздействия каналов в разных условиях',
+    'careers.position2.benefit4': 'Сдача научной исследовательской работы',
+    'careers.position2.benefit5': '2 вариант участия в договорных отношениях включает материальную компенсацию за одностороннее использование преференций в качестве альтернативной формы вклада в развитие и укрепление Академии на мировой сцене',
+    
+    // Position 3: Expert Analyst
+    'careers.position3.title': 'Эксперт - аналитик Академии',
+    'careers.position3.benefits.title': 'Преимущества должности',
+    'careers.position3.benefit1': 'Для внештатных сотрудников',
+    'careers.position3.benefit2': 'Позиционирование Инициологии в масс медиа',
+    
     'careers.apply': 'Подать заявку',
   },
 };

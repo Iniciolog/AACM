@@ -158,17 +158,28 @@ All content migrated from iniciolog.ru website:
 ### Careers Page
 New page added for recruitment and cooperation:
 - **Route**: /careers
-- **Position**: Инициолог - консультант (Initiologist - Consultant)
-- **Benefits** (6 items):
+- **Link location**: Footer Legal section
+- **Multilingual**: Full EN/DE/RU translations
+- **Applications**: WhatsApp (+19297174941) or Email (initiology@gmail.com)
+
+**Position 1: Инициолог - консультант (Initiologist - Consultant)**
   1. Official contract with the Academy
   2. Employee ID of the International Academy of Initiology
   3. Listing in Academy branches and staff directories
   4. Right to advertise using Academy benefits as a branch
   5. Ability to officially work and accept client payments on the Academy website
   6. Freedom from tax burden
-- **Applications**: WhatsApp (+19297174941) or Email (initiology@gmail.com)
-- **Link location**: Footer Legal section
-- **Multilingual**: Full EN/DE/RU translations
+
+**Position 2: Научный сотрудник Академии (Research Associate)**
+  1. Official contract with the Academy
+  2. Research Associate ID certificate
+  3. Execution of job duties in the field of research on the specifics of channel effects under different conditions
+  4. Submission of scientific research work
+  5. Alternative participation option: financial compensation for one-sided use of preferences as an alternative form of contribution to the development and strengthening of the Academy on the world stage
+
+**Position 3: Эксперт - аналитик Академии (Expert Analyst)**
+  1. Freelance position for external collaborators
+  2. Positioning of Initiology in mass media
 
 ## New Sections (Recently Added)
 
