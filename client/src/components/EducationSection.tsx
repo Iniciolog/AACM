@@ -41,8 +41,10 @@ export default function EducationSection() {
               ))}
             </div>
 
-            <Button size="lg" data-testid="button-education-cta">
-              {t('education.cta')}
+            <Button size="lg" asChild data-testid="button-education-cta">
+              <a href="https://iniciolog.com/members/login" target="_blank" rel="noopener noreferrer">
+                {t('education.cta')}
+              </a>
             </Button>
           </div>
 

@@ -147,6 +147,7 @@ All content migrated from iniciolog.ru website:
 - **Research study image**: https://static.tildacdn.com/tild6132-3436-4166-b739-353336393030/research.jpeg
 - **Founder photo**: https://static.tildacdn.com/tild3662-6238-4132-b034-633134363066/222.png
 - **Student counts**: CIS (25,740), EU (10,000), China (2,340), USA (2,150)
+- **Learning platform**: https://iniciolog.com/members/login
 
 ### Database
 - **PostgreSQL** (via Neon): Primary production database
