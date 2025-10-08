@@ -95,6 +95,14 @@ export default function Header() {
             >
               {t('nav.awards')}
             </a>
+
+            <button
+              onClick={() => scrollToSection('faq')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-faq"
+            >
+              {t('nav.faq')}
+            </button>
           </nav>
 
           <div className="flex items-center gap-2">
