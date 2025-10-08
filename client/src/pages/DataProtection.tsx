@@ -91,11 +91,9 @@ export default function DataProtection() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <Link href="/">
-          <a className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </a>
+        <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+          <ArrowLeft className="h-4 w-4" />
+          Back to Home
         </Link>
 
         <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
