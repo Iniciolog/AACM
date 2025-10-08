@@ -11,28 +11,17 @@ export default function EducationProgramSection() {
       subtitle: 'Professional training in Initiology and energy healing',
       levels: [
         {
-          title: 'Level 1: Basics',
-          duration: '3 months',
-          description: 'Introduction to Initiology, basic channels, energy diagnostics, healing fundamentals',
-          topics: ['Energy system basics', 'Restorative channels', 'Self-healing techniques', 'Ethics and safety']
-        },
-        {
-          title: 'Level 2: Professional',
-          duration: '6 months',
-          description: 'Advanced channels, cleansing techniques, working with clients, business foundations',
-          topics: ['Cleansing channels', 'Client diagnostics', 'Professional practice', 'Business development']
-        },
-        {
-          title: 'Level 3: Master',
-          duration: '9 months',
-          description: 'Impact channels, social channels, complex cases, teaching methodology',
-          topics: ['Impact channels', 'Social channels', 'Complex diagnostics', 'Teaching skills']
-        },
-        {
-          title: 'Level 4: Higher Initiology',
-          duration: '12 months',
-          description: 'Higher channels, cosmic consciousness, supernatural abilities, mastery',
-          topics: ['Higher channels', 'Cosmic travel', 'Advanced protection', 'Master certification']
+          title: 'Level 1',
+          duration: '',
+          description: '',
+          topics: [
+            'Access to educational materials and video lessons of the 1st level',
+            'Access to Initiologists chat and online student support',
+            'Basic energy exercises: diagnostics, reading, cleansing and activation of energy centers',
+            'Initiation into the universal restorative channel Bonpo-Buddha: restores and increases the biofield, saturates with pure cosmic energy, replenishes resources',
+            'Learning the session scheme for yourself and others',
+            'Working with the Prajna channel (chakra channel)'
+          ]
         }
       ],
       features: [
@@ -47,28 +36,17 @@ export default function EducationProgramSection() {
       subtitle: 'Professionelle Ausbildung in Initiologie und Energieheilung',
       levels: [
         {
-          title: 'Stufe 1: Grundlagen',
-          duration: '3 Monate',
-          description: 'Einführung in Initiologie, Basiskanäle, Energiediagnostik, Heilungsgrundlagen',
-          topics: ['Grundlagen des Energiesystems', 'Wiederherstellende Kanäle', 'Selbstheilungstechniken', 'Ethik und Sicherheit']
-        },
-        {
-          title: 'Stufe 2: Professionell',
-          duration: '6 Monate',
-          description: 'Fortgeschrittene Kanäle, Reinigungstechniken, Arbeit mit Klienten, Geschäftsgrundlagen',
-          topics: ['Reinigende Kanäle', 'Klientendiagnostik', 'Professionelle Praxis', 'Geschäftsentwicklung']
-        },
-        {
-          title: 'Stufe 3: Meister',
-          duration: '9 Monate',
-          description: 'Impact-Kanäle, soziale Kanäle, komplexe Fälle, Lehrmethodik',
-          topics: ['Impact-Kanäle', 'Soziale Kanäle', 'Komplexe Diagnostik', 'Lehrfähigkeiten']
-        },
-        {
-          title: 'Stufe 4: Höhere Initiologie',
-          duration: '12 Monate',
-          description: 'Höhere Kanäle, kosmisches Bewusstsein, übernatürliche Fähigkeiten, Meisterschaft',
-          topics: ['Höhere Kanäle', 'Kosmische Reisen', 'Fortgeschrittener Schutz', 'Meisterzertifizierung']
+          title: 'Stufe 1',
+          duration: '',
+          description: '',
+          topics: [
+            'Zugang zu Lehrmaterialien und Videokursen der 1. Stufe',
+            'Zugang zum Initiolog-Chat und Online-Support für Studenten',
+            'Grundlegende Energieübungen: Diagnostik, Ablesen, Reinigung und Aktivierung der Energiezentren',
+            'Einweihung in den universellen Wiederherstellungskanal Bonpo-Buddha: stellt das Biofeld wieder her und vergrößert es, sättigt mit reiner kosmischer Energie, ergänzt Ressourcen',
+            'Erlernen des Sitzungsschemas für sich selbst und andere',
+            'Arbeit mit dem Prajna-Kanal (Chakra-Kanal)'
+          ]
         }
       ],
       features: [
@@ -83,28 +61,17 @@ export default function EducationProgramSection() {
       subtitle: 'Профессиональное обучение инициологии и энергетическому целительству',
       levels: [
         {
-          title: 'Уровень 1: Основы',
-          duration: '3 месяца',
-          description: 'Введение в инициологию, базовые каналы, энергодиагностика, основы целительства',
-          topics: ['Основы энергосистемы', 'Восстановительные каналы', 'Техники самоисцеления', 'Этика и безопасность']
-        },
-        {
-          title: 'Уровень 2: Профессионал',
-          duration: '6 месяцев',
-          description: 'Продвинутые каналы, техники очищения, работа с клиентами, основы бизнеса',
-          topics: ['Очистительные каналы', 'Диагностика клиентов', 'Профессиональная практика', 'Развитие бизнеса']
-        },
-        {
-          title: 'Уровень 3: Мастер',
-          duration: '9 месяцев',
-          description: 'Ударные каналы, социальные каналы, сложные случаи, методика преподавания',
-          topics: ['Ударные каналы', 'Социальные каналы', 'Сложная диагностика', 'Навыки преподавания']
-        },
-        {
-          title: 'Уровень 4: Высшая инициология',
-          duration: '12 месяцев',
-          description: 'Высшие каналы, космическое сознание, сверхспособности, мастерство',
-          topics: ['Высшие каналы', 'Космические путешествия', 'Продвинутая защита', 'Сертификация мастера']
+          title: '1 ступень',
+          duration: '',
+          description: '',
+          topics: [
+            'Доступ к учебным материалам и видеоурокам 1-ой ступени',
+            'Доступ к чату Инициологов и онлайн-поддержке учеников',
+            'Базовые энергетические упражнения: диагностика, считывание, очищение и активация энергоцентров',
+            'Инициация в универсальный восстановительный канал Бонпо-Будда: восстанавливает и увеличивает биополе, насыщает чистой энергией космоса, восполняет ресурсы',
+            'Изучение схемы проведения сеанса для себя и для других',
+            'Работа с каналом Пражна (чакровый канал)'
+          ]
         }
       ],
       features: [
