@@ -18,7 +18,7 @@ export default function AwardsSection() {
           name: 'Natalia Streltsova',
           nomination: 'Laureate of the Award in the category: "For High Achievements in Initiology".',
           achievement: 'Restored lost functions and achieved cancellation of thyroid removal surgery, using master technologies of Initiology.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6530-6432-4530-b534-366666313133/R2A5978_problembocom.jpg'
         },
         {
           name: 'ANDREY SOMOV',
@@ -41,7 +41,7 @@ export default function AwardsSection() {
           name: 'Natalia Streltsova',
           nomination: 'Preisträgerin in der Kategorie: "Für hohe Leistungen in der Initiologie".',
           achievement: 'Stellte verlorene Funktionen wieder her und erreichte die Absage einer Schilddrüsenentfernungsoperation, unter Verwendung von Meistertechnologien der Initiologie.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6530-6432-4530-b534-366666313133/R2A5978_problembocom.jpg'
         },
         {
           name: 'ANDREY SOMOV',
@@ -64,7 +64,7 @@ export default function AwardsSection() {
           name: 'Наталья Стрельцова',
           nomination: 'Лауреат Премии в номинации: "За высокие достижения в Инициологии".',
           achievement: 'Восстановила утраченные функции и добилась отмены операции по удалению щитовидной железы, с использованием мастерских технологий Инициологии.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6530-6432-4530-b534-366666313133/R2A5978_problembocom.jpg'
         },
         {
           name: 'АНДРЕЙ СОМОВ',
