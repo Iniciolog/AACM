@@ -71,11 +71,11 @@ export default function Header() {
             </button>
 
             <button
-              onClick={() => scrollToSection('awards')}
+              onClick={() => scrollToSection('channels')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-awards"
+              data-testid="nav-channels"
             >
-              {t('nav.awards')}
+              {t('nav.channels')}
             </button>
 
             <button
@@ -84,6 +84,14 @@ export default function Header() {
               data-testid="nav-services"
             >
               {t('nav.services')}
+            </button>
+
+            <button
+              onClick={() => scrollToSection('rmt')}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-rmt"
+            >
+              {t('nav.rmt')}
             </button>
 
             <button

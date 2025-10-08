@@ -74,6 +74,9 @@ Preferred communication style: Simple, everyday language.
   - ResearchSection (article cards with imagery)
   - EducationSection (platform features and preview)
   - BooksSection (publication showcase)
+  - ChannelsSection (43+ energy channels in 5 categories with tabs)
+  - ServicesSection (healing services and sessions)
+  - RMTBusinessSection (RMT technology business plans)
   - AboutSection (founder information)
   - FAQSection (accordion-style Q&A)
   - Footer (newsletter, links, contact info)
@@ -148,6 +151,57 @@ All content migrated from iniciolog.ru website:
 - **Founder photo**: https://static.tildacdn.com/tild3662-6238-4132-b034-633134363066/222.png
 - **Student counts**: CIS (25,740), EU (10,000), China (2,340), USA (2,150)
 - **Learning platform**: https://iniciolog.com/members/login
+
+## New Sections (Recently Added)
+
+### ChannelsSection
+Displays 43+ professional energy channels organized in 5 categories:
+- **Restorative** (23 channels): Physical healing channels for various body systems
+  - Examples: Sey-Lin (urogenital), Farist (cardiovascular), Sharot (neoplasms)
+- **Cleansing** (4 channels): Energy clearing and protection channels
+  - Examples: Aum-Ra-Ke (witchcraft removal), Sutram (karma removal)
+- **Social** (7 channels): Life improvement and success channels
+  - Examples: Tantra-Nen (luck), Tetragrammaton (wishes), Arbatel (wealth)
+- **Informational** (2 channels): Information field access
+  - Examples: Viartan, Buddha-Universum
+- **Impact** (6 blocks): Advanced channel blocks with multiple frequencies
+  - Examples: Cirion (50 frequencies), Christos, Solomon (120 frequencies)
+
+**Implementation:**
+- Uses shadcn Tabs component for category switching
+- Channel data stored locally in component with multilingual support
+- Responsive grid layout with hover effects
+- Each channel displayed as a Card with name and description
+
+### ServicesSection
+Personal healing services offered by V.P. Lazarenko:
+- **Energy Cleansing**: Full energy-informational structure restoration
+- **RMT Protection**: Durable protection against negative influences
+- **Targeted Work**: Problem-solving at physical, energetic, and informational levels
+- **Habit Correction**: Alcohol, smoking, eating behavior (from 1 session)
+
+**Implementation:**
+- Grid layout with service cards
+- Multilingual translations via LanguageContext
+- Call-to-action buttons for booking sessions
+
+### RMTBusinessSection
+RMT (Renewable Magnetic Technology) business solutions:
+- **Small Business** (up to $1M): Modernization, energy rehabilitation, cosmic energy connection
+- **Medium Business**: Advanced protection, power field expansion, quarterly diagnostics
+- **Large Business** ($50M+): Global corporation support, egregor strengthening, comprehensive protection
+
+**Features:**
+- Three pricing tiers with detailed feature lists
+- Lifetime service with 1-year warranty
+- Consultation buttons for each tier
+- Technical explanation of RMT nature and capabilities
+
+**Implementation:**
+- Responsive grid layout for pricing cards
+- Feature lists with check marks
+- Expandable "Nature of RMT" section
+- Multilingual support for all content
 
 ### Database
 - **PostgreSQL** (via Neon): Primary production database
