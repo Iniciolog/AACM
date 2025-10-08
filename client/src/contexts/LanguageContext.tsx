@@ -176,6 +176,22 @@ const translations = {
     'footer.phone': '+7 (925) 829 82 23',
     'footer.newsletter': 'Subscribe to Newsletter',
     'footer.copyright': '© 2024 International Academy of Initiology. All rights reserved.',
+    
+    // Filials
+    'filials.title': 'Filials of IAI',
+    'filials.countries.germany': 'Germany',
+    'filials.countries.france': 'France',
+    'filials.countries.italy': 'Italy',
+    'filials.countries.spain': 'Spain',
+    'filials.countries.netherlands': 'Netherlands',
+    'filials.countries.belgium': 'Belgium',
+    'filials.countries.austria': 'Austria',
+    'filials.countries.poland': 'Poland',
+    'filials.countries.sweden': 'Sweden',
+    'filials.countries.usa': 'USA',
+    'filials.countries.canada': 'Canada',
+    'filials.countries.china': 'China',
+    'filials.countries.belarus': 'Belarus',
   },
   de: {
     // Header
@@ -344,6 +360,22 @@ const translations = {
     'footer.phone': '+7 (925) 829 82 23',
     'footer.newsletter': 'Newsletter abonnieren',
     'footer.copyright': '© 2024 Internationale Akademie für Initiologie. Alle Rechte vorbehalten.',
+    
+    // Filials
+    'filials.title': 'Filialen der IAI',
+    'filials.countries.germany': 'Deutschland',
+    'filials.countries.france': 'Frankreich',
+    'filials.countries.italy': 'Italien',
+    'filials.countries.spain': 'Spanien',
+    'filials.countries.netherlands': 'Niederlande',
+    'filials.countries.belgium': 'Belgien',
+    'filials.countries.austria': 'Österreich',
+    'filials.countries.poland': 'Polen',
+    'filials.countries.sweden': 'Schweden',
+    'filials.countries.usa': 'USA',
+    'filials.countries.canada': 'Kanada',
+    'filials.countries.china': 'China',
+    'filials.countries.belarus': 'Belarus',
   },
   ru: {
     // Header
@@ -512,6 +544,22 @@ const translations = {
     'footer.phone': '+7 (925) 829 82 23',
     'footer.newsletter': 'Подписаться на рассылку',
     'footer.copyright': '© 2024 Международная Академия Инициологии. Все права защищены.',
+    
+    // Filials
+    'filials.title': 'Филиалы МАИ',
+    'filials.countries.germany': 'Германия',
+    'filials.countries.france': 'Франция',
+    'filials.countries.italy': 'Италия',
+    'filials.countries.spain': 'Испания',
+    'filials.countries.netherlands': 'Нидерланды',
+    'filials.countries.belgium': 'Бельгия',
+    'filials.countries.austria': 'Австрия',
+    'filials.countries.poland': 'Польша',
+    'filials.countries.sweden': 'Швеция',
+    'filials.countries.usa': 'США',
+    'filials.countries.canada': 'Канада',
+    'filials.countries.china': 'Китай',
+    'filials.countries.belarus': 'Беларусь',
   },
 };
 
