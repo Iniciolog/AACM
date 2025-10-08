@@ -178,7 +178,7 @@ const translations = {
     'footer.copyright': '© 2024 International Academy of Initiology. All rights reserved.',
     
     // Filials
-    'filials.title': 'Filials of IAI',
+    'filials.title': 'Academy branches',
     'filials.countries.germany': 'Germany',
     'filials.countries.france': 'France',
     'filials.countries.italy': 'Italy',
@@ -362,7 +362,7 @@ const translations = {
     'footer.copyright': '© 2024 Internationale Akademie für Initiologie. Alle Rechte vorbehalten.',
     
     // Filials
-    'filials.title': 'Filialen der IAI',
+    'filials.title': 'Akademie-Filialen',
     'filials.countries.germany': 'Deutschland',
     'filials.countries.france': 'Frankreich',
     'filials.countries.italy': 'Italien',
@@ -546,7 +546,7 @@ const translations = {
     'footer.copyright': '© 2024 Международная Академия Инициологии. Все права защищены.',
     
     // Filials
-    'filials.title': 'Филиалы МАИ',
+    'filials.title': 'Филиалы Академии',
     'filials.countries.germany': 'Германия',
     'filials.countries.france': 'Франция',
     'filials.countries.italy': 'Италия',
