@@ -22,7 +22,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.faq': 'FAQ',
     'nav.contact': 'Contact',
-    'nav.about': 'About Us',
+    'nav.about': 'About ',
     
     // Hero
     'hero.title': 'International Academy of Initiology',
@@ -97,7 +97,7 @@ const translations = {
     'nav.services': 'Dienstleistungen',
     'nav.faq': 'FAQ',
     'nav.contact': 'Kontakt',
-    'nav.about': 'Über uns',
+    'nav.about': 'Über ',
     
     // Hero
     'hero.title': 'Internationale Akademie für Initiologie',
@@ -172,7 +172,7 @@ const translations = {
     'nav.services': 'Услуги',
     'nav.faq': 'Вопросы и ответы',
     'nav.contact': 'Контакты',
-    'nav.about': 'О нас',
+    'nav.about': 'О ',
     
     // Hero
     'hero.title': 'Международная Академия Инициологии',
