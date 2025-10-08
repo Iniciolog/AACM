@@ -31,39 +31,38 @@ export default function HeroSection() {
       flag: '🇪🇺',
       specialists: 245,
       students: 1850,
-      angle: -60,
+      angle: -70,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
       specialists: 180,
       students: 1420,
-      angle: -20,
+      angle: -35,
     },
     {
       name: language === 'ru' ? 'Китай' : language === 'de' ? 'China' : 'China',
       flag: '🇨🇳',
       specialists: 320,
       students: 2340,
-      angle: 20,
+      angle: 0,
     },
     {
       name: language === 'ru' ? 'США' : language === 'de' ? 'USA' : 'USA',
       flag: '🇺🇸',
       specialists: 290,
       students: 2150,
-      angle: 60,
+      angle: 35,
     },
   ];
 
-  const radius = 280;
+  const radius = 220;
+  const offsetX = -120;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-all duration-[3000ms] ${
-          isHovering ? 'scale-110' : 'scale-100'
-        }`}
+        className="absolute inset-0 bg-cover bg-center globe-rotate"
         style={{
           backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.4)), url(${globeImage})`,
           backgroundSize: 'cover',
@@ -85,11 +84,11 @@ export default function HeroSection() {
         </p>
 
         <div className="relative inline-block mb-16">
-          <div className="relative w-[400px] h-[300px] mx-auto">
+          <div className="relative w-[400px] h-[400px] mx-auto">
             {countries.map((country, index) => {
               const angleRad = (country.angle * Math.PI) / 180;
-              const x = Math.sin(angleRad) * radius;
-              const y = -Math.cos(angleRad) * radius * 0.6;
+              const x = Math.cos(angleRad) * radius + offsetX;
+              const y = Math.sin(angleRad) * radius;
 
               return (
                 <button
@@ -158,6 +157,24 @@ export default function HeroSection() {
           {t('hero.cta')}
         </Button>
       </div>
+
+      <style>{`
+        @keyframes rotate-globe {
+          0% {
+            transform: scale(1) rotate(0deg);
+          }
+          50% {
+            transform: scale(1.05) rotate(2deg);
+          }
+          100% {
+            transform: scale(1) rotate(0deg);
+          }
+        }
+
+        .globe-rotate {
+          animation: rotate-globe 20s ease-in-out infinite;
+        }
+      `}</style>
 
       <button
         onClick={scrollToResearch}
