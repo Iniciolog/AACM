@@ -31,33 +31,32 @@ export default function HeroSection() {
       flag: '🇪🇺',
       specialists: 245,
       students: 1850,
-      angle: -70,
+      angle: -45,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
       specialists: 180,
       students: 1420,
-      angle: -35,
+      angle: -15,
     },
     {
       name: language === 'ru' ? 'Китай' : language === 'de' ? 'China' : 'China',
       flag: '🇨🇳',
       specialists: 320,
       students: 2340,
-      angle: 0,
+      angle: 15,
     },
     {
       name: language === 'ru' ? 'США' : language === 'de' ? 'USA' : 'USA',
       flag: '🇺🇸',
       specialists: 290,
       students: 2150,
-      angle: 35,
+      angle: 45,
     },
   ];
 
-  const radius = 220;
-  const offsetX = 120;
+  const radius = 240;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -87,8 +86,8 @@ export default function HeroSection() {
           <div className="relative w-[400px] h-[400px] mx-auto">
             {countries.map((country, index) => {
               const angleRad = (country.angle * Math.PI) / 180;
-              const x = Math.cos(angleRad) * radius + offsetX;
-              const y = Math.sin(angleRad) * radius;
+              const x = Math.sin(angleRad) * radius;
+              const y = -Math.cos(angleRad) * radius;
 
               return (
                 <button
