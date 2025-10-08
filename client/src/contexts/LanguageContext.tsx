@@ -109,8 +109,8 @@ const translations = {
     // Services
     'services.title': 'Services & Sessions',
     'services.subtitle': 'Personal sessions with V.P. Lazarenko',
-    'services.cleaning.title': 'Energy Cleansing',
-    'services.cleaning.desc': 'Cleansing and restoration of energy-informational structures',
+    'services.cleaning.title': 'ENERGY-INFORMATIONAL REHABILITATION',
+    'services.cleaning.desc': 'Master energy cleansing at all levels including DNA, field structures, external attacks. Complete cleansing and rehabilitation cycle in 3 sessions.',
     'services.protection.title': 'RMT Protection',
     'services.protection.desc': 'Installation of durable RMT protection against negative influences',
     'services.targeted.title': 'Targeted Work',
@@ -293,8 +293,8 @@ const translations = {
     // Services
     'services.title': 'Dienstleistungen & Sitzungen',
     'services.subtitle': 'Persönliche Sitzungen mit V.P. Lasarenko',
-    'services.cleaning.title': 'Energiereinigung',
-    'services.cleaning.desc': 'Reinigung und Wiederherstellung energieinformationstechnologischer Strukturen',
+    'services.cleaning.title': 'ENERGIE-INFORMATIONELLE REHABILITATION',
+    'services.cleaning.desc': 'Meisterhafte energetische Reinigung auf allen Ebenen einschließlich DNA, Feldstrukturen, externe Angriffe. Vollständiger Reinigungs- und Rehabilitationszyklus in 3 Sitzungen.',
     'services.protection.title': 'RMT-Schutz',
     'services.protection.desc': 'Installation dauerhaften RMT-Schutzes gegen negative Einflüsse',
     'services.targeted.title': 'Gezielte Arbeit',
@@ -477,8 +477,8 @@ const translations = {
     // Services
     'services.title': 'Услуги и сеансы',
     'services.subtitle': 'Личный прием В. П. Лазаренко',
-    'services.cleaning.title': 'Энергетическая чистка',
-    'services.cleaning.desc': 'Очищение и восстановление энергоинформационных структур на всех уровнях',
+    'services.cleaning.title': 'ЭНЕРГОИНФОРМАЦИОННАЯ РЕАБИЛИТАЦИЯ',
+    'services.cleaning.desc': 'Мастерская энергетическая чистка на всех уровнях включая ДНК, полевые структуры, внешние атаки. Полный цикл очищения и реабилитации за 3 сеанса.',
     'services.protection.title': 'РМТ-Защита',
     'services.protection.desc': 'Установка долговечной и устойчивой РМТ-защиты от негативных воздействий',
     'services.targeted.title': 'Целевая работа',

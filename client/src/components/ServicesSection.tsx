@@ -70,11 +70,9 @@ export default function ServicesSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {service.key !== 'cleaning' && (
-                  <CardDescription className="text-sm">
-                    {t(`services.${service.key}.desc`)}
-                  </CardDescription>
-                )}
+                <CardDescription className="text-sm">
+                  {t(`services.${service.key}.desc`)}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
