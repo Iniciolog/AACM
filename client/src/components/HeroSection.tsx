@@ -2,20 +2,21 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import globeImage from '@assets/generated_images/Interactive_academic_globe_with_flags_8fd0cde2.png';
+import globeImage from '@assets/stock_images/clean_elegant_earth__5f141e95.jpg';
 
 interface CountryMarker {
   name: string;
   flag: string;
   specialists: number;
   students: number;
-  position: { x: string; y: string };
+  angle: number;
 }
 
 export default function HeroSection() {
   const { t, language } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<CountryMarker | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const scrollToResearch = () => {
     const element = document.getElementById('research');
@@ -30,30 +31,32 @@ export default function HeroSection() {
       flag: '🇪🇺',
       specialists: 245,
       students: 1850,
-      position: { x: '35%', y: '40%' },
+      angle: -60,
     },
     {
       name: language === 'ru' ? 'СНГ' : language === 'de' ? 'GUS' : 'CIS',
       flag: '🇷🇺',
       specialists: 180,
       students: 1420,
-      position: { x: '60%', y: '35%' },
+      angle: -20,
     },
     {
       name: language === 'ru' ? 'Китай' : language === 'de' ? 'China' : 'China',
       flag: '🇨🇳',
       specialists: 320,
       students: 2340,
-      position: { x: '70%', y: '50%' },
+      angle: 20,
     },
     {
       name: language === 'ru' ? 'США' : language === 'de' ? 'USA' : 'USA',
       flag: '🇺🇸',
       specialists: 290,
       students: 2150,
-      position: { x: '25%', y: '48%' },
+      angle: 60,
     },
   ];
+
+  const radius = 280;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -62,60 +65,11 @@ export default function HeroSection() {
           isHovering ? 'scale-110' : 'scale-100'
         }`}
         style={{
-          backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url(${globeImage})`,
+          backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url(${globeImage})`,
         }}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       />
-
-      {countries.map((country, index) => (
-        <button
-          key={index}
-          className="absolute z-20 text-4xl hover:scale-125 transition-transform duration-200 cursor-pointer"
-          style={{
-            left: country.position.x,
-            top: country.position.y,
-            transform: 'translate(-50%, -50%)',
-            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.5))',
-          }}
-          onMouseEnter={() => setHoveredCountry(country)}
-          onMouseLeave={() => setHoveredCountry(null)}
-          data-testid={`flag-marker-${index}`}
-        >
-          {country.flag}
-        </button>
-      ))}
-
-      {hoveredCountry && (
-        <div
-          className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none"
-          style={{
-            left: hoveredCountry.position.x,
-            top: `calc(${hoveredCountry.position.y} + 60px)`,
-            transform: 'translateX(-50%)',
-          }}
-          data-testid="country-tooltip"
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-2xl">{hoveredCountry.flag}</span>
-            <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
-          </div>
-          <div className="space-y-1 text-sm text-muted-foreground whitespace-nowrap">
-            <p>
-              <span className="font-medium">
-                {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
-              </span>{' '}
-              {hoveredCountry.specialists}
-            </p>
-            <p>
-              <span className="font-medium">
-                {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
-              </span>{' '}
-              {hoveredCountry.students}
-            </p>
-          </div>
-        </div>
-      )}
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
         <h1
@@ -124,9 +78,75 @@ export default function HeroSection() {
         >
           {t('hero.title')}
         </h1>
-        <p className="text-lg md:text-xl mb-12 text-gray-200 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl mb-16 text-gray-200 max-w-3xl mx-auto leading-relaxed">
           {t('hero.subtitle')}
         </p>
+
+        <div className="relative inline-block mb-16">
+          <div className="relative w-[400px] h-[300px] mx-auto">
+            {countries.map((country, index) => {
+              const angleRad = (country.angle * Math.PI) / 180;
+              const x = Math.sin(angleRad) * radius;
+              const y = -Math.cos(angleRad) * radius * 0.6;
+
+              return (
+                <button
+                  key={index}
+                  className="absolute text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
+                  }}
+                  onMouseEnter={() => {
+                    setHoveredCountry(country);
+                    setHoveredIndex(index);
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredCountry(null);
+                    setHoveredIndex(null);
+                  }}
+                  data-testid={`flag-marker-${index}`}
+                >
+                  {country.flag}
+                </button>
+              );
+            })}
+
+            {hoveredCountry !== null && hoveredIndex !== null && (
+              <div
+                className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
+                style={{
+                  left: '50%',
+                  top: '100%',
+                  transform: 'translate(-50%, 20px)',
+                }}
+                data-testid="country-tooltip"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{hoveredCountry.flag}</span>
+                  <h3 className="font-serif font-semibold text-foreground">{hoveredCountry.name}</h3>
+                </div>
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p>
+                    <span className="font-medium">
+                      {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
+                    </span>{' '}
+                    {hoveredCountry.specialists}
+                  </p>
+                  <p>
+                    <span className="font-medium">
+                      {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
+                    </span>{' '}
+                    {hoveredCountry.students}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <Button
           size="lg"
           onClick={scrollToResearch}
