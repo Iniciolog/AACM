@@ -16,13 +16,13 @@ const translations = {
     'nav.articles': 'Articles',
     'nav.studies': 'Studies',
     'nav.conclusions': 'Scientific Conclusions',
-    'nav.education': ' Platform',
+    'nav.education': 'Platform',
     'nav.books': 'Books',
     'nav.awards': 'Awards',
     'nav.services': 'Services',
     'nav.faq': 'FAQ',
     'nav.contact': 'Contact',
-    'nav.about': 'About ',
+    'nav.about': 'About',
     
     // Hero
     'hero.title': 'International Academy of Initiology',
@@ -91,13 +91,13 @@ const translations = {
     'nav.articles': 'Artikel',
     'nav.studies': 'Studien',
     'nav.conclusions': 'Wissenschaftliche Schlussfolgerungen',
-    'nav.education': ' Platform',
+    'nav.education': 'Platform',
     'nav.books': 'Bücher',
     'nav.awards': 'Auszeichnungen',
     'nav.services': 'Dienstleistungen',
     'nav.faq': 'FAQ',
     'nav.contact': 'Kontakt',
-    'nav.about': 'Über ',
+    'nav.about': 'Über uns',
     
     // Hero
     'hero.title': 'Internationale Akademie für Initiologie',
@@ -166,13 +166,13 @@ const translations = {
     'nav.articles': 'Статьи',
     'nav.studies': 'Научные работы',
     'nav.conclusions': 'Научные заключения',
-    'nav.education': ' Платформа',
+    'nav.education': 'Платформа',
     'nav.books': 'Книги',
     'nav.awards': 'Награды',
     'nav.services': 'Услуги',
     'nav.faq': 'Вопросы и ответы',
     'nav.contact': 'Контакты',
-    'nav.about': 'О ',
+    'nav.about': 'О нас',
     
     // Hero
     'hero.title': 'Международная Академия Инициологии',
