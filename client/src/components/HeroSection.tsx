@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import globeImage from '@assets/globe-earth.jpg';
 
 interface CountryMarker {
@@ -12,19 +12,18 @@ interface CountryMarker {
   angle: number;
 }
 
+const FLAG_POSITIONS = [
+  { x: 150, y: -280 },
+  { x: -250, y: -100 },
+  { x: 180, y: 320 },
+  { x: 150, y: 180 },
+];
+
 export default function HeroSection() {
   const { t, language } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredCountry, setHoveredCountry] = useState<CountryMarker | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [flagPositions, setFlagPositions] = useState([
-    { x: 150, y: -280 },
-    { x: -250, y: -100 },
-    { x: 180, y: 320 },
-    { x: 150, y: 180 },
-  ]);
-  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
   const scrollToResearch = () => {
     const element = document.getElementById('research');
@@ -32,36 +31,6 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (draggingIndex === null) return;
-    
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const x = e.clientX - centerX;
-    const y = e.clientY - centerY;
-    
-    setFlagPositions(prev => {
-      const newPositions = [...prev];
-      newPositions[draggingIndex] = { x, y };
-      return newPositions;
-    });
-  };
-
-  const handleMouseUp = () => {
-    setDraggingIndex(null);
-  };
-
-  useEffect(() => {
-    if (draggingIndex !== null) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [draggingIndex]);
 
   const countries: CountryMarker[] = [
     {
@@ -108,53 +77,30 @@ export default function HeroSection() {
       />
       
       {countries.map((country, index) => {
-        const pos = flagPositions[index];
+        const pos = FLAG_POSITIONS[index];
         const x = pos.x;
         const y = pos.y;
 
         return (
           <div key={index} className="absolute z-20" style={{ left: '50%', top: '50%' }}>
             <button
-              className={`absolute text-5xl hover:scale-125 transition-all duration-300 ${
-                isEditMode ? 'cursor-move' : 'cursor-pointer'
-              }`}
+              className="absolute text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
               style={{
                 transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
                 filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
               }}
               onMouseEnter={() => {
-                if (!isEditMode) {
-                  setHoveredCountry(country);
-                  setHoveredIndex(index);
-                }
+                setHoveredCountry(country);
+                setHoveredIndex(index);
               }}
               onMouseLeave={() => {
-                if (!isEditMode) {
-                  setHoveredCountry(null);
-                  setHoveredIndex(null);
-                }
-              }}
-              onMouseDown={(e) => {
-                if (isEditMode) {
-                  e.preventDefault();
-                  setDraggingIndex(index);
-                }
+                setHoveredCountry(null);
+                setHoveredIndex(null);
               }}
               data-testid={`flag-marker-${index}`}
             >
               {country.flag}
             </button>
-
-            {isEditMode && (
-              <div
-                className="absolute text-xs bg-black/80 text-white px-2 py-1 rounded pointer-events-none whitespace-nowrap"
-                style={{
-                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px + 50px))`,
-                }}
-              >
-                x:{x.toFixed(0)}, y:{y.toFixed(0)}
-              </div>
-            )}
 
             {hoveredCountry === country && hoveredIndex === index && (
               <div
@@ -235,28 +181,6 @@ export default function HeroSection() {
       >
         <ChevronDown className="h-8 w-8" />
       </button>
-
-      <button
-        onClick={() => setIsEditMode(!isEditMode)}
-        className="fixed top-24 right-6 z-50 bg-card/95 backdrop-blur-sm border px-4 py-2 rounded-md hover-elevate active-elevate-2 text-sm font-medium"
-        data-testid="button-edit-mode"
-      >
-        {isEditMode ? '✓ Сохранить' : '⚙️ Редактор флагов'}
-      </button>
-
-      {isEditMode && (
-        <div className="fixed top-36 right-6 z-50 bg-card/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs">
-          <h3 className="font-semibold mb-2 text-sm">Позиции флагов:</h3>
-          <pre className="text-xs bg-muted p-2 rounded overflow-auto max-h-48">
-            {`const flagPositions = [
-  ${flagPositions.map(p => `{ x: ${p.x.toFixed(0)}, y: ${p.y.toFixed(0)} }`).join(',\n  ')}
-];`}
-          </pre>
-          <p className="text-xs text-muted-foreground mt-2">
-            Перетащите флаги в любую точку экрана
-          </p>
-        </div>
-      )}
     </section>
   );
 }
