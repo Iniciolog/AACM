@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t text-center">
-          <p className="text-sm text-muted-foreground">{t('footer.copyright')}</p>
+          <p className="text-sm text-muted-foreground">© 1999 - 2025 International Academy of Initiology. All rights reserved.</p>
         </div>
       </div>
     </footer>

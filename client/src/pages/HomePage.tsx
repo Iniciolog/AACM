@@ -8,7 +8,6 @@ import EducationProgramSection from '@/components/EducationProgramSection';
 import ChannelsSection from '@/components/ChannelsSection';
 import ServicesSection from '@/components/ServicesSection';
 import RMTBusinessSection from '@/components/RMTBusinessSection';
-import AwardsSection from '@/components/AwardsSection';
 import CelebritiesSection from '@/components/CelebritiesSection';
 import AboutSection from '@/components/AboutSection';
 import FAQSection from '@/components/FAQSection';
@@ -29,7 +28,6 @@ export default function HomePage() {
         <ChannelsSection />
         <ServicesSection />
         <RMTBusinessSection />
-        <AwardsSection />
         <CelebritiesSection />
         <AboutSection />
         <FAQSection />
