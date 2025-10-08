@@ -16,14 +16,6 @@ export default function HeroSection() {
   const { t, language } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [flagPositions, setFlagPositions] = useState([
-    { x: 150, y: -280 },
-    { x: -250, y: -100 },
-    { x: 180, y: 320 },
-    { x: 150, y: 180 },
-  ]);
-  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
   const scrollToResearch = () => {
     const element = document.getElementById('research');
@@ -31,36 +23,6 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (draggingIndex === null) return;
-    
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const x = e.clientX - centerX;
-    const y = e.clientY - centerY;
-    
-    setFlagPositions(prev => {
-      const newPositions = [...prev];
-      newPositions[draggingIndex] = { x, y };
-      return newPositions;
-    });
-  };
-
-  const handleMouseUp = () => {
-    setDraggingIndex(null);
-  };
-
-  useEffect(() => {
-    if (draggingIndex !== null) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [draggingIndex]);
 
   const countries: CountryMarker[] = [
     {
@@ -106,86 +68,52 @@ export default function HeroSection() {
         onMouseLeave={() => setIsHovering(false)}
       />
       
-      {countries.map((country, index) => {
-        const pos = flagPositions[index];
-        const x = pos.x;
-        const y = pos.y;
-
-        return (
-          <div key={index} className="absolute z-20" style={{ left: '50%', top: '50%' }}>
-            <button
-              className={`absolute text-5xl hover:scale-125 transition-all duration-300 ${
-                isEditMode ? 'cursor-move' : 'cursor-pointer'
-              }`}
-              style={{
-                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
-              }}
-              onMouseEnter={() => {
-                if (!isEditMode) {
-                  setHoveredIndex(index);
-                }
-              }}
-              onMouseLeave={() => {
-                if (!isEditMode) {
-                  setHoveredIndex(null);
-                }
-              }}
-              onMouseDown={(e) => {
-                if (isEditMode) {
-                  e.preventDefault();
-                  setDraggingIndex(index);
-                }
-              }}
-              data-testid={`flag-marker-${index}`}
-            >
-              {country.flag}
-            </button>
-
-            {isEditMode && (
-              <div
-                className="absolute text-xs bg-black/80 text-white px-2 py-1 rounded pointer-events-none whitespace-nowrap"
-                style={{
-                  transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px + 50px))`,
-                }}
-              >
-                x:{x.toFixed(0)}, y:{y.toFixed(0)}
-              </div>
-            )}
-
-            {!isEditMode && hoveredIndex === index && (
-              <div
-                className="absolute z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
-                style={{
-                  transform: `translate(calc(-50% + ${x}px + 80px), calc(-50% + ${y}px))`,
-                }}
-                data-testid="country-tooltip"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">{country.flag}</span>
-                  <h3 className="font-serif font-semibold text-foreground">{country.name}</h3>
-                </div>
-                <div className="space-y-1 text-sm text-muted-foreground">
-                  <p>
-                    <span className="font-medium">
-                      {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
-                    </span>{' '}
-                    {country.specialists}
-                  </p>
-                  <p>
-                    <span className="font-medium">
-                      {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
-                    </span>{' '}
-                    {country.students}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+        <div className="flex items-center justify-center gap-8 mb-8">
+          {countries.map((country, index) => (
+            <div key={index} className="relative group">
+              <button
+                className="text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
+                style={{
+                  filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                data-testid={`flag-marker-${index}`}
+              >
+                {country.flag}
+              </button>
+
+              {hoveredIndex === index && (
+                <div
+                  className="absolute top-full mt-4 left-1/2 -translate-x-1/2 z-30 bg-card/95 backdrop-blur-sm border shadow-xl rounded-lg p-4 pointer-events-none whitespace-nowrap"
+                  data-testid="country-tooltip"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">{country.flag}</span>
+                    <h3 className="font-serif font-semibold text-foreground">{country.name}</h3>
+                  </div>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <p>
+                      <span className="font-medium">
+                        {language === 'ru' ? 'Специалисты' : language === 'de' ? 'Spezialisten' : 'Specialists'}:
+                      </span>{' '}
+                      {country.specialists}
+                    </p>
+                    <p>
+                      <span className="font-medium">
+                        {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
+                      </span>{' '}
+                      {country.students}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
         <h1
           className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight"
           data-testid="text-hero-title"
@@ -233,27 +161,6 @@ export default function HeroSection() {
         <ChevronDown className="h-8 w-8" />
       </button>
 
-      <button
-        onClick={() => setIsEditMode(!isEditMode)}
-        className="fixed top-24 right-6 z-50 bg-card/95 backdrop-blur-sm border px-4 py-2 rounded-md hover-elevate active-elevate-2 text-sm font-medium"
-        data-testid="button-edit-mode"
-      >
-        {isEditMode ? '✓ Сохранить' : '⚙️ Редактор флагов'}
-      </button>
-
-      {isEditMode && (
-        <div className="fixed top-36 right-6 z-50 bg-card/95 backdrop-blur-sm border rounded-lg p-4 max-w-xs">
-          <h3 className="font-semibold mb-2 text-sm">Позиции флагов:</h3>
-          <pre className="text-xs bg-muted p-2 rounded overflow-auto max-h-48">
-            {`const flagPositions = [
-  ${flagPositions.map(p => `{ x: ${p.x.toFixed(0)}, y: ${p.y.toFixed(0)} }`).join(',\n  ')}
-];`}
-          </pre>
-          <p className="text-xs text-muted-foreground mt-2">
-            Перетащите флаги в любую точку экрана
-          </p>
-        </div>
-      )}
     </section>
   );
 }
