@@ -11,16 +11,39 @@ export default function EducationProgramSection() {
       subtitle: 'Professional training in Initiology and energy healing',
       levels: [
         {
-          title: 'Level 1',
+          title: 'Levels 1-2 (Basic)',
           duration: '',
-          description: '',
+          description: 'Level 1: Theoretical foundation, sensorics, information reading, biolocation, social energetics, auxiliary methods',
           topics: [
-            'Access to educational materials and video lessons of the 1st level',
-            'Access to Initiologists chat and online student support',
-            'Basic energy exercises: diagnostics, reading, cleansing and activation of energy centers',
-            'Initiation into the universal restorative channel Bonpo-Buddha: restores and increases the biofield, saturates with pure cosmic energy, replenishes resources',
-            'Learning the session scheme for yourself and others',
-            'Working with the Prajna channel (chakra channel)'
+            'Structure of human energy system (chakras, meridians, subtle bodies)',
+            'Sensorics: activation of hand energy channels, sensing bioenergy, managing energy flows',
+            'Information reading: biofield examination, phantom diagnostics, forecasting, situation viewing, intuition development',
+            'Biolocation: working with frames, determining biofield and energy center states, "question-answer", search',
+            'Social energetics: destiny management methods',
+            'Auxiliary methods: energy center cleansing, protection restoration, biofield expansion',
+            'Initiations into universal channels: Bonpo-Buddha (healing), Prajna (chakra), protective channel'
+          ]
+        },
+        {
+          title: 'Level 3 (Professional)',
+          duration: '',
+          description: '40 targeted multifunctional channels',
+          topics: [
+            'Restorative channels',
+            'Cleansing channels',
+            'Informational channels',
+            'Social channels',
+            'Impact channels'
+          ]
+        },
+        {
+          title: 'Level 4 (Master)',
+          duration: '',
+          description: 'Master level of Initiology',
+          topics: [
+            'Master initiation',
+            'Work with cosmic Hierarchies',
+            'Ability to initiate others'
           ]
         }
       ],
@@ -36,16 +59,39 @@ export default function EducationProgramSection() {
       subtitle: 'Professionelle Ausbildung in Initiologie und Energieheilung',
       levels: [
         {
-          title: 'Stufe 1',
+          title: 'Stufen 1-2 (Grundstufe)',
           duration: '',
-          description: '',
+          description: 'Stufe 1: Theoretische Grundlagen, Sensorik, Informationsablesung, Biolokation, soziale Energetik, Hilfsmethoden',
           topics: [
-            'Zugang zu Lehrmaterialien und Videokursen der 1. Stufe',
-            'Zugang zum Initiolog-Chat und Online-Support für Studenten',
-            'Grundlegende Energieübungen: Diagnostik, Ablesen, Reinigung und Aktivierung der Energiezentren',
-            'Einweihung in den universellen Wiederherstellungskanal Bonpo-Buddha: stellt das Biofeld wieder her und vergrößert es, sättigt mit reiner kosmischer Energie, ergänzt Ressourcen',
-            'Erlernen des Sitzungsschemas für sich selbst und andere',
-            'Arbeit mit dem Prajna-Kanal (Chakra-Kanal)'
+            'Struktur des menschlichen Energiesystems (Chakren, Meridiane, subtile Körper)',
+            'Sensorik: Aktivierung der Hand-Energiekanäle, Bioenergie-Wahrnehmung, Energiefluss-Steuerung',
+            'Informationsablesung: Biofeld-Untersuchung, Phantom-Diagnostik, Prognose, Situations-Betrachtung, Intuitionsentwicklung',
+            'Biolokation: Arbeit mit Rahmen, Bestimmung von Biofeld- und Energiezentren-Zuständen, "Frage-Antwort", Suche',
+            'Soziale Energetik: Methoden der Schicksalslenkung',
+            'Hilfsmethoden: Energiezentren-Reinigung, Schutz-Wiederherstellung, Biofeld-Erweiterung',
+            'Einweihungen in universelle Kanäle: Bonpo-Buddha (heilend), Prajna (Chakra), Schutzkanal'
+          ]
+        },
+        {
+          title: 'Stufe 3 (Professionell)',
+          duration: '',
+          description: '40 gezielte multifunktionale Kanäle',
+          topics: [
+            'Wiederherstellende Kanäle',
+            'Reinigende Kanäle',
+            'Informationskanäle',
+            'Soziale Kanäle',
+            'Aufprall-Kanäle'
+          ]
+        },
+        {
+          title: 'Stufe 4 (Meister)',
+          duration: '',
+          description: 'Meisterstufe der Initiologie',
+          topics: [
+            'Meister-Einweihung',
+            'Arbeit mit kosmischen Hierarchien',
+            'Fähigkeit, andere einzuweihen'
           ]
         }
       ],
@@ -61,16 +107,39 @@ export default function EducationProgramSection() {
       subtitle: 'Профессиональное обучение инициологии и энергетическому целительству',
       levels: [
         {
-          title: '1 ступень',
+          title: '1-2 ступени (Базовый уровень)',
           duration: '',
-          description: '',
+          description: '1 ступень: Теоретическая база, сенсорика, считывание информации, биолокация, социальная энергетика, вспомогательные методы',
           topics: [
-            'Доступ к учебным материалам и видеоурокам 1-ой ступени',
-            'Доступ к чату Инициологов и онлайн-поддержке учеников',
-            'Базовые энергетические упражнения: диагностика, считывание, очищение и активация энергоцентров',
-            'Инициация в универсальный восстановительный канал Бонпо-Будда: восстанавливает и увеличивает биополе, насыщает чистой энергией космоса, восполняет ресурсы',
-            'Изучение схемы проведения сеанса для себя и для других',
-            'Работа с каналом Пражна (чакровый канал)'
+            'Строение энергетической системы человека (чакры, меридианы, тонкие тела)',
+            'Сенсорика: активация энергетических каналов рук, ощущение биоэнергии, управление энергетическими потоками',
+            'Считывание информации: осмотр биополя, диагностика по фантому, прогнозирование, просмотр ситуаций, развитие интуиции',
+            'Биолокация: работа с рамками, определение состояния биополя и энергоцентров, "вопрос-ответ", поиск',
+            'Социальная энергетика: методы управления судьбой',
+            'Вспомогательные методы: очищение энергоцентров, восстановление защиты, увеличение биополя',
+            'Инициации в универсальные каналы: Бонпо-Будда (оздоровительный), Пражна (чакровый), защитный канал'
+          ]
+        },
+        {
+          title: '3 ступень (Профессиональный)',
+          duration: '',
+          description: '40 целевых многофункциональных каналов',
+          topics: [
+            'Восстановительные каналы',
+            'Очистительные каналы',
+            'Информационные каналы',
+            'Социальные каналы',
+            'Ударные каналы'
+          ]
+        },
+        {
+          title: '4 ступень (Мастер)',
+          duration: '',
+          description: 'Мастерский уровень Инициологии',
+          topics: [
+            'Мастерская инициация',
+            'Работа с космическими Иерархиями',
+            'Возможность инициировать других'
           ]
         }
       ],
@@ -103,9 +172,11 @@ export default function EducationProgramSection() {
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <CardTitle className="text-2xl">{level.title}</CardTitle>
-                  <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
-                    {level.duration}
-                  </span>
+                  {level.duration && (
+                    <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
+                      {level.duration}
+                    </span>
+                  )}
                 </div>
                 <p className="text-muted-foreground">{level.description}</p>
               </CardHeader>

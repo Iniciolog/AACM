@@ -207,6 +207,38 @@ RMT (Renewable Magnetic Technology) business solutions:
 - Expandable "Nature of RMT" section
 - Multilingual support for all content
 
+### EducationProgramSection
+Updated with verbatim content from iniciolog.ru training programs:
+
+**Training Structure:**
+- **Levels 1-2 (Basic)**: Described together in detail
+  - Level 1: Theoretical foundation, sensorics, information reading, biolocation, social energetics, auxiliary methods
+    - Structure of human energy system (chakras, meridians, subtle bodies)
+    - Sensorics: hand energy channel activation, bioenergy sensing, energy flow management
+    - Information reading: biofield examination, phantom diagnostics, forecasting, intuition development
+    - Biolocation: working with frames, biofield and energy center state determination
+    - Social energetics: destiny management methods
+    - Auxiliary methods: energy center cleansing, protection restoration, biofield expansion
+  - Level 2: Initiations into universal channels
+    - Bonpo-Buddha channel (healing)
+    - Prajna channel (chakra)
+    - Protective channel
+
+- **Level 3 (Professional)**: Brief description
+  - 40 targeted multifunctional channels
+  - Restorative, cleansing, informational, social, impact channels
+
+- **Level 4 (Master)**: Brief description
+  - Master initiation
+  - Work with cosmic Hierarchies
+  - Ability to initiate others
+
+**Implementation:**
+- Full trilingual support (RU/EN/DE)
+- Verbatim content from iniciolog.ru sources
+- Responsive card layout with icons
+- Expandable topic lists for each level
+
 ### Database
 - **PostgreSQL** (via Neon): Primary production database
 - **Drizzle Kit**: Database migration and schema management
