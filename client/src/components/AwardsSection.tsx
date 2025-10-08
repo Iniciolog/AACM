@@ -24,7 +24,7 @@ export default function AwardsSection() {
           name: 'ANDREY SOMOV',
           nomination: 'Laureate of the Award in the category: "For Best Result in Social Initiology".',
           achievement: 'Creation and phenomenal organic growth of a company from zero to 170,000,000 rubles in 6 months, using RMT technologies of Initiology.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6330-6532-4532-a564-646236396237/1_1x.jpeg'
         }
       ]
     },
@@ -47,7 +47,7 @@ export default function AwardsSection() {
           name: 'ANDREY SOMOV',
           nomination: 'Preisträger in der Kategorie: "Für das beste Ergebnis in der sozialen Initiologie".',
           achievement: 'Gründung und phänomenales organisches Wachstum eines Unternehmens von null auf 170.000.000 Rubel in 6 Monaten, unter Verwendung von RMT-Technologien der Initiologie.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6330-6532-4532-a564-646236396237/1_1x.jpeg'
         }
       ]
     },
@@ -70,7 +70,7 @@ export default function AwardsSection() {
           name: 'АНДРЕЙ СОМОВ',
           nomination: 'Лауреат Премии в номинации: "За лучший результат в социальной Инициологии".',
           achievement: 'Создание и феноменальный органический рост компании с нуля до 170000000 рублей, за 6 месяцев, с использованием РМТ технологий Инициологии.',
-          photo: ''
+          photo: 'https://static.tildacdn.com/tild6330-6532-4532-a564-646236396237/1_1x.jpeg'
         }
       ]
     }
