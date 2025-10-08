@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 import logoImage from '@assets/academy-logo.jpeg';
+import { Menu } from 'lucide-react';
 
 export default function Header() {
   const { t } = useLanguage();
@@ -98,6 +99,64 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <div className="lg:hidden relative group">
+              <button
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md hover-elevate active-elevate-2"
+                data-testid="button-mobile-menu"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+              
+              <div className="absolute right-0 top-full mt-2 w-48 bg-card border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="py-2">
+                  <button
+                    onClick={() => scrollToSection('research')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-research"
+                  >
+                    {t('nav.research')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('education-program')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-program"
+                  >
+                    {t('nav.program')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('channels')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-channels"
+                  >
+                    {t('nav.channels')}
+                  </button>
+                  <button
+                    onClick={() => scrollToSection('services')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-services"
+                  >
+                    {t('nav.services')}
+                  </button>
+                  <a
+                    href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-awards"
+                  >
+                    {t('nav.awards')}
+                  </a>
+                  <button
+                    onClick={() => scrollToSection('faq')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-faq"
+                  >
+                    {t('nav.faq')}
+                  </button>
+                </div>
+              </div>
+            </div>
+            
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
