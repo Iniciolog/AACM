@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import globeImage from '@assets/stock_images/planet_earth_globe_f_671ad280.jpg';
+import globeImage from '@assets/globe-earth.jpg';
 
 interface CountryMarker {
   name: string;
@@ -65,7 +65,9 @@ export default function HeroSection() {
           isHovering ? 'scale-110' : 'scale-100'
         }`}
         style={{
-          backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url(${globeImage})`,
+          backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.4)), url(${globeImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
