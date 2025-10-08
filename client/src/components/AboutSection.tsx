@@ -17,7 +17,7 @@ export default function AboutSection() {
             <div className="md:w-1/3">
               <div className="relative">
                 <img 
-                  src="https://via.placeholder.com/400x500/0062f2/ffffff?text=V.Lazarenko" 
+                  src="https://static.tildacdn.com/tild3662-6238-4132-b034-633134363066/222.png" 
                   alt={t('about.name')}
                   className="rounded-lg shadow-xl w-full"
                   data-testid="img-founder"
