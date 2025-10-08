@@ -13,6 +13,7 @@ export default function EducationProgramSection() {
         {
           title: 'Levels 1-2 (Basic)',
           duration: '',
+          price: '$300',
           description: 'Level 1: Theoretical foundation, sensorics, information reading, biolocation, social energetics, auxiliary methods',
           topics: [
             'Structure of human energy system (chakras, meridians, subtle bodies)',
@@ -27,6 +28,7 @@ export default function EducationProgramSection() {
         {
           title: 'Level 3 (Professional)',
           duration: '',
+          price: '$2,500',
           description: '40 targeted multifunctional channels',
           topics: [
             'Restorative channels',
@@ -39,6 +41,7 @@ export default function EducationProgramSection() {
         {
           title: 'Level 4 (Master)',
           duration: '',
+          price: '$2,500',
           description: 'Master level of Initiology',
           topics: [
             'Master initiation',
@@ -61,6 +64,7 @@ export default function EducationProgramSection() {
         {
           title: 'Stufen 1-2 (Grundstufe)',
           duration: '',
+          price: '$300',
           description: 'Stufe 1: Theoretische Grundlagen, Sensorik, Informationsablesung, Biolokation, soziale Energetik, Hilfsmethoden',
           topics: [
             'Struktur des menschlichen Energiesystems (Chakren, Meridiane, subtile Körper)',
@@ -75,6 +79,7 @@ export default function EducationProgramSection() {
         {
           title: 'Stufe 3 (Professionell)',
           duration: '',
+          price: '$2.500',
           description: '40 gezielte multifunktionale Kanäle',
           topics: [
             'Wiederherstellende Kanäle',
@@ -87,6 +92,7 @@ export default function EducationProgramSection() {
         {
           title: 'Stufe 4 (Meister)',
           duration: '',
+          price: '$2.500',
           description: 'Meisterstufe der Initiologie',
           topics: [
             'Meister-Einweihung',
@@ -109,6 +115,7 @@ export default function EducationProgramSection() {
         {
           title: '1-2 ступени (Базовый уровень)',
           duration: '',
+          price: '$300',
           description: '1 ступень: Теоретическая база, сенсорика, считывание информации, биолокация, социальная энергетика, вспомогательные методы',
           topics: [
             'Строение энергетической системы человека (чакры, меридианы, тонкие тела)',
@@ -123,6 +130,7 @@ export default function EducationProgramSection() {
         {
           title: '3 ступень (Профессиональный)',
           duration: '',
+          price: '$2 500',
           description: '40 целевых многофункциональных каналов',
           topics: [
             'Восстановительные каналы',
@@ -135,6 +143,7 @@ export default function EducationProgramSection() {
         {
           title: '4 ступень (Мастер)',
           duration: '',
+          price: '$2 500',
           description: 'Мастерский уровень Инициологии',
           topics: [
             'Мастерская инициация',
@@ -185,9 +194,9 @@ export default function EducationProgramSection() {
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
                   <CardTitle className="text-2xl">{level.title}</CardTitle>
-                  {level.duration && (
-                    <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">
-                      {level.duration}
+                  {level.price && (
+                    <span className="text-xl font-semibold text-primary" data-testid={`price-level-${index}`}>
+                      {level.price}
                     </span>
                   )}
                 </div>

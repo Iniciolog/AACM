@@ -209,6 +209,17 @@ Displays 58 professional energy channels organized in 7 categories:
 - Responsive grid layout with hover effects
 - Each channel displayed as a Card with name and description
 
+### Education Program Pricing
+Pricing added to education levels (October 2025):
+- **Levels 1-2 (Basic)**: $300
+- **Level 3 (Professional - 40 channels)**: $2,500
+- **Level 4 (Master)**: $2,500
+
+Price formatting follows local conventions:
+- English: $2,500 (comma separator)
+- German: $2.500 (period separator)
+- Russian: $2 500 (space separator)
+
 ### ServicesSection
 Personal healing services offered by V.P. Lazarenko:
 - **Energy Cleansing**: Full energy-informational structure restoration

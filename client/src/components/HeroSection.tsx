@@ -103,7 +103,7 @@ export default function HeroSection() {
                     </p>
                     <p>
                       <span className="font-medium">
-                        {language === 'ru' ? 'Студенты' : language === 'de' ? 'Studenten' : 'Students'}:
+                        {language === 'ru' ? 'Профессионалы' : language === 'de' ? 'Fachleute' : 'Professionals'}:
                       </span>{' '}
                       {country.students}
                     </p>
