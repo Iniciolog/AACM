@@ -2,7 +2,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 
 export default function BooksSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const electronicBookUrl = language === 'ru' 
+    ? 'https://ridero.ru/books/prakticheskaya_iniciologiya/'
+    : 'https://payform.ru/6a9rjkQ/';
+
+  const printedBookUrl = 'https://ridero.ru/books/prakticheskaya_iniciologiya/';
 
   return (
     <section id="books" className="py-20 md:py-32 bg-background">
@@ -36,13 +42,13 @@ export default function BooksSection() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild data-testid="button-book-electronic">
-                  <a href="https://ridero.ru/books/prakticheskaya_iniciologiya/" target="_blank" rel="noopener noreferrer">
-                    {t('books.book1.electronic')} - 200₽
+                  <a href={electronicBookUrl} target="_blank" rel="noopener noreferrer">
+                    {language === 'ru' ? `${t('books.book1.electronic')} - 200₽` : t('books.book1.electronic')}
                   </a>
                 </Button>
                 <Button variant="outline" asChild data-testid="button-book-printed">
-                  <a href="https://ridero.ru/books/prakticheskaya_iniciologiya/" target="_blank" rel="noopener noreferrer">
-                    {t('books.book1.printed')} - 624₽
+                  <a href={printedBookUrl} target="_blank" rel="noopener noreferrer">
+                    {language === 'ru' ? `${t('books.book1.printed')} - 624₽` : t('books.book1.printed')}
                   </a>
                 </Button>
               </div>
