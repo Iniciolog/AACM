@@ -115,7 +115,7 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className="font-serif md:text-7xl mb-6 font-medium text-[36px]"
+          className="font-serif md:text-7xl mb-6 font-medium text-[45px]"
           data-testid="text-hero-title"
         >
           {t('hero.title')}
