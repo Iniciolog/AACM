@@ -223,6 +223,28 @@ export default function EducationProgramSection() {
                     </a>
                   </Button>
                 )}
+                {index === 1 && (
+                  <Button 
+                    className="w-full mt-6" 
+                    asChild
+                    data-testid="button-pay-level-3"
+                  >
+                    <a href="https://payform.ru/m89s7q6/" target="_blank" rel="noopener noreferrer">
+                      {language === 'ru' ? 'Оплатить' : language === 'de' ? 'Bezahlen' : 'Pay'}
+                    </a>
+                  </Button>
+                )}
+                {index === 2 && (
+                  <Button 
+                    className="w-full mt-6" 
+                    asChild
+                    data-testid="button-pay-level-4"
+                  >
+                    <a href="https://payform.ru/479s7vu/" target="_blank" rel="noopener noreferrer">
+                      {language === 'ru' ? 'Оплатить' : language === 'de' ? 'Bezahlen' : 'Pay'}
+                    </a>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
