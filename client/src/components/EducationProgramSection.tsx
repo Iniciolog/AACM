@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { GraduationCap, Users, Award, BookOpen } from 'lucide-react';
 
 export default function EducationProgramSection() {
@@ -211,6 +212,17 @@ export default function EducationProgramSection() {
                     </li>
                   ))}
                 </ul>
+                {index === 0 && (
+                  <Button 
+                    className="w-full mt-6" 
+                    asChild
+                    data-testid="button-pay-level-1-2"
+                  >
+                    <a href="https://payform.ru/ji9s78x/" target="_blank" rel="noopener noreferrer">
+                      {language === 'ru' ? 'Оплатить' : language === 'de' ? 'Bezahlen' : 'Pay'}
+                    </a>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}

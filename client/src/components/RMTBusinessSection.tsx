@@ -9,21 +9,15 @@ export default function RMTBusinessSection() {
   const plans = [
     {
       key: 'small',
-      price: '3,000,000',
-      priceUSD: '$30,000',
       features: 6
     },
     {
       key: 'medium',
-      price: '5,000,000',
-      priceUSD: '$50,000',
       features: 6,
       featured: true
     },
     {
       key: 'large',
-      price: '10,000,000+',
-      priceUSD: '$100,000+',
       features: 6
     }
   ];
