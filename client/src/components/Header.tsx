@@ -30,7 +30,7 @@ export default function Header() {
       data-testid="header-main"
     >
       <div className={`max-w-7xl mx-auto px-6 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 dark:bg-background/95 backdrop-blur-md shadow-md' : 'bg-[#0062f230]'
+        isScrolled ? 'bg-[#0c317d]/90 backdrop-blur-md shadow-md' : 'bg-[#0062f230]'
       }`}>
         <div className="flex items-center justify-between h-20">
           <button
@@ -89,6 +89,16 @@ export default function Header() {
               {t('nav.awards')}
             </a>
 
+            <a
+              href="https://news.iain.su"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              data-testid="nav-news"
+            >
+              {t('nav.news')}
+            </a>
+
             <button
               onClick={() => scrollToSection('faq')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
@@ -145,6 +155,15 @@ export default function Header() {
                     data-testid="mobile-nav-awards"
                   >
                     {t('nav.awards')}
+                  </a>
+                  <a
+                    href="https://news.iain.su"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-news"
+                  >
+                    {t('nav.news')}
                   </a>
                   <button
                     onClick={() => scrollToSection('faq')}
