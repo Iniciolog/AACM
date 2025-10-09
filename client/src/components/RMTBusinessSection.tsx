@@ -51,9 +51,6 @@ export default function RMTBusinessSection() {
                 <CardTitle className="text-2xl font-serif">
                   {t(`rmt.plans.${plan.key}.title`)}
                 </CardTitle>
-                <div className="mt-4">
-                  <div className="text-3xl font-bold">{plan.priceUSD}</div>
-                </div>
                 <CardDescription className="mt-2">
                   {t('rmt.plans.warranty')}
                 </CardDescription>
