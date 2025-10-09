@@ -26,12 +26,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 dark:bg-background/95 backdrop-blur-md border-b shadow-sm' : 'bg-white/70 dark:bg-background/70 backdrop-blur-sm shadow-md'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       data-testid="header-main"
     >
-      <div className="max-w-7xl mx-auto px-6 bg-[#0062f230]">
+      <div className={`max-w-7xl mx-auto px-6 transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 dark:bg-background/95 backdrop-blur-md shadow-md' : 'bg-[#0062f230]'
+      }`}>
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('hero')}
@@ -40,7 +40,7 @@ export default function Header() {
           >
             <img src={logoImage} alt="Academy Logo" className="h-12 w-12 rounded-md" />
             <div className="hidden md:block">
-              <div className="font-serif text-[#0c317d] text-center font-medium mt-[0px] mb-[0px] text-[12px]">
+              <div className="font-serif text-violet-100 text-center font-medium mt-[0px] mb-[0px] text-[14px]">
                 {t('hero.title')}
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-1">
             <button
               onClick={() => scrollToSection('research')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-research"
             >
               {t('nav.research')}
@@ -57,7 +57,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('education-program')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-program"
             >
               {t('nav.program')}
@@ -65,7 +65,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('channels')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-channels"
             >
               {t('nav.channels')}
@@ -73,7 +73,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('services')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-services"
             >
               {t('nav.services')}
@@ -83,7 +83,7 @@ export default function Header() {
               href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-awards"
             >
               {t('nav.awards')}
@@ -91,7 +91,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('faq')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-faq"
             >
               {t('nav.faq')}
@@ -101,7 +101,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <div className="lg:hidden relative group">
               <button
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md hover-elevate active-elevate-2"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md text-white hover-elevate active-elevate-2"
                 data-testid="button-mobile-menu"
               >
                 <Menu className="h-5 w-5" />

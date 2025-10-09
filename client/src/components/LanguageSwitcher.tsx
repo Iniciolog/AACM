@@ -21,8 +21,8 @@ export default function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" data-testid="button-language-switcher">
-          <Globe className="h-4 w-4 mr-2" />
+        <Button variant="ghost" size="default" className="text-white" data-testid="button-language-switcher">
+          <Globe className="h-5 w-5 mr-2" />
           <span className="hidden sm:inline">{currentLang?.flag} {currentLang?.code.toUpperCase()}</span>
           <span className="sm:hidden">{currentLang?.flag}</span>
         </Button>
