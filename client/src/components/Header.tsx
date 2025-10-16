@@ -47,13 +47,15 @@ export default function Header() {
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <button
-              onClick={() => scrollToSection('research')}
+            <a
+              href="https://r.iain.su"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-research"
             >
               {t('nav.research')}
-            </button>
+            </a>
 
             <button
               onClick={() => scrollToSection('education-program')}
@@ -119,13 +121,15 @@ export default function Header() {
               
               <div className="absolute right-0 top-full mt-2 w-48 bg-card border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
-                  <button
-                    onClick={() => scrollToSection('research')}
-                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                  <a
+                    href="https://r.iain.su"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-2 text-sm hover-elevate"
                     data-testid="mobile-nav-research"
                   >
                     {t('nav.research')}
-                  </button>
+                  </a>
                   <button
                     onClick={() => scrollToSection('education-program')}
                     className="w-full text-left px-4 py-2 text-sm hover-elevate"
