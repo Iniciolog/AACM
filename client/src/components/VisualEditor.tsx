@@ -16,6 +16,42 @@ interface EditableElement {
   type: 'text' | 'image' | 'button' | 'link';
   originalContent: string;
   originalStyles: CSSStyleDeclaration;
+  elementId: string;
+}
+
+interface ElementChange {
+  text?: string;
+  src?: string;
+  href?: string;
+  styles?: Record<string, string>;
+}
+
+// Generate a unique identifier for an element based on its path and attributes
+function getElementId(el: HTMLElement): string {
+  // Prefer data-testid if available
+  if (el.dataset.testid) {
+    return `testid:${el.dataset.testid}`;
+  }
+  // Use id if available
+  if (el.id) {
+    return `id:${el.id}`;
+  }
+  // Generate a path-based identifier
+  const path: string[] = [];
+  let current: HTMLElement | null = el;
+  while (current && current !== document.body) {
+    const parentEl: HTMLElement | null = current.parentElement;
+    if (parentEl) {
+      const tagName = current.tagName;
+      const siblings = Array.from(parentEl.children).filter((c: Element) => c.tagName === tagName);
+      const index = siblings.indexOf(current);
+      path.unshift(`${current.tagName.toLowerCase()}[${index}]`);
+    } else {
+      path.unshift(current.tagName.toLowerCase());
+    }
+    current = parentEl;
+  }
+  return `path:${path.join('>')}`;
 }
 
 export function VisualEditor() {
@@ -30,23 +66,97 @@ export function VisualEditor() {
   const [fontSize, setFontSize] = useState('');
   const [fontColor, setFontColor] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
+
+  // Track a change for an element
+  const trackChange = (elementId: string, change: Partial<ElementChange>) => {
+    setPendingChanges(prev => ({
+      ...prev,
+      [elementId]: {
+        ...prev[elementId],
+        ...change,
+      }
+    }));
+  };
 
   const savePageContent = async () => {
     setIsSaving(true);
     try {
-      // Clone the document to remove editor UI before saving
-      const docClone = document.documentElement.cloneNode(true) as HTMLElement;
-      const editorPanels = docClone.querySelectorAll('[data-editor-panel], [data-admin-panel], .toaster, [role="region"]');
-      editorPanels.forEach(panel => panel.remove());
+      // First close the panel to clear selection styles
+      closePanel();
       
-      const content = docClone.querySelector('body')?.innerHTML || document.body.innerHTML;
+      // Collect all changes from elements that have data-testid
+      const changes: Record<string, ElementChange> = { ...pendingChanges };
+      
+      // Also scan for elements with data-testid and capture their current state
+      const editableElements = document.querySelectorAll('[data-testid]');
+      editableElements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const testId = htmlEl.dataset.testid;
+        if (!testId) return;
+        
+        // Skip editor and admin panels
+        if (htmlEl.closest('[data-editor-panel]') || htmlEl.closest('[data-admin-panel]')) return;
+        
+        const elementId = `testid:${testId}`;
+        
+        // Only save if there are inline styles or if we've tracked changes
+        const hasInlineStyles = htmlEl.style.cssText && htmlEl.style.cssText.length > 0;
+        const hasTrackedChanges = changes[elementId];
+        
+        if (hasInlineStyles || hasTrackedChanges) {
+          const existingChange = changes[elementId] || {};
+          
+          // Capture current text content for text elements
+          if (htmlEl.tagName !== 'IMG' && htmlEl.tagName !== 'BUTTON') {
+            if (!existingChange.text && htmlEl.textContent) {
+              existingChange.text = htmlEl.textContent;
+            }
+          }
+          
+          // Capture image src
+          if (htmlEl.tagName === 'IMG') {
+            existingChange.src = (htmlEl as HTMLImageElement).src;
+          }
+          
+          // Capture link href
+          if (htmlEl.tagName === 'A') {
+            existingChange.href = (htmlEl as HTMLAnchorElement).href;
+          }
+          
+          // Capture inline styles (excluding editor styles)
+          const stylesToSave: Record<string, string> = {};
+          const styleProps = ['fontSize', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign', 'color'];
+          styleProps.forEach(prop => {
+            const value = (htmlEl.style as any)[prop];
+            if (value) {
+              stylesToSave[prop] = value;
+            }
+          });
+          
+          if (Object.keys(stylesToSave).length > 0) {
+            existingChange.styles = { ...existingChange.styles, ...stylesToSave };
+          }
+          
+          if (Object.keys(existingChange).length > 0) {
+            changes[elementId] = existingChange;
+          }
+        }
+      });
+      
+      // Save as JSON
+      const content = JSON.stringify(changes);
       
       await apiRequest('POST', '/api/content', {
         sectionType: 'visual_changes',
         language: language || 'ru',
         content: content
       });
-      toast({ title: 'Успех', description: 'Все изменения на странице сохранены' });
+      
+      // Clear pending changes after successful save
+      setPendingChanges({});
+      
+      toast({ title: 'Успех', description: 'Все изменения сохранены' });
     } catch (err) {
       toast({ title: 'Ошибка', description: 'Не удалось сохранить изменения', variant: 'destructive' });
     } finally {
@@ -78,6 +188,7 @@ export function VisualEditor() {
       type: getElementType(target),
       originalContent: target.tagName === 'IMG' ? (target as HTMLImageElement).src : target.textContent || '',
       originalStyles: window.getComputedStyle(target),
+      elementId: getElementId(target),
     };
 
     setSelectedElement(editableElement);
@@ -159,6 +270,7 @@ export function VisualEditor() {
   const applyTextChange = () => {
     if (selectedElement && (selectedElement.type === 'text' || selectedElement.type === 'button' || selectedElement.type === 'link')) {
       selectedElement.element.textContent = textContent;
+      trackChange(selectedElement.elementId, { text: textContent });
       toast({ title: 'Изменения применены', description: 'Текст обновлен' });
     }
   };
@@ -166,6 +278,7 @@ export function VisualEditor() {
   const applyImageChange = () => {
     if (selectedElement && selectedElement.type === 'image') {
       (selectedElement.element as HTMLImageElement).src = imageUrl;
+      trackChange(selectedElement.elementId, { src: imageUrl });
       toast({ title: 'Изменения применены', description: 'Изображение обновлено' });
     }
   };
@@ -173,6 +286,7 @@ export function VisualEditor() {
   const applyLinkChange = () => {
     if (selectedElement && selectedElement.type === 'link') {
       (selectedElement.element as HTMLAnchorElement).href = linkUrl;
+      trackChange(selectedElement.elementId, { href: linkUrl });
       toast({ title: 'Изменения применены', description: 'Ссылка обновлена' });
     }
   };
@@ -180,6 +294,9 @@ export function VisualEditor() {
   const applyStyleChange = (property: string, value: string) => {
     if (selectedElement) {
       (selectedElement.element.style as any)[property] = value;
+      trackChange(selectedElement.elementId, { 
+        styles: { ...pendingChanges[selectedElement.elementId]?.styles, [property]: value } 
+      });
       toast({ title: 'Стиль применен' });
     }
   };
@@ -187,6 +304,9 @@ export function VisualEditor() {
   const applyTextAlignment = (alignment: string) => {
     if (selectedElement) {
       selectedElement.element.style.textAlign = alignment;
+      trackChange(selectedElement.elementId, { 
+        styles: { ...pendingChanges[selectedElement.elementId]?.styles, textAlign: alignment } 
+      });
     }
   };
 
@@ -194,15 +314,28 @@ export function VisualEditor() {
     if (!selectedElement) return;
     
     const el = selectedElement.element;
+    let newValue = '';
     switch (style) {
       case 'bold':
-        el.style.fontWeight = el.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        newValue = el.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        el.style.fontWeight = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, fontWeight: newValue } 
+        });
         break;
       case 'italic':
-        el.style.fontStyle = el.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        newValue = el.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        el.style.fontStyle = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, fontStyle: newValue } 
+        });
         break;
       case 'underline':
-        el.style.textDecoration = el.style.textDecoration === 'underline' ? 'none' : 'underline';
+        newValue = el.style.textDecoration === 'underline' ? 'none' : 'underline';
+        el.style.textDecoration = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, textDecoration: newValue } 
+        });
         break;
     }
   };
