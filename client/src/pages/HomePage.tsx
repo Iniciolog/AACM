@@ -1,5 +1,7 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import OpenSessionsSection from '@/components/OpenSessionsSection';
+import AboutSystemSection from '@/components/AboutSystemSection';
 import ResearchSection from '@/components/ResearchSection';
 import EducationSection from '@/components/EducationSection';
 import BooksSection from '@/components/BooksSection';
@@ -21,6 +23,8 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <OpenSessionsSection />
+        <AboutSystemSection />
         <ResearchSection />
         <MethodDescriptionSection />
         <EducationProgramSection />
