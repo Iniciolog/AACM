@@ -35,10 +35,27 @@ Preferred communication style: Simple, everyday language.
 **Key Features:**
 - Multilingual support (English, German, Russian) with React Context
 - Interactive globe visualization showing global presence
-- Editable content sections (future implementation)
+- Admin panel with visual content editor (admin/admin login)
 - Responsive navigation with smooth scrolling and mobile dropdown menu
 - Mobile dropdown menu with hover functionality (appears on hover for tablet/mobile screens)
 - Image upload capability for content management
+
+### Admin Panel (January 2026)
+
+**Authentication:**
+- Login button in bottom-right corner (gear icon, semi-transparent)
+- Credentials: admin / admin
+- Session stored in sessionStorage
+
+**Visual Editor Features:**
+- Click any element to select and edit
+- Text editing for paragraphs, headings, buttons
+- Image URL replacement
+- Link URL and text editing
+- Style controls: bold, italic, underline, alignment
+- Font size and color customization
+- Selected elements highlighted with blue outline
+- Edit panel appears next to selected element
 
 ### Backend Architecture
 
