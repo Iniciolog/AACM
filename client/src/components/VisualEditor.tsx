@@ -86,69 +86,19 @@ export function VisualEditor() {
       // First close the panel to clear selection styles
       closePanel();
       
-      // Collect all changes from elements that have data-testid
-      const changes: Record<string, ElementChange> = { ...pendingChanges };
+      // Only save the tracked changes - server will merge with existing
+      const changes = { ...pendingChanges };
       
-      // Also scan for elements with data-testid and capture their current state
-      const editableElements = document.querySelectorAll('[data-testid]');
-      editableElements.forEach((el) => {
-        const htmlEl = el as HTMLElement;
-        const testId = htmlEl.dataset.testid;
-        if (!testId) return;
-        
-        // Skip editor and admin panels
-        if (htmlEl.closest('[data-editor-panel]') || htmlEl.closest('[data-admin-panel]')) return;
-        
-        const elementId = `testid:${testId}`;
-        
-        // Only save if there are inline styles or if we've tracked changes
-        const hasInlineStyles = htmlEl.style.cssText && htmlEl.style.cssText.length > 0;
-        const hasTrackedChanges = changes[elementId];
-        
-        if (hasInlineStyles || hasTrackedChanges) {
-          const existingChange = changes[elementId] || {};
-          
-          // Capture current text content for text elements
-          if (htmlEl.tagName !== 'IMG' && htmlEl.tagName !== 'BUTTON') {
-            if (!existingChange.text && htmlEl.textContent) {
-              existingChange.text = htmlEl.textContent;
-            }
-          }
-          
-          // Capture image src
-          if (htmlEl.tagName === 'IMG') {
-            existingChange.src = (htmlEl as HTMLImageElement).src;
-          }
-          
-          // Capture link href
-          if (htmlEl.tagName === 'A') {
-            existingChange.href = (htmlEl as HTMLAnchorElement).href;
-          }
-          
-          // Capture inline styles (excluding editor styles)
-          const stylesToSave: Record<string, string> = {};
-          const styleProps = ['fontSize', 'fontWeight', 'fontStyle', 'textDecoration', 'textAlign', 'color'];
-          styleProps.forEach(prop => {
-            const value = (htmlEl.style as any)[prop];
-            if (value) {
-              stylesToSave[prop] = value;
-            }
-          });
-          
-          if (Object.keys(stylesToSave).length > 0) {
-            existingChange.styles = { ...existingChange.styles, ...stylesToSave };
-          }
-          
-          if (Object.keys(existingChange).length > 0) {
-            changes[elementId] = existingChange;
-          }
-        }
-      });
+      if (Object.keys(changes).length === 0) {
+        toast({ title: 'Информация', description: 'Нет изменений для сохранения' });
+        setIsSaving(false);
+        return;
+      }
       
-      // Save as JSON
+      // Save as JSON - server will merge with existing changes
       const content = JSON.stringify(changes);
-      console.log("Saving content:", content);
-      console.log("Total elements with changes:", Object.keys(changes).length);
+      console.log("Saving changes:", content);
+      console.log("Elements being saved:", Object.keys(changes).length);
       
       const response = await apiRequest('POST', '/api/content', {
         sectionType: 'visual_changes',
@@ -164,6 +114,7 @@ export function VisualEditor() {
       
       toast({ title: 'Успех', description: `Сохранено ${Object.keys(changes).length} изменений` });
     } catch (err) {
+      console.error("Save error:", err);
       toast({ title: 'Ошибка', description: 'Не удалось сохранить изменения', variant: 'destructive' });
     } finally {
       setIsSaving(false);

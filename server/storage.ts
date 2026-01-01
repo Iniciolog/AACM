@@ -76,6 +76,26 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateContentSection(sectionType: string, language: string, content: string): Promise<ContentSection> {
+    // For visual_changes, merge with existing content instead of replacing
+    if (sectionType === 'visual_changes') {
+      const existing = await this.getContentSection(sectionType, language);
+      let mergedContent = content;
+      
+      if (existing && existing.content) {
+        try {
+          const existingChanges = JSON.parse(existing.content);
+          const newChanges = JSON.parse(content);
+          // Merge: new changes take priority but preserve existing ones
+          const merged = { ...existingChanges, ...newChanges };
+          mergedContent = JSON.stringify(merged);
+          console.log(`Merged ${Object.keys(newChanges).length} new changes with ${Object.keys(existingChanges).length} existing`);
+        } catch (e) {
+          console.error("Failed to merge content, using new content only:", e);
+        }
+      }
+      content = mergedContent;
+    }
+    
     await db.delete(contentSections).where(
       and(
         eq(contentSections.sectionType, sectionType),
