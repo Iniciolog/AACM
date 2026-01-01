@@ -17,7 +17,7 @@ export default function EducationSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6" data-testid="text-education-title">
+            <h2 className="font-serif text-fluid-xl font-bold mb-6" data-testid="text-education-title">
               {t('education.title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8">

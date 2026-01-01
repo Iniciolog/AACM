@@ -82,7 +82,7 @@ export default function AwardsSection() {
     <section id="awards" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 text-primary" data-testid="text-awards-title">
+          <h2 className="font-serif text-fluid-xl font-bold mb-4 text-primary" data-testid="text-awards-title">
             {data.title}
           </h2>
         </div>

@@ -43,10 +43,10 @@ export default function AboutSystemSection() {
     <section id="about-system" className="py-24 bg-background" data-testid="section-about-system">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl mb-4 text-foreground" data-testid="text-system-title">
+          <h2 className="font-serif text-fluid-xl mb-4 text-foreground" data-testid="text-system-title">
             {t('system.title')}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6" data-testid="text-system-subtitle">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-6" data-testid="text-system-subtitle">
             {t('system.subtitle')}
           </p>
         </div>

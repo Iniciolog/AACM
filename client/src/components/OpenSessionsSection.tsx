@@ -28,10 +28,10 @@ export default function OpenSessionsSection() {
     <section id="sessions" className="py-24 bg-muted/30" data-testid="section-sessions">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl mb-4 text-foreground" data-testid="text-sessions-title">
+          <h2 className="font-serif text-fluid-xl mb-4 text-foreground" data-testid="text-sessions-title">
             {t('sessions.title')}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-sessions-subtitle">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-sessions-subtitle">
             {t('sessions.subtitle')}
           </p>
         </div>
