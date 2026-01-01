@@ -24,6 +24,26 @@ interface ElementChange {
   styles?: Record<string, string>;
 }
 
+// Find element by path like "div[0]>div[1]>p[0]"
+function findElementByPath(path: string): HTMLElement | null {
+  const parts = path.split('>');
+  let current: Element = document.body;
+  
+  for (const part of parts) {
+    const match = part.match(/^(\w+)\[(\d+)\]$/);
+    if (!match) return null;
+    
+    const [, tagName, indexStr] = match;
+    const index = parseInt(indexStr, 10);
+    const children = Array.from(current.children).filter(c => c.tagName.toLowerCase() === tagName.toLowerCase());
+    
+    if (index >= children.length) return null;
+    current = children[index];
+  }
+  
+  return current as HTMLElement;
+}
+
 // Apply saved changes to elements by their ID
 function applyVisualChanges(changes: Record<string, ElementChange>) {
   Object.entries(changes).forEach(([elementId, change]) => {
@@ -36,9 +56,15 @@ function applyVisualChanges(changes: Record<string, ElementChange>) {
     } else if (elementId.startsWith('id:')) {
       const id = elementId.replace('id:', '');
       element = document.getElementById(id);
+    } else if (elementId.startsWith('path:')) {
+      const path = elementId.replace('path:', '');
+      element = findElementByPath(path);
     }
     
-    if (!element) return;
+    if (!element) {
+      console.warn(`Element not found for ID: ${elementId}`);
+      return;
+    }
     
     // Apply text changes
     if (change.text !== undefined) {
