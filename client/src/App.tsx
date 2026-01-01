@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { EditModeProvider } from "@/contexts/EditModeContext";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import { AdminLoginButton } from "@/components/AdminLoginButton";
+import { VisualEditor } from "@/components/VisualEditor";
 import HomePage from "@/pages/HomePage";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import CookiePolicy from "@/pages/CookiePolicy";
@@ -32,10 +35,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LanguageProvider>
-          <EditModeProvider>
-            <Toaster />
-            <Router />
-          </EditModeProvider>
+          <AdminAuthProvider>
+            <EditModeProvider>
+              <Toaster />
+              <Router />
+              <AdminLoginButton />
+              <VisualEditor />
+            </EditModeProvider>
+          </AdminAuthProvider>
         </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
