@@ -67,8 +67,6 @@ export default function HeroSection() {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       />
-      
-
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
         <div className="flex items-center justify-center gap-8 mb-8">
           {countries.map((country, index) => (
@@ -115,7 +113,7 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className="font-serif md:text-7xl mb-6 font-medium text-[45px]"
+          className="font-serif md:text-7xl mb-6 text-[46px] font-normal"
           data-testid="text-hero-title"
         >
           {t('hero.title')}
@@ -133,7 +131,6 @@ export default function HeroSection() {
           {t('hero.cta')}
         </Button>
       </div>
-
       <style>{`
         @keyframes rotate-globe {
           0% {
@@ -151,7 +148,6 @@ export default function HeroSection() {
           animation: rotate-globe 20s ease-in-out infinite;
         }
       `}</style>
-
       <button
         onClick={scrollToResearch}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/80 hover:text-white transition-colors animate-bounce z-10"
@@ -160,7 +156,6 @@ export default function HeroSection() {
       >
         <ChevronDown className="h-8 w-8" />
       </button>
-
     </section>
   );
 }
