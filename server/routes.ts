@@ -19,21 +19,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/content", async (req, res) => {
+    console.log("POST /api/content received, body keys:", Object.keys(req.body || {}));
+    console.log("Content length:", req.body?.content?.length || 0);
     try {
       const result = insertContentSectionSchema.safeParse(req.body);
       if (!result.success) {
-        console.error("Validation error:", result.error);
-        return res.status(400).json({ error: "Invalid content data" });
+        console.error("Validation error:", JSON.stringify(result.error.errors, null, 2));
+        return res.status(400).json({ error: "Invalid content data", details: result.error.errors });
       }
+      console.log("Validation passed, saving to database...");
       const section = await storage.updateContentSection(
         result.data.sectionType,
         result.data.language,
         result.data.content
       );
+      console.log("Saved successfully, id:", section.id);
       res.json(section);
     } catch (err) {
       console.error("Failed to save content:", err);
-      res.status(500).json({ error: "Failed to save content" });
+      res.status(500).json({ error: "Failed to save content", message: String(err) });
     }
   });
 
