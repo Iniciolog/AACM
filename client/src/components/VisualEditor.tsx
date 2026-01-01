@@ -39,8 +39,8 @@ export function VisualEditor() {
       const content = document.body.innerHTML; 
       await apiRequest('POST', '/api/content', {
         sectionType: 'visual_changes',
-        language: language,
-        content: JSON.stringify({ html: content })
+        language: language || 'ru',
+        content: content
       });
       toast({ title: 'Успех', description: 'Все изменения на странице сохранены' });
     } catch (err) {

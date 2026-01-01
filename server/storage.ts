@@ -1,4 +1,4 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type User, type InsertUser, type ContentSection } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 // modify the interface with any CRUD methods
@@ -51,11 +51,13 @@ export class MemStorage implements IStorage {
     if (existing) {
       const updated = { ...existing, content };
       this.contentSections.set(existing.id, updated);
+      console.log(`Updated section ${sectionType} for ${language}`);
       return updated;
     }
     const id = randomUUID();
     const newSection: ContentSection = { id, sectionType, language, content };
     this.contentSections.set(id, newSection);
+    console.log(`Created section ${sectionType} for ${language}`);
     return newSection;
   }
 }
