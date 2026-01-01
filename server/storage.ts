@@ -1,10 +1,43 @@
 import { type User, type InsertUser, type ContentSection, users, contentSections } from "@shared/schema";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import { eq, and } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const db = drizzle(pool);
+
+// Initialize database tables on startup
+async function initializeDatabase() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id VARCHAR PRIMARY KEY DEFAULT gen_random_uuid(),
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+      );
+      
+      CREATE TABLE IF NOT EXISTS content_sections (
+        id VARCHAR PRIMARY KEY DEFAULT gen_random_uuid(),
+        section_type TEXT NOT NULL,
+        language TEXT NOT NULL,
+        content TEXT NOT NULL
+      );
+      
+      CREATE TABLE IF NOT EXISTS images (
+        id VARCHAR PRIMARY KEY DEFAULT gen_random_uuid(),
+        filename TEXT NOT NULL,
+        url TEXT NOT NULL,
+        uploaded_at TEXT NOT NULL
+      );
+    `);
+    console.log("Database tables initialized successfully");
+  } catch (error) {
+    console.error("Failed to initialize database tables:", error);
+  }
+}
+
+// Run initialization
+initializeDatabase();
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
