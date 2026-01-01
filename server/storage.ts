@@ -1,65 +1,74 @@
-import { type User, type InsertUser, type ContentSection } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type User, type InsertUser, type ContentSection, users, contentSections } from "@shared/schema";
+import { drizzle } from "drizzle-orm/node-postgres";
+import pg from "pg";
+import { eq, and } from "drizzle-orm";
 
-// modify the interface with any CRUD methods
-// you might need
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const db = drizzle(pool);
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   
-  // Content Sections
   getContentSection(sectionType: string, language: string): Promise<ContentSection | undefined>;
   updateContentSection(sectionType: string, language: string, content: string): Promise<ContentSection>;
+  deleteContentSection(sectionType: string, language: string): Promise<void>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private contentSections: Map<string, ContentSection>;
-
-  constructor() {
-    this.users = new Map();
-    this.contentSections = new Map();
-  }
-
+export class DatabaseStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    const result = await db.select().from(users).where(eq(users.id, id));
+    return result[0];
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const result = await db.select().from(users).where(eq(users.username, username));
+    return result[0];
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const result = await db.insert(users).values(insertUser).returning();
+    return result[0];
   }
 
   async getContentSection(sectionType: string, language: string): Promise<ContentSection | undefined> {
-    return Array.from(this.contentSections.values()).find(
-      (s) => s.sectionType === sectionType && s.language === language
+    const result = await db.select().from(contentSections).where(
+      and(
+        eq(contentSections.sectionType, sectionType),
+        eq(contentSections.language, language)
+      )
     );
+    return result[0];
   }
 
   async updateContentSection(sectionType: string, language: string, content: string): Promise<ContentSection> {
-    const existing = await this.getContentSection(sectionType, language);
-    if (existing) {
-      const updated = { ...existing, content };
-      this.contentSections.set(existing.id, updated);
-      console.log(`Updated section ${sectionType} for ${language}`);
-      return updated;
-    }
-    const id = randomUUID();
-    const newSection: ContentSection = { id, sectionType, language, content };
-    this.contentSections.set(id, newSection);
-    console.log(`Created section ${sectionType} for ${language}`);
-    return newSection;
+    await db.delete(contentSections).where(
+      and(
+        eq(contentSections.sectionType, sectionType),
+        eq(contentSections.language, language)
+      )
+    );
+    
+    const result = await db.insert(contentSections).values({
+      sectionType,
+      language,
+      content
+    }).returning();
+    
+    console.log(`Saved section ${sectionType} for ${language} to database`);
+    return result[0];
+  }
+
+  async deleteContentSection(sectionType: string, language: string): Promise<void> {
+    await db.delete(contentSections).where(
+      and(
+        eq(contentSections.sectionType, sectionType),
+        eq(contentSections.language, language)
+      )
+    );
+    console.log(`Deleted section ${sectionType} for ${language} from database`);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

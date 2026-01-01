@@ -13,6 +13,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       res.json(section);
     } catch (err) {
+      console.error("Failed to fetch content:", err);
       res.status(500).json({ error: "Failed to fetch content" });
     }
   });
@@ -21,6 +22,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const result = insertContentSectionSchema.safeParse(req.body);
       if (!result.success) {
+        console.error("Validation error:", result.error);
         return res.status(400).json({ error: "Invalid content data" });
       }
       const section = await storage.updateContentSection(
@@ -30,7 +32,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
       res.json(section);
     } catch (err) {
+      console.error("Failed to save content:", err);
       res.status(500).json({ error: "Failed to save content" });
+    }
+  });
+
+  app.delete("/api/content/:sectionType/:language", async (req, res) => {
+    try {
+      const { sectionType, language } = req.params;
+      await storage.deleteContentSection(sectionType, language);
+      res.json({ success: true });
+    } catch (err) {
+      console.error("Failed to delete content:", err);
+      res.status(500).json({ error: "Failed to delete content" });
     }
   });
 
