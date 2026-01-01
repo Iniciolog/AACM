@@ -267,11 +267,12 @@ export default function ChannelsSection() {
         </div>
 
         <Tabs defaultValue="restorative" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 mb-8" data-testid="tabs-channels">
+          <TabsList className="flex flex-col sm:grid sm:grid-cols-4 lg:grid-cols-7 w-full gap-1 h-auto mb-8 p-1" data-testid="tabs-channels">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
+                className="w-full justify-center text-sm px-2 py-2 whitespace-normal"
                 data-testid={`tab-${category.id}`}
               >
                 {getCategoryTitle(category.id)}
