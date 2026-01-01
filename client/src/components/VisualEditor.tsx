@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from 'lucide-react';
+import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEditMode } from '@/contexts/EditModeContext';
 import { useToast } from '@/hooks/use-toast';
+import { apiRequest, queryClient } from '@/lib/queryClient';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface EditableElement {
   element: HTMLElement;
@@ -18,6 +20,7 @@ interface EditableElement {
 
 export function VisualEditor() {
   const { isEditMode } = useEditMode();
+  const { language } = useLanguage();
   const { toast } = useToast();
   const [selectedElement, setSelectedElement] = useState<EditableElement | null>(null);
   const [editPanel, setEditPanel] = useState<{ x: number; y: number } | null>(null);
@@ -26,7 +29,26 @@ export function VisualEditor() {
   const [linkUrl, setLinkUrl] = useState('');
   const [fontSize, setFontSize] = useState('');
   const [fontColor, setFontColor] = useState('');
-  const highlightRef = useRef<HTMLDivElement | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const savePageContent = async () => {
+    setIsSaving(true);
+    try {
+      // Logic to collect all edits might be complex, but for now we can save the whole page state
+      // or specific marked elements. Since this is a visual editor, we'll save the "visual_changes" section
+      const content = document.body.innerHTML; 
+      await apiRequest('POST', '/api/content', {
+        sectionType: 'visual_changes',
+        language: language,
+        content: JSON.stringify({ html: content })
+      });
+      toast({ title: 'Успех', description: 'Все изменения на странице сохранены' });
+    } catch (err) {
+      toast({ title: 'Ошибка', description: 'Не удалось сохранить изменения', variant: 'destructive' });
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const getElementType = (el: HTMLElement): 'text' | 'image' | 'button' | 'link' => {
     if (el.tagName === 'IMG') return 'image';
@@ -186,10 +208,20 @@ export function VisualEditor() {
   return (
     <>
       <div 
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-4"
         data-editor-panel
       >
-        Режим редактирования активен - выделите элемент для редактирования
+        <span>Режим редактирования активен</span>
+        <Button 
+          size="sm" 
+          variant="secondary" 
+          onClick={savePageContent} 
+          disabled={isSaving}
+          data-testid="button-save-all"
+        >
+          {isSaving ? 'Сохранение...' : 'Сохранить всё'}
+          <Check className="w-4 h-4 ml-2" />
+        </Button>
       </div>
 
       {editPanel && selectedElement && (
