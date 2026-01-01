@@ -34,9 +34,13 @@ export function VisualEditor() {
   const savePageContent = async () => {
     setIsSaving(true);
     try {
-      // Logic to collect all edits might be complex, but for now we can save the whole page state
-      // or specific marked elements. Since this is a visual editor, we'll save the "visual_changes" section
-      const content = document.body.innerHTML; 
+      // Clone the document to remove editor UI before saving
+      const docClone = document.documentElement.cloneNode(true) as HTMLElement;
+      const editorPanels = docClone.querySelectorAll('[data-editor-panel], [data-admin-panel], .toaster, [role="region"]');
+      editorPanels.forEach(panel => panel.remove());
+      
+      const content = docClone.querySelector('body')?.innerHTML || document.body.innerHTML;
+      
       await apiRequest('POST', '/api/content', {
         sectionType: 'visual_changes',
         language: language || 'ru',

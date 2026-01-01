@@ -9,7 +9,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { sectionType, language } = req.params;
       const section = await storage.getContentSection(sectionType, language);
       if (!section) {
-        return res.json({ content: "{}" });
+        return res.json({ sectionType, language, content: "" });
       }
       res.json(section);
     } catch (err) {

@@ -24,10 +24,18 @@ function Content() {
   });
 
   useEffect(() => {
-    if (visualChanges?.content) {
-      document.body.innerHTML = visualChanges.content;
-      // Re-initialize any scripts or listeners if necessary
-      console.log("Saved content applied");
+    if (visualChanges?.content && visualChanges.content !== "" && visualChanges.content !== "{}") {
+      try {
+        if (visualChanges.content.includes('<')) {
+          // If we have saved HTML, we apply it. 
+          // However, we must be careful not to break React hydration entirely if possible.
+          // For a "visual editor" that saves the whole state, innerHTML is what they're doing.
+          document.body.innerHTML = visualChanges.content;
+          console.log("Saved content applied");
+        }
+      } catch (e) {
+        console.error("Failed to apply visual changes", e);
+      }
     }
   }, [visualChanges]);
 
