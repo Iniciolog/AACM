@@ -81,6 +81,7 @@ export function VisualEditor() {
 
   const savePageContent = async () => {
     setIsSaving(true);
+    console.log("Starting save, pendingChanges:", pendingChanges);
     try {
       // First close the panel to clear selection styles
       closePanel();
@@ -146,17 +147,22 @@ export function VisualEditor() {
       
       // Save as JSON
       const content = JSON.stringify(changes);
+      console.log("Saving content:", content);
+      console.log("Total elements with changes:", Object.keys(changes).length);
       
-      await apiRequest('POST', '/api/content', {
+      const response = await apiRequest('POST', '/api/content', {
         sectionType: 'visual_changes',
         language: language || 'ru',
         content: content
       });
       
+      const result = await response.json();
+      console.log("Save response:", result);
+      
       // Clear pending changes after successful save
       setPendingChanges({});
       
-      toast({ title: 'Успех', description: 'Все изменения сохранены' });
+      toast({ title: 'Успех', description: `Сохранено ${Object.keys(changes).length} изменений` });
     } catch (err) {
       toast({ title: 'Ошибка', description: 'Не удалось сохранить изменения', variant: 'destructive' });
     } finally {

@@ -71,10 +71,12 @@ function Content() {
   });
 
   useEffect(() => {
+    console.log("visualChanges received:", visualChanges);
     if (visualChanges?.content && visualChanges.content !== "" && visualChanges.content !== "{}") {
       try {
         // Parse JSON content and apply changes
         const changes = JSON.parse(visualChanges.content) as Record<string, ElementChange>;
+        console.log("Parsed changes:", changes);
         
         // Apply changes after a short delay to ensure DOM is ready
         setTimeout(() => {
