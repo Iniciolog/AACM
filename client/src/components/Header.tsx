@@ -80,9 +80,7 @@ export default function Header() {
             </button>
 
             <a
-              href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/awards"
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-awards"
             >
@@ -146,9 +144,7 @@ export default function Header() {
                     {t('nav.services')}
                   </button>
                   <a
-                    href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/awards"
                     className="block px-4 py-2 text-sm hover-elevate"
                     data-testid="mobile-nav-awards"
                   >

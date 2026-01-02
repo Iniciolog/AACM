@@ -557,7 +557,7 @@ const translations = {
     'nav.channels': 'Каналы',
     'nav.services': 'Услуги',
     'nav.rmt': 'РМТ',
-    'nav.awards': 'Награды',
+    'nav.awards': 'Премия',
     'nav.news': 'Новости',
     'nav.faq': 'Вопросы и ответы',
     'nav.contact': 'Контакты',

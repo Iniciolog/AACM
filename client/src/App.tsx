@@ -16,6 +16,7 @@ import TermsOfService from "@/pages/TermsOfService";
 import CareersPage from "@/pages/CareersPage";
 import PageBuilder from "@/pages/PageBuilder";
 import EducationalInfoPage from "@/pages/EducationalInfoPage";
+import AwardsPage from "@/pages/AwardsPage";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -130,6 +131,7 @@ function Content() {
           <Route path="/page/new" component={PageBuilder} />
           <Route path="/page/:slug" component={PageBuilder} />
           <Route path="/educational-info" component={EducationalInfoPage} />
+          <Route path="/awards" component={AwardsPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
