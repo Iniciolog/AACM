@@ -46,10 +46,11 @@ export default function Header() {
             </div>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center" style={{ gap: '4px' }}>
             <button
               onClick={() => scrollToSection('about-system')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-about-system"
             >
               {t('nav.aboutSystem')}
@@ -57,7 +58,8 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('education-program')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-program"
             >
               {t('nav.program')}
@@ -65,7 +67,8 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('channels')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-channels"
             >
               {t('nav.channels')}
@@ -73,7 +76,8 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('services')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-services"
             >
               {t('nav.services')}
@@ -81,7 +85,8 @@ export default function Header() {
 
             <a
               href="/awards"
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-awards"
             >
               {t('nav.awards')}
@@ -89,7 +94,8 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('about')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
+              style={{ marginRight: '4px' }}
               data-testid="nav-founder"
             >
               {t('nav.founder')}
@@ -97,7 +103,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('faq')}
-              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2 whitespace-nowrap"
               data-testid="nav-faq"
             >
               {t('nav.faq')}
