@@ -327,8 +327,11 @@
 
   /* Fluid Typography - responsive text that scales smoothly between screen sizes */
   .text-fluid-hero {
-    font-size: clamp(1.125rem, 4vw + 0.5rem, 3.5rem);
-    line-height: 1.2;
+    font-size: clamp(1rem, 3vw + 0.25rem, 3.5rem);
+    line-height: 1.15;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .text-fluid-xl {
