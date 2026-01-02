@@ -140,7 +140,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t text-center">
-          <p className="text-sm text-muted-foreground">© 1999 - 2025 International Academy of Initiology. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 1999 - 2025 НИЦ Инициологии и трансперсональной психологии. Все права защищены.</p>
         </div>
       </div>
     </footer>
