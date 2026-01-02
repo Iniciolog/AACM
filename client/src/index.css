@@ -211,6 +211,142 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Professional Typography - Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5em;
+    color: hsl(var(--foreground));
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 1.875rem);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
+    font-weight: 500;
+  }
+
+  h5 {
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+    font-weight: 500;
+  }
+
+  h6 {
+    font-size: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Professional Typography - Paragraphs */
+  p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(0.9375rem, 0.5vw + 0.75rem, 1.125rem);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+    margin-bottom: 1em;
+    color: hsl(var(--foreground) / 0.9);
+  }
+
+  /* Lead paragraphs - for subtitles and intro text */
+  .lead, .text-lead {
+    font-size: clamp(1.125rem, 1vw + 0.75rem, 1.375rem);
+    line-height: 1.6;
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+  }
+
+  /* Professional Typography - Lists */
+  ul, ol {
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+    line-height: 1.7;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+    font-size: inherit;
+  }
+
+  ul li::marker {
+    color: hsl(var(--primary));
+  }
+
+  ol li::marker {
+    color: hsl(var(--primary));
+    font-weight: 600;
+  }
+
+  /* Professional Typography - Links */
+  a:not([class]) {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:not([class]):hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Professional Typography - Blockquotes */
+  blockquote {
+    border-left: 4px solid hsl(var(--primary) / 0.3);
+    padding-left: 1.5em;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: hsl(var(--muted-foreground));
+    font-size: 1.05em;
+  }
+
+  /* Professional Typography - Strong/Bold */
+  strong, b {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  /* Professional Typography - Small text */
+  small, .text-small {
+    font-size: 0.875em;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Section spacing for content blocks */
+  section {
+    margin-bottom: 0;
+  }
+
+  section > * + * {
+    margin-top: 0;
+  }
+
+  /* Card content typography */
+  .card-content p:last-child,
+  [class*="CardContent"] p:last-child {
+    margin-bottom: 0;
   }
 }
 
