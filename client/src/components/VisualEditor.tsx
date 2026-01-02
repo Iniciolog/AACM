@@ -193,11 +193,6 @@ export function VisualEditor() {
       return;
     }
     
-    // Protect main header/nav elements from editing (only the top navigation, not content headers)
-    if (target.closest('[data-testid="header-main"]')) {
-      toast({ title: 'Защищённый элемент', description: 'Меню и шапка защищены от редактирования', variant: 'default' });
-      return;
-    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -246,10 +241,6 @@ export function VisualEditor() {
       return;
     }
     
-    // Don't highlight protected elements (main header only)
-    if (target.closest('[data-testid="header-main"]')) {
-      return;
-    }
 
     if (selectedElement?.element !== target) {
       target.style.outline = '1px dashed hsl(220, 70%, 50%)';
