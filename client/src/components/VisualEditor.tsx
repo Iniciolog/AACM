@@ -355,6 +355,43 @@ export function VisualEditor() {
                       <Save className="w-4 h-4 mr-2" />
                       Применить
                     </Button>
+                    
+                    <div className="pt-2 border-t">
+                      <Label>Добавить ссылку</Label>
+                      <Input
+                        value={linkUrl}
+                        onChange={(e) => setLinkUrl(e.target.value)}
+                        placeholder="https://..."
+                        className="mt-1"
+                        data-testid="input-add-link-url"
+                      />
+                      <Button 
+                        onClick={() => {
+                          if (selectedElement && linkUrl) {
+                            const el = selectedElement.element;
+                            const link = document.createElement('a');
+                            link.href = linkUrl;
+                            link.textContent = el.textContent || '';
+                            link.style.cssText = el.style.cssText;
+                            link.className = el.className;
+                            link.target = '_blank';
+                            link.rel = 'noopener noreferrer';
+                            el.parentNode?.replaceChild(link, el);
+                            trackChange(selectedElement.elementId, { href: linkUrl, text: textContent });
+                            toast({ title: 'Ссылка добавлена', description: 'Элемент преобразован в ссылку' });
+                            closePanel();
+                          }
+                        }} 
+                        size="sm" 
+                        variant="outline"
+                        className="w-full mt-2" 
+                        disabled={!linkUrl}
+                        data-testid="button-convert-to-link"
+                      >
+                        <Link2 className="w-4 h-4 mr-2" />
+                        Сделать ссылкой
+                      </Button>
+                    </div>
                   </div>
                 )}
 
