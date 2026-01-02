@@ -67,6 +67,7 @@ export function VisualEditor() {
   const [linkUrl, setLinkUrl] = useState('');
   const [fontSize, setFontSize] = useState('');
   const [fontColor, setFontColor] = useState('');
+  const [fontFamily, setFontFamily] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
   const [clipboard, setClipboard] = useState<{ html: string; type: string } | null>(null);
@@ -226,6 +227,7 @@ export function VisualEditor() {
     const computedStyle = window.getComputedStyle(target);
     setFontSize(computedStyle.fontSize);
     setFontColor(computedStyle.color);
+    setFontFamily(computedStyle.fontFamily);
 
     const rect = target.getBoundingClientRect();
     setEditPanel({
@@ -626,6 +628,29 @@ export function VisualEditor() {
                   <Button variant="outline" size="icon" onClick={() => applyTextAlignment('right')} data-testid="button-align-right">
                     <AlignRight className="w-4 h-4" />
                   </Button>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Шрифт</Label>
+                  <select
+                    value={fontFamily}
+                    onChange={(e) => {
+                      setFontFamily(e.target.value);
+                      applyStyleChange('fontFamily', e.target.value);
+                    }}
+                    className="w-full h-9 px-3 rounded-md border border-input bg-background text-sm"
+                    data-testid="select-font-family"
+                  >
+                    <option value="">-- Выберите шрифт --</option>
+                    <option value="'Playfair Display', Georgia, serif">Playfair Display (заголовки)</option>
+                    <option value="'Inter', sans-serif">Inter (основной)</option>
+                    <option value="'Cormorant Garamond', Georgia, serif">Cormorant Garamond</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                  </select>
                 </div>
 
                 <div className="space-y-2">
