@@ -192,6 +192,12 @@ export function VisualEditor() {
     if (target.closest('[data-editor-panel]') || target.closest('[data-admin-panel]')) {
       return;
     }
+    
+    // Protect main header/nav elements from editing (only the top navigation, not content headers)
+    if (target.closest('[data-testid="header-main"]')) {
+      toast({ title: 'Защищённый элемент', description: 'Меню и шапка защищены от редактирования', variant: 'default' });
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -237,6 +243,11 @@ export function VisualEditor() {
     const target = e.target as HTMLElement;
     
     if (target.closest('[data-editor-panel]') || target.closest('[data-admin-panel]')) {
+      return;
+    }
+    
+    // Don't highlight protected elements (main header only)
+    if (target.closest('[data-testid="header-main"]')) {
       return;
     }
 
