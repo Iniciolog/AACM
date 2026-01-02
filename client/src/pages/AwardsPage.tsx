@@ -2,6 +2,25 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+const awardVideos = [
+  {
+    id: 'yALi_Z90U1g',
+    title: 'Премия "Инициолог года" 2024',
+  },
+  {
+    id: 'gIzUmHsOuVg',
+    title: 'Премия "Инициолог года" 2023',
+  },
+  {
+    id: 'e5hqRhHftJ8',
+    title: 'Премия "Инициолог года" 2022',
+  },
+  {
+    id: '5u1Z6YpBhVk',
+    title: 'Премия "Инициолог года" 2021',
+  },
+];
+
 export default function AwardsPage() {
   const { language } = useLanguage();
 
@@ -12,10 +31,6 @@ export default function AwardsPage() {
   const pageSubtitle = language === 'ru' ? 'Ежегодная церемония награждения лучших специалистов в области инициологии. Премия вручается с 2013 года.' :
                        language === 'de' ? 'Jährliche Verleihungszeremonie für die besten Spezialisten auf dem Gebiet der Initiologie. Die Auszeichnung wird seit 2013 verliehen.' :
                        'Annual award ceremony for the best specialists in the field of initiology. The award has been given since 2013.';
-
-  const watchOnYoutube = language === 'ru' ? 'Смотреть на YouTube' :
-                         language === 'de' ? 'Auf YouTube ansehen' :
-                         'Watch on YouTube';
 
   return (
     <div className="min-h-screen bg-background">
@@ -30,29 +45,40 @@ export default function AwardsPage() {
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6" data-testid="text-awards-subtitle">
               {pageSubtitle}
             </p>
-            <a
-              href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
-              data-testid="link-youtube-playlist"
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              {watchOnYoutube}
-            </a>
-          </div>
+            </div>
 
-          <div className="aspect-video max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl bg-black">
-            <iframe
-              src="https://www.youtube.com/embed/videoseries?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-              title="Премия Инициолог года"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              data-testid="iframe-playlist"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {awardVideos.map((video, index) => (
+              <a
+                key={video.id}
+                href={`https://www.youtube.com/watch?v=${video.id}&list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                data-testid={`link-video-${index}`}
+              >
+                <div className="relative aspect-video bg-muted">
+                  <img
+                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    alt={video.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                      <svg className="w-8 h-8 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                    {video.title}
+                  </h3>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </main>
