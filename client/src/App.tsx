@@ -84,9 +84,9 @@ function applyVisualChanges(changes: Record<string, ElementChange>) {
   Object.entries(changes).forEach(([elementId, change]) => {
     let element: HTMLElement | null = null;
     
-    // Skip protected elements (header/navigation)
+    // Skip protected elements by ID pattern (first-pass check)
     if (isProtectedElementId(elementId)) {
-      console.log(`Skipping protected element: ${elementId}`);
+      console.log(`Skipping protected element (ID check): ${elementId}`);
       return;
     }
     
@@ -104,6 +104,12 @@ function applyVisualChanges(changes: Record<string, ElementChange>) {
     
     if (!element) {
       console.warn(`Element not found for ID: ${elementId}`);
+      return;
+    }
+    
+    // DOM-level protection: skip any element inside the header
+    if (element.closest('[data-testid="header-main"]')) {
+      console.log(`Skipping protected element (DOM check): ${elementId}`);
       return;
     }
     
