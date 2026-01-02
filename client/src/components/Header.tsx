@@ -89,15 +89,13 @@ export default function Header() {
               {t('nav.awards')}
             </a>
 
-            <a
-              href="https://news.iain.su"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => scrollToSection('about')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-news"
+              data-testid="nav-founder"
             >
-              {t('nav.news')}
-            </a>
+              {t('nav.founder')}
+            </button>
 
             <button
               onClick={() => scrollToSection('faq')}
@@ -156,15 +154,13 @@ export default function Header() {
                   >
                     {t('nav.awards')}
                   </a>
-                  <a
-                    href="https://news.iain.su"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-sm hover-elevate"
-                    data-testid="mobile-nav-news"
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-founder"
                   >
-                    {t('nav.news')}
-                  </a>
+                    {t('nav.founder')}
+                  </button>
                   <button
                     onClick={() => scrollToSection('faq')}
                     className="w-full text-left px-4 py-2 text-sm hover-elevate"
