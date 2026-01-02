@@ -329,9 +329,7 @@
   .text-fluid-hero {
     font-size: clamp(1rem, 3vw + 0.25rem, 3.5rem);
     line-height: 1.15;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    hyphens: none;
   }
 
   .text-fluid-xl {
