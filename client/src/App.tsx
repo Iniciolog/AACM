@@ -49,10 +49,46 @@ function findElementByPath(path: string): HTMLElement | null {
   return current as HTMLElement;
 }
 
+// List of protected testid patterns for header/navigation elements
+const PROTECTED_TESTIDS = [
+  'header-main',
+  'link-logo',
+  'nav-about-system',
+  'nav-program',
+  'nav-channels',
+  'nav-services',
+  'nav-awards',
+  'nav-founder',
+  'nav-faq',
+  'mobile-nav-about-system',
+  'mobile-nav-program',
+  'mobile-nav-channels',
+  'mobile-nav-services',
+  'mobile-nav-awards',
+  'mobile-nav-founder',
+  'mobile-nav-faq',
+  'button-mobile-menu',
+];
+
+// Check if an elementId refers to a protected element
+function isProtectedElementId(elementId: string): boolean {
+  if (elementId.startsWith('testid:')) {
+    const testId = elementId.replace('testid:', '');
+    if (PROTECTED_TESTIDS.includes(testId)) return true;
+  }
+  return false;
+}
+
 // Apply saved changes to elements by their ID
 function applyVisualChanges(changes: Record<string, ElementChange>) {
   Object.entries(changes).forEach(([elementId, change]) => {
     let element: HTMLElement | null = null;
+    
+    // Skip protected elements (header/navigation)
+    if (isProtectedElementId(elementId)) {
+      console.log(`Skipping protected element: ${elementId}`);
+      return;
+    }
     
     // Find element by its ID type
     if (elementId.startsWith('testid:')) {

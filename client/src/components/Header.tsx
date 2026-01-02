@@ -40,7 +40,7 @@ export default function Header() {
           >
             <img src={logoImage} alt="Academy Logo" className="h-12 w-12 rounded-md" />
             <div className="hidden md:block">
-              <div className="font-serif text-violet-100 text-center font-medium mt-[0px] mb-[0px] text-[14px]">
+              <div className="font-serif text-violet-100 text-left font-medium text-[14px] leading-tight max-w-[280px]">
                 {t('hero.title')}
               </div>
             </div>

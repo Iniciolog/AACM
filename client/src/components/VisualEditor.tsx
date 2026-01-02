@@ -193,6 +193,11 @@ export function VisualEditor() {
       return;
     }
     
+    // Protect header/navigation elements from editing
+    if (target.closest('[data-testid="header-main"]')) {
+      toast({ title: 'Защищённый элемент', description: 'Меню и шапка защищены от редактирования', variant: 'default' });
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
