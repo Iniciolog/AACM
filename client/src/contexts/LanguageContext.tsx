@@ -28,9 +28,11 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.contact': 'Contact',
     'nav.about': 'About',
+    'nav.aboutSystem': 'About the System',
+    'nav.founder': 'Founder',
     
     // Hero
-    'hero.title': 'International Academy of Initiology',
+    'hero.title': 'Research Center for Initiology and Transpersonal Psychology',
     'hero.subtitle': 'Advancing scientific knowledge through groundbreaking research and global collaboration',
     'hero.cta': 'Explore Our Research',
     
@@ -107,6 +109,45 @@ const translations = {
     'channels.title': 'Energy Channels',
     'channels.subtitle': 'Professional level initiology channels for healing and transformation',
     
+    // Open Sessions
+    'sessions.title': 'Open Initiology Sessions',
+    'sessions.subtitle': 'Join our open video sessions every first and last Saturday of the month at 1:00 PM',
+    'sessions.schedule.title': 'Open Session',
+    'sessions.schedule.time': 'Every first and last Saturday at 1:00 PM',
+    'sessions.schedule.desc': 'We invite you to open sessions of Initiology with Vyacheslav Pavlovich Lazarenko. The session includes opening of cleansing, restorative, and social energy-informational channels of Initiology.',
+    'sessions.cta': 'Join Session',
+    'sessions.benefit1.title': 'Social Channels',
+    'sessions.benefit1.desc': 'Social energy-informational cosmic channels are opened, having a beneficial effect on all spheres of life, business, and career.',
+    'sessions.benefit2.title': 'Energy Cleansing',
+    'sessions.benefit2.desc': 'Cleansing energy-informational channels are opened, eliminating all types of negative influences and destructive subconscious programs.',
+    'sessions.benefit3.title': 'Restoration & Healing',
+    'sessions.benefit3.desc': 'Restorative energy-informational channels are opened, providing targeted effects on all organs and body systems.',
+    'sessions.leader.title': 'Vyacheslav Lazarenko',
+    'sessions.leader.desc': 'Participation in sessions promotes activation of hidden reserves of the body, energy restoration and healing. Results are preserved for many years with course work.',
+    
+    // About System
+    'system.title': 'About The System',
+    'system.subtitle': 'Initiology - a new generation energy-informational system',
+    'system.desc1': 'Initiology is the choice of professional energy practitioners around the world. The effectiveness of the system is confirmed by scientific research, thousands of practicing Initiologists, and the results of their clients.',
+    'system.desc2': 'It shows the best and incomparable results in providing energy-informational security, restoring vital resources, and improving quality of life.',
+    'system.desc3': 'Initiology as an influence tool is actively used by representatives of the business elite - leading professionals and entrepreneurs holding key positions in economy and management. Among its supporters you can find famous Russian and foreign figures who apply this practice to strengthen and increase their prosperity and success.',
+    'system.energy.title': 'Cosmic Energy',
+    'system.energy.desc': 'Pure and universal energy source common to all forms of life',
+    'system.advantages.title': 'Advantages of Initiology',
+    'system.advantage1.title': 'Safety',
+    'system.advantage1.desc': 'Channels provide reliable protection from transfer of pathogenic information and negative programs from client to Initiologist during sessions.',
+    'system.advantage2.title': 'Unlimited Resources',
+    'system.advantage2.desc': 'Channels can provide as much energy as needed. Channel resources are limitless, unlike the finite energy of ordinary energy practitioners.',
+    'system.advantage3.title': 'Range of Tasks',
+    'system.advantage3.desc': 'Initiology channels are used in social sphere, personal life, security, and protection from negative influences.',
+    'system.advantage4.title': 'Lifetime Access',
+    'system.advantage4.desc': 'Channels are transferred once and access to them is retained for life. Students begin working with channels from the first days of training.',
+    'system.advantage5.title': 'Professional Choice',
+    'system.advantage5.desc': 'Many professional healers and psychics in Russia, CIS, and European countries have switched to Initiology practice.',
+    'system.advantage6.title': 'Quick Results',
+    'system.advantage6.desc': 'Master technologies allow complete energy cleansing in 1-3 sessions. Standard course is 7 sessions for restoring 7 energy centers.',
+    'system.cta': 'Start Learning',
+    
     // Services
     'services.title': 'Services & Sessions',
     'services.subtitle': 'Personal sessions with V.P. Lazarenko',
@@ -162,7 +203,7 @@ const translations = {
     
     // Footer
     'footer.about': 'About Academy',
-    'footer.about.desc': 'The International Academy of Initiology is a premier research institution advancing scientific knowledge globally.',
+    'footer.about.desc': 'The Research Center for Initiology and Transpersonal Psychology is a premier research institution advancing scientific knowledge globally.',
     'footer.quicklinks': 'Quick Links',
     'footer.research': 'Research',
     'footer.education': 'Education',
@@ -182,7 +223,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Subscribe to Newsletter',
-    'footer.copyright': '© 2024 International Academy of Initiology. All rights reserved.',
+    'footer.copyright': '© 2024 Research Center for Initiology and Transpersonal Psychology. All rights reserved.',
     
     // Filials
     'filials.title': 'Academic branches',
@@ -208,7 +249,7 @@ const translations = {
     'careers.position1.title': 'Initiologist - Consultant',
     'careers.position1.benefits.title': 'Position Benefits',
     'careers.position1.benefit1': 'Official contract with the Academy',
-    'careers.position1.benefit2': 'Employee ID of the International Academy of Initiology',
+    'careers.position1.benefit2': 'Employee ID of the Research Center for Initiology',
     'careers.position1.benefit3': 'Listing in Academy branches and staff directories',
     'careers.position1.benefit4': 'Right to advertise using Academy benefits as a branch',
     'careers.position1.benefit5': 'Ability to officially work and accept client payments on the Academy website',
@@ -254,9 +295,11 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.contact': 'Kontakt',
     'nav.about': 'Über uns',
+    'nav.aboutSystem': 'Über das System',
+    'nav.founder': 'Gründer',
     
     // Hero
-    'hero.title': 'Internationale Akademie für Initiologie',
+    'hero.title': 'Forschungszentrum für Initiologie und Transpersonale Psychologie',
     'hero.subtitle': 'Förderung wissenschaftlicher Erkenntnisse durch bahnbrechende Forschung und globale Zusammenarbeit',
     'hero.cta': 'Unsere Forschung entdecken',
     
@@ -333,6 +376,45 @@ const translations = {
     'channels.title': 'Energiekanäle',
     'channels.subtitle': 'Professionelle Initiologie-Kanäle für Heilung und Transformation',
     
+    // Open Sessions
+    'sessions.title': 'Offene Initiologie-Sitzungen',
+    'sessions.subtitle': 'Nehmen Sie an unseren offenen Videositzungen jeden ersten und letzten Samstag des Monats um 13:00 Uhr teil',
+    'sessions.schedule.title': 'Offene Sitzung',
+    'sessions.schedule.time': 'Jeden ersten und letzten Samstag um 13:00 Uhr',
+    'sessions.schedule.desc': 'Wir laden Sie zu offenen Sitzungen der Initiologie mit Wjatscheslaw Pawlowitsch Lasarenko ein. Die Sitzung beinhaltet die Öffnung von reinigenden, wiederherstellenden und sozialen energieinformationellen Kanälen der Initiologie.',
+    'sessions.cta': 'Teilnehmen',
+    'sessions.benefit1.title': 'Soziale Kanäle',
+    'sessions.benefit1.desc': 'Soziale energieinformationelle kosmische Kanäle werden geöffnet, die sich positiv auf alle Lebensbereiche, Geschäft und Karriere auswirken.',
+    'sessions.benefit2.title': 'Energetische Reinigung',
+    'sessions.benefit2.desc': 'Reinigende energieinformationelle Kanäle werden geöffnet, die alle Arten von negativen Einflüssen und destruktiven Unterbewusstseinsprogrammen beseitigen.',
+    'sessions.benefit3.title': 'Wiederherstellung & Heilung',
+    'sessions.benefit3.desc': 'Wiederherstellende energieinformationelle Kanäle werden geöffnet, die gezielte Wirkung auf alle Organe und Körpersysteme bieten.',
+    'sessions.leader.title': 'Wjatscheslaw Lasarenko',
+    'sessions.leader.desc': 'Die Teilnahme an Sitzungen fördert die Aktivierung verborgener Reserven des Körpers, energetische Wiederherstellung und Heilung. Ergebnisse bleiben bei Kursarbeit viele Jahre erhalten.',
+    
+    // About System
+    'system.title': 'Über das System',
+    'system.subtitle': 'Initiologie - ein energieinformationelles System der neuen Generation',
+    'system.desc1': 'Initiologie ist die Wahl professioneller Energiepraktiker auf der ganzen Welt. Die Wirksamkeit des Systems wird durch wissenschaftliche Forschung, Tausende praktizierende Initiologen und die Ergebnisse ihrer Klienten bestätigt.',
+    'system.desc2': 'Es zeigt die besten und unvergleichlichen Ergebnisse bei der Bereitstellung von energieinformationeller Sicherheit, der Wiederherstellung von Lebensressourcen und der Verbesserung der Lebensqualität.',
+    'system.desc3': 'Initiologie als Einflussinstrument wird aktiv von Vertretern der Geschäftselite genutzt - führenden Fachleuten und Unternehmern, die Schlüsselpositionen in Wirtschaft und Management innehaben.',
+    'system.energy.title': 'Kosmische Energie',
+    'system.energy.desc': 'Reine und universelle Energiequelle, die allen Lebensformen gemeinsam ist',
+    'system.advantages.title': 'Vorteile der Initiologie',
+    'system.advantage1.title': 'Sicherheit',
+    'system.advantage1.desc': 'Kanäle bieten zuverlässigen Schutz vor der Übertragung krankhafter Informationen und negativer Programme vom Klienten auf den Initiologen.',
+    'system.advantage2.title': 'Unbegrenzte Ressourcen',
+    'system.advantage2.desc': 'Kanäle können so viel Energie bereitstellen wie benötigt. Kanalressourcen sind grenzenlos, im Gegensatz zur begrenzten Energie gewöhnlicher Energiepraktiker.',
+    'system.advantage3.title': 'Aufgabenspektrum',
+    'system.advantage3.desc': 'Initiologie-Kanäle werden im sozialen Bereich, im Privatleben, für Sicherheit und Schutz vor negativen Einflüssen eingesetzt.',
+    'system.advantage4.title': 'Lebenslanger Zugang',
+    'system.advantage4.desc': 'Kanäle werden einmal übertragen und der Zugang zu ihnen bleibt lebenslang erhalten. Schüler beginnen von den ersten Tagen an mit der Kanalarbeit.',
+    'system.advantage5.title': 'Professionelle Wahl',
+    'system.advantage5.desc': 'Viele professionelle Heiler und Hellseher in Russland, GUS und europäischen Ländern sind zur Initiologie-Praxis gewechselt.',
+    'system.advantage6.title': 'Schnelle Ergebnisse',
+    'system.advantage6.desc': 'Meister-Technologien ermöglichen eine vollständige Energiereinigung in 1-3 Sitzungen. Standardkurs: 7 Sitzungen zur Wiederherstellung von 7 Energiezentren.',
+    'system.cta': 'Lernen beginnen',
+    
     // Services
     'services.title': 'Dienstleistungen & Sitzungen',
     'services.subtitle': 'Persönliche Sitzungen mit V.P. Lasarenko',
@@ -388,7 +470,7 @@ const translations = {
     
     // Footer
     'footer.about': 'Über die Akademie',
-    'footer.about.desc': 'Die Internationale Akademie für Initiologie ist eine führende Forschungseinrichtung zur globalen Förderung wissenschaftlicher Erkenntnisse.',
+    'footer.about.desc': 'Das Forschungszentrum für Initiologie und Transpersonale Psychologie ist eine führende Forschungseinrichtung zur globalen Förderung wissenschaftlicher Erkenntnisse.',
     'footer.quicklinks': 'Schnelllinks',
     'footer.research': 'Forschung',
     'footer.education': 'Bildung',
@@ -408,7 +490,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Newsletter abonnieren',
-    'footer.copyright': '© 2024 Internationale Akademie für Initiologie. Alle Rechte vorbehalten.',
+    'footer.copyright': '© 2024 Forschungszentrum für Initiologie und Transpersonale Psychologie. Alle Rechte vorbehalten.',
     
     // Filials
     'filials.title': 'Akademische Filialen',
@@ -434,7 +516,7 @@ const translations = {
     'careers.position1.title': 'Initiologe - Berater',
     'careers.position1.benefits.title': 'Stellenvorteile',
     'careers.position1.benefit1': 'Offizieller Vertrag mit der Akademie',
-    'careers.position1.benefit2': 'Mitarbeiterausweis der Internationalen Akademie für Initiologie',
+    'careers.position1.benefit2': 'Mitarbeiterausweis des Forschungszentrums für Initiologie',
     'careers.position1.benefit3': 'Aufnahme in die Filial- und Mitarbeiterverzeichnisse der Akademie',
     'careers.position1.benefit4': 'Recht auf Werbung mit den Vorteilen der Akademie als Filiale',
     'careers.position1.benefit5': 'Möglichkeit, offiziell zu arbeiten und Kundenzahlungen auf der Akademie-Website zu akzeptieren',
@@ -475,14 +557,16 @@ const translations = {
     'nav.channels': 'Каналы',
     'nav.services': 'Услуги',
     'nav.rmt': 'РМТ',
-    'nav.awards': 'Награды',
+    'nav.awards': 'Премия',
     'nav.news': 'Новости',
     'nav.faq': 'Вопросы и ответы',
     'nav.contact': 'Контакты',
     'nav.about': 'О нас',
+    'nav.aboutSystem': 'О системе',
+    'nav.founder': 'Основатель',
     
     // Hero
-    'hero.title': 'Международная Академия Инициологии',
+    'hero.title': 'Научно-исследовательский центр Инициологии и трансперсональной психологии',
     'hero.subtitle': 'Продвижение знаний о раскрытии природных способностей человека, через передовые исследования и глобальное сотрудничество',
     'hero.cta': 'Изучить исследования',
     
@@ -559,6 +643,45 @@ const translations = {
     'channels.title': 'Энергетические каналы',
     'channels.subtitle': 'Профессиональные каналы инициологии для исцеления и трансформации',
     
+    // Open Sessions
+    'sessions.title': 'Открытые сеансы Инициологии',
+    'sessions.subtitle': 'Присоединяйтесь к открытым видеосеансам каждую первую и последнюю субботу месяца в 13:00',
+    'sessions.schedule.title': 'Открытый сеанс',
+    'sessions.schedule.time': 'Каждую первую и последнюю субботу в 13:00',
+    'sessions.schedule.desc': 'Приглашаем на открытые сеансы Инициологии Вячеслава Павловича Лазаренко. Сеанс включает открытие очистительных, восстановительных и социальных энергоинформационных каналов Инициологии.',
+    'sessions.cta': 'Участвовать',
+    'sessions.benefit1.title': 'Социальные каналы',
+    'sessions.benefit1.desc': 'Открываются социальные энергоинформационные космические каналы, оказывающие благотворное воздействие на все сферы жизни, дела, бизнес и карьеру.',
+    'sessions.benefit2.title': 'Энергетическая чистка',
+    'sessions.benefit2.desc': 'Открываются очистительные энергоинформационные каналы, устраняющие все виды негативных воздействий и деструктивных подсознательных программ.',
+    'sessions.benefit3.title': 'Восстановление и оздоровление',
+    'sessions.benefit3.desc': 'Открываются восстановительные энергоинформационные каналы, оказывающие целенаправленное воздействие на все органы и системы организма.',
+    'sessions.leader.title': 'Вячеслав Лазаренко',
+    'sessions.leader.desc': 'Участие в сеансах способствует активизации скрытых резервов организма, энергетическому восстановлению и оздоровлению. Результаты сохраняются на долгие годы при проведении курсовой работы.',
+    
+    // About System
+    'system.title': 'О системе',
+    'system.subtitle': 'Инициология - энергоинформационная система нового поколения',
+    'system.desc1': 'Инициология - выбор профессиональных энергопрактиков по всему миру. Эффективность системы подтверждена научными исследованиями, тысячами практикующих Инициологов, результатами их клиентов.',
+    'system.desc2': 'Показывает лучшие и ни с чем не сравнимые результаты в обеспечении энергоинформационной безопасности, восстановлении жизненных ресурсов, улучшении качества жизни.',
+    'system.desc3': 'Инициологию как инструмент влияния активно используют представители элиты деловой и бизнес-среды — ведущие профессионалы и предприниматели, занимающие ключевые позиции в экономике и управлении. Среди её сторонников можно встретить известных российских и зарубежных деятелей.',
+    'system.energy.title': 'Космическая энергия',
+    'system.energy.desc': 'Чистый и универсальный источник энергии, общий для всех форм жизни',
+    'system.advantages.title': 'Преимущества Инициологии',
+    'system.advantage1.title': 'Безопасность',
+    'system.advantage1.desc': 'Каналы обеспечивают надежную защиту от переноса болезнетворной информации и негативных программ с клиента на Инициолога во время сеанса.',
+    'system.advantage2.title': 'Неограниченные ресурсы',
+    'system.advantage2.desc': 'Каналы могут дать столько энергии, сколько нужно. Ресурс каналов безграничен, в отличие от конечной энергетики обычных энергопрактиков.',
+    'system.advantage3.title': 'Диапазон задач',
+    'system.advantage3.desc': 'Каналы Инициологии применяются в социальной сфере, личной жизни, для обеспечения безопасности и защиты от негативных воздействий.',
+    'system.advantage4.title': 'Доступ на всю жизнь',
+    'system.advantage4.desc': 'Каналы передаются один раз и доступ к ним сохраняется на всю жизнь. Ученик приступает к работе с каналами с первых дней обучения.',
+    'system.advantage5.title': 'Выбор профессионалов',
+    'system.advantage5.desc': 'Многие профессиональные целители и экстрасенсы в России, СНГ и странах Европы перешли на практику Инициологии.',
+    'system.advantage6.title': 'Быстрые результаты',
+    'system.advantage6.desc': 'Мастерские технологии позволяют провести полную энергетическую чистку за 1-3 сеанса. Стандартный курс - 7 сеансов для восстановления 7 энергоцентров.',
+    'system.cta': 'Начать обучение',
+    
     // Services
     'services.title': 'Услуги и сеансы',
     'services.subtitle': 'Личный прием В. П. Лазаренко',
@@ -614,7 +737,7 @@ const translations = {
     
     // Footer
     'footer.about': 'Об Академии',
-    'footer.about.desc': 'Международная Академия Инициологии - ведущий исследовательский институт, продвигающий научные знания по всему миру.',
+    'footer.about.desc': 'НИЦ Инициологии и трансперсональной психологии - ведущий исследовательский институт, продвигающий научные знания по всему миру.',
     'footer.quicklinks': 'Быстрые ссылки',
     'footer.research': 'Исследования',
     'footer.education': 'Образование',
@@ -634,7 +757,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Подписаться на рассылку',
-    'footer.copyright': '© 2024 Международная Академия Инициологии. Все права защищены.',
+    'footer.copyright': '© 2024 НИЦ Инициологии и трансперсональной психологии. Все права защищены.',
     
     // Filials
     'filials.title': 'Академические филиалы',
@@ -660,7 +783,7 @@ const translations = {
     'careers.position1.title': 'Инициолог - консультант',
     'careers.position1.benefits.title': 'Преимущества должности',
     'careers.position1.benefit1': 'Заключение официального договора с Академией',
-    'careers.position1.benefit2': 'Удостоверение сотрудника Международной Академии Инициологии',
+    'careers.position1.benefit2': 'Удостоверение сотрудника НИЦ Инициологии',
     'careers.position1.benefit3': 'Размещение в списках филиалов и сотрудников академии',
     'careers.position1.benefit4': 'Право на рекламу с использованием плюсов Академии на правах филиала',
     'careers.position1.benefit5': 'Возможность официально работать и принимать платежи клиентов на сайте Академии',
@@ -694,7 +817,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('language') as Language;
-    return saved || 'en';
+    return saved || 'ru';
   });
 
   useEffect(() => {

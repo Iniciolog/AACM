@@ -53,8 +53,6 @@ const channelsData = {
       { name: 'Christos', desc: '50 frequencies. Eliminates energy blocks, cleanses destiny matrix' },
       { name: 'Solomon', desc: '120 frequencies. Luck, prosperity, wealth, personal magnetism' },
       { name: 'Ratron', desc: '100 frequencies. Cleanses from negativity, spine, weight normalization' },
-      { name: 'Pleiades Block', desc: 'DNA activation, chakra development, beam therapy, rejuvenation' },
-      { name: 'Kryon Block', desc: 'Energy cosmetology, magnetic service, magnetism increase' },
       { name: 'Initiologist Protection', desc: 'Blocks negative thought flows, transforms envy into luck, automatic defense' },
     ],
     higher: [
@@ -73,6 +71,8 @@ const channelsData = {
       { name: 'A-Oranta', desc: 'Channel of supreme justice and retribution, no reverse action' },
     ],
     special: [
+      { name: 'Pleiades Block', desc: 'DNA activation, chakra development, beam therapy, rejuvenation' },
+      { name: 'Kryon Block', desc: 'Energy cosmetology, magnetic service, magnetism increase' },
       { name: 'Artra-Ven', desc: 'Social block working with root causes of problems' },
       { name: 'Metatron', desc: 'Frequency multi-channel amplifier of the main block' },
     ],
@@ -127,8 +127,6 @@ const channelsData = {
       { name: 'Christos', desc: '50 Frequenzen. Beseitigt Energieblockaden, reinigt Schicksalsmatrix' },
       { name: 'Solomon', desc: '120 Frequenzen. Glück, Wohlstand, Reichtum, persönlicher Magnetismus' },
       { name: 'Ratron', desc: '100 Frequenzen. Reinigt von Negativität, Wirbelsäule, Gewichtsnormalisierung' },
-      { name: 'Pleiades Block', desc: 'DNA-Aktivierung, Chakra-Entwicklung, Strahltherapie, Verjüngung' },
-      { name: 'Kryon Block', desc: 'Energie-Kosmetologie, magnetischer Service, Magnetismus-Erhöhung' },
       { name: 'Initiologie-Schutz', desc: 'Blockiert negative Gedankenströme, transformiert Neid in Glück, automatische Abwehr' },
     ],
     higher: [
@@ -147,6 +145,8 @@ const channelsData = {
       { name: 'A-Oranta', desc: 'Kanal höchster Gerechtigkeit und Vergeltung, keine Rückwirkung' },
     ],
     special: [
+      { name: 'Pleiades Block', desc: 'DNA-Aktivierung, Chakra-Entwicklung, Strahltherapie, Verjüngung' },
+      { name: 'Kryon Block', desc: 'Energie-Kosmetologie, magnetischer Service, Magnetismus-Erhöhung' },
       { name: 'Artra-Ven', desc: 'Sozialer Block, der mit Ursachen von Problemen arbeitet' },
       { name: 'Metatron', desc: 'Frequenz-Mehrkanal-Verstärker des Hauptblocks' },
     ],
@@ -201,8 +201,6 @@ const channelsData = {
       { name: 'Христос', desc: '50 частот. Устраняет энергоблоки, очищает матрицу судьбы' },
       { name: 'Соломон', desc: '120 частот. Удача, благополучие, богатство, личный магнетизм' },
       { name: 'Ратрон', desc: '100 частот. Очищает от негатива, позвоночник, нормализация веса' },
-      { name: 'Блок Плеяды', desc: 'Активация ДНК, развитие чакр, лучевая терапия, омоложение' },
-      { name: 'Блок Крайон', desc: 'Энергокосметология, магнетическая служба, увеличение магнетизма' },
       { name: 'Защита Инициолога', desc: 'Блокирует негативные потоки мыслей, трансформирует зависть в удачу, автоматическая защита' },
     ],
     higher: [
@@ -221,6 +219,8 @@ const channelsData = {
       { name: 'А-Оранта', desc: 'Канал высшей справедливости и возмездия, не имеет обратного хода' },
     ],
     special: [
+      { name: 'Блок Плеяды', desc: 'Активация ДНК, развитие чакр, лучевая терапия, омоложение' },
+      { name: 'Блок Крайон', desc: 'Энергокосметология, магнетическая служба, увеличение магнетизма' },
       { name: 'Артра-Вэн', desc: 'Социальный блок, работающий с причинами проблем' },
       { name: 'Метатрон', desc: 'Частотный многоканальный усилитель основного блока' },
     ],
@@ -258,7 +258,7 @@ export default function ChannelsSection() {
     <section id="channels" className="py-20 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4" data-testid="text-channels-title">
+          <h2 className="font-serif text-fluid-xl font-bold mb-4" data-testid="text-channels-title">
             {t('channels.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -267,11 +267,12 @@ export default function ChannelsSection() {
         </div>
 
         <Tabs defaultValue="restorative" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-7 mb-8" data-testid="tabs-channels">
+          <TabsList className="flex flex-col sm:grid sm:grid-cols-4 lg:grid-cols-7 w-full gap-1 h-auto mb-8 p-1" data-testid="tabs-channels">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
+                className="w-full justify-center text-sm px-2 py-2 whitespace-normal"
                 data-testid={`tab-${category.id}`}
               >
                 {getCategoryTitle(category.id)}

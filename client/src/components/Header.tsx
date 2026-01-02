@@ -33,10 +33,10 @@ export default function Header() {
         isScrolled ? 'bg-[#0c317d]/90 backdrop-blur-md shadow-md' : 'bg-[#0062f230]'
       }`}>
         <div className="flex items-center justify-between h-20">
-          <button
-            onClick={() => scrollToSection('hero')}
+          <a
+            href="/"
             className="flex items-center gap-3 hover-elevate rounded-md px-3 py-2"
-            data-testid="button-logo"
+            data-testid="link-logo"
           >
             <img src={logoImage} alt="Academy Logo" className="h-12 w-12 rounded-md" />
             <div className="hidden md:block">
@@ -44,18 +44,16 @@ export default function Header() {
                 {t('hero.title')}
               </div>
             </div>
-          </button>
+          </a>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <a
-              href="https://r.iain.su"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => scrollToSection('about-system')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-research"
+              data-testid="nav-about-system"
             >
-              {t('nav.research')}
-            </a>
+              {t('nav.aboutSystem')}
+            </button>
 
             <button
               onClick={() => scrollToSection('education-program')}
@@ -82,24 +80,20 @@ export default function Header() {
             </button>
 
             <a
-              href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/awards"
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
               data-testid="nav-awards"
             >
               {t('nav.awards')}
             </a>
 
-            <a
-              href="https://news.iain.su"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => scrollToSection('about')}
               className="inline-flex h-9 items-center justify-center rounded-md px-3 py-2 text-sm font-medium text-white transition-colors hover-elevate active-elevate-2"
-              data-testid="nav-news"
+              data-testid="nav-founder"
             >
-              {t('nav.news')}
-            </a>
+              {t('nav.founder')}
+            </button>
 
             <button
               onClick={() => scrollToSection('faq')}
@@ -121,15 +115,13 @@ export default function Header() {
               
               <div className="absolute right-0 top-full mt-2 w-48 bg-card border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="py-2">
-                  <a
-                    href="https://r.iain.su"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-sm hover-elevate"
-                    data-testid="mobile-nav-research"
+                  <button
+                    onClick={() => scrollToSection('about-system')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-about-system"
                   >
-                    {t('nav.research')}
-                  </a>
+                    {t('nav.aboutSystem')}
+                  </button>
                   <button
                     onClick={() => scrollToSection('education-program')}
                     className="w-full text-left px-4 py-2 text-sm hover-elevate"
@@ -152,23 +144,19 @@ export default function Header() {
                     {t('nav.services')}
                   </button>
                   <a
-                    href="https://www.youtube.com/playlist?list=PLe5nsUESsMT7MCmh_1_b0wwlRhoes6vkg"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/awards"
                     className="block px-4 py-2 text-sm hover-elevate"
                     data-testid="mobile-nav-awards"
                   >
                     {t('nav.awards')}
                   </a>
-                  <a
-                    href="https://news.iain.su"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-sm hover-elevate"
-                    data-testid="mobile-nav-news"
+                  <button
+                    onClick={() => scrollToSection('about')}
+                    className="w-full text-left px-4 py-2 text-sm hover-elevate"
+                    data-testid="mobile-nav-founder"
                   >
-                    {t('nav.news')}
-                  </a>
+                    {t('nav.founder')}
+                  </button>
                   <button
                     onClick={() => scrollToSection('faq')}
                     className="w-full text-left px-4 py-2 text-sm hover-elevate"

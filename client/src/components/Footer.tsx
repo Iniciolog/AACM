@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const quickLinks = [
     { label: t('footer.research'), href: '#research' },
@@ -25,6 +25,13 @@ export default function Footer() {
     { label: t('footer.terms'), href: '/terms-of-service' },
     { label: t('footer.careers'), href: '/careers' },
   ];
+
+  const educationalInfo = {
+    label: language === 'ru' ? 'Сведения об образовательной организации' : 
+           language === 'de' ? 'Bildungsorganisation' : 
+           'Educational Organization Info',
+    href: '/educational-info'
+  };
 
   return (
     <footer className="bg-card border-t">
@@ -97,6 +104,15 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={educationalInfo.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+                  data-testid="link-footer-educational-info"
+                >
+                  {educationalInfo.label}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -124,7 +140,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t text-center">
-          <p className="text-sm text-muted-foreground">© 1999 - 2025 International Academy of Initiology. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 1999 - 2025 НИЦ Инициологии и трансперсональной психологии. Все права защищены.</p>
         </div>
       </div>
     </footer>

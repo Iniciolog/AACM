@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from 'lucide-react';
+import { useLocation } from 'wouter';
+import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check, Copy, Clipboard, Plus, ImagePlus, FileText, FilePlus, GripHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,17 +9,57 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEditMode } from '@/contexts/EditModeContext';
 import { useToast } from '@/hooks/use-toast';
+import { apiRequest, queryClient } from '@/lib/queryClient';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface EditableElement {
   element: HTMLElement;
   type: 'text' | 'image' | 'button' | 'link';
   originalContent: string;
   originalStyles: CSSStyleDeclaration;
+  elementId: string;
+}
+
+interface ElementChange {
+  text?: string;
+  src?: string;
+  href?: string;
+  styles?: Record<string, string>;
+}
+
+// Generate a unique identifier for an element based on its path and attributes
+function getElementId(el: HTMLElement): string {
+  // Prefer data-testid if available
+  if (el.dataset.testid) {
+    return `testid:${el.dataset.testid}`;
+  }
+  // Use id if available
+  if (el.id) {
+    return `id:${el.id}`;
+  }
+  // Generate a path-based identifier
+  const path: string[] = [];
+  let current: HTMLElement | null = el;
+  while (current && current !== document.body) {
+    const parentEl: HTMLElement | null = current.parentElement;
+    if (parentEl) {
+      const tagName = current.tagName;
+      const siblings = Array.from(parentEl.children).filter((c: Element) => c.tagName === tagName);
+      const index = siblings.indexOf(current);
+      path.unshift(`${current.tagName.toLowerCase()}[${index}]`);
+    } else {
+      path.unshift(current.tagName.toLowerCase());
+    }
+    current = parentEl;
+  }
+  return `path:${path.join('>')}`;
 }
 
 export function VisualEditor() {
   const { isEditMode } = useEditMode();
+  const { language } = useLanguage();
   const { toast } = useToast();
+  const [, navigate] = useLocation();
   const [selectedElement, setSelectedElement] = useState<EditableElement | null>(null);
   const [editPanel, setEditPanel] = useState<{ x: number; y: number } | null>(null);
   const [textContent, setTextContent] = useState('');
@@ -26,7 +67,115 @@ export function VisualEditor() {
   const [linkUrl, setLinkUrl] = useState('');
   const [fontSize, setFontSize] = useState('');
   const [fontColor, setFontColor] = useState('');
-  const highlightRef = useRef<HTMLDivElement | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
+  const [clipboard, setClipboard] = useState<{ html: string; type: string } | null>(null);
+  const [newImageUrl, setNewImageUrl] = useState('');
+  const [toolbarPosition, setToolbarPosition] = useState<{ x: number; y: number }>({ x: -1, y: 16 });
+  const [isDraggingToolbar, setIsDraggingToolbar] = useState(false);
+  const [isDraggingPanel, setIsDraggingPanel] = useState(false);
+  const dragOffsetRef = useRef({ x: 0, y: 0 });
+
+  // Drag handlers for toolbar
+  const handleToolbarDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingToolbar(true);
+    const toolbar = (e.target as HTMLElement).closest('[data-editor-panel]') as HTMLElement;
+    if (toolbar) {
+      const rect = toolbar.getBoundingClientRect();
+      dragOffsetRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+  };
+
+  const handlePanelDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingPanel(true);
+    if (editPanel) {
+      dragOffsetRef.current = { x: e.clientX - editPanel.x, y: e.clientY - editPanel.y };
+    }
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingToolbar) {
+        const newX = e.clientX - dragOffsetRef.current.x;
+        const newY = Math.max(0, e.clientY - dragOffsetRef.current.y);
+        setToolbarPosition({ x: newX, y: newY });
+      }
+      if (isDraggingPanel && editPanel) {
+        const newX = Math.max(0, Math.min(e.clientX - dragOffsetRef.current.x, window.innerWidth - 320));
+        const newY = Math.max(0, e.clientY - dragOffsetRef.current.y);
+        setEditPanel({ x: newX, y: newY });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingToolbar(false);
+      setIsDraggingPanel(false);
+    };
+
+    if (isDraggingToolbar || isDraggingPanel) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDraggingToolbar, isDraggingPanel, editPanel]);
+
+  // Track a change for an element
+  const trackChange = (elementId: string, change: Partial<ElementChange>) => {
+    setPendingChanges(prev => ({
+      ...prev,
+      [elementId]: {
+        ...prev[elementId],
+        ...change,
+      }
+    }));
+  };
+
+  const savePageContent = async () => {
+    setIsSaving(true);
+    console.log("Starting save, pendingChanges:", pendingChanges);
+    try {
+      // First close the panel to clear selection styles
+      closePanel();
+      
+      // Only save the tracked changes - server will merge with existing
+      const changes = { ...pendingChanges };
+      
+      if (Object.keys(changes).length === 0) {
+        toast({ title: 'Информация', description: 'Нет изменений для сохранения' });
+        setIsSaving(false);
+        return;
+      }
+      
+      // Save as JSON - server will merge with existing changes
+      const content = JSON.stringify(changes);
+      console.log("Saving changes:", content);
+      console.log("Elements being saved:", Object.keys(changes).length);
+      
+      const response = await apiRequest('POST', '/api/content', {
+        sectionType: 'visual_changes',
+        language: language || 'ru',
+        content: content
+      });
+      
+      const result = await response.json();
+      console.log("Save response:", result);
+      
+      // Clear pending changes after successful save
+      setPendingChanges({});
+      
+      toast({ title: 'Успех', description: `Сохранено ${Object.keys(changes).length} изменений` });
+    } catch (err) {
+      console.error("Save error:", err);
+      toast({ title: 'Ошибка', description: 'Не удалось сохранить изменения', variant: 'destructive' });
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const getElementType = (el: HTMLElement): 'text' | 'image' | 'button' | 'link' => {
     if (el.tagName === 'IMG') return 'image';
@@ -52,6 +201,7 @@ export function VisualEditor() {
       type: getElementType(target),
       originalContent: target.tagName === 'IMG' ? (target as HTMLImageElement).src : target.textContent || '',
       originalStyles: window.getComputedStyle(target),
+      elementId: getElementId(target),
     };
 
     setSelectedElement(editableElement);
@@ -133,6 +283,7 @@ export function VisualEditor() {
   const applyTextChange = () => {
     if (selectedElement && (selectedElement.type === 'text' || selectedElement.type === 'button' || selectedElement.type === 'link')) {
       selectedElement.element.textContent = textContent;
+      trackChange(selectedElement.elementId, { text: textContent });
       toast({ title: 'Изменения применены', description: 'Текст обновлен' });
     }
   };
@@ -140,6 +291,7 @@ export function VisualEditor() {
   const applyImageChange = () => {
     if (selectedElement && selectedElement.type === 'image') {
       (selectedElement.element as HTMLImageElement).src = imageUrl;
+      trackChange(selectedElement.elementId, { src: imageUrl });
       toast({ title: 'Изменения применены', description: 'Изображение обновлено' });
     }
   };
@@ -147,6 +299,7 @@ export function VisualEditor() {
   const applyLinkChange = () => {
     if (selectedElement && selectedElement.type === 'link') {
       (selectedElement.element as HTMLAnchorElement).href = linkUrl;
+      trackChange(selectedElement.elementId, { href: linkUrl });
       toast({ title: 'Изменения применены', description: 'Ссылка обновлена' });
     }
   };
@@ -154,6 +307,9 @@ export function VisualEditor() {
   const applyStyleChange = (property: string, value: string) => {
     if (selectedElement) {
       (selectedElement.element.style as any)[property] = value;
+      trackChange(selectedElement.elementId, { 
+        styles: { ...pendingChanges[selectedElement.elementId]?.styles, [property]: value } 
+      });
       toast({ title: 'Стиль применен' });
     }
   };
@@ -161,6 +317,9 @@ export function VisualEditor() {
   const applyTextAlignment = (alignment: string) => {
     if (selectedElement) {
       selectedElement.element.style.textAlign = alignment;
+      trackChange(selectedElement.elementId, { 
+        styles: { ...pendingChanges[selectedElement.elementId]?.styles, textAlign: alignment } 
+      });
     }
   };
 
@@ -168,16 +327,98 @@ export function VisualEditor() {
     if (!selectedElement) return;
     
     const el = selectedElement.element;
+    let newValue = '';
     switch (style) {
       case 'bold':
-        el.style.fontWeight = el.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        newValue = el.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        el.style.fontWeight = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, fontWeight: newValue } 
+        });
         break;
       case 'italic':
-        el.style.fontStyle = el.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        newValue = el.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        el.style.fontStyle = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, fontStyle: newValue } 
+        });
         break;
       case 'underline':
-        el.style.textDecoration = el.style.textDecoration === 'underline' ? 'none' : 'underline';
+        newValue = el.style.textDecoration === 'underline' ? 'none' : 'underline';
+        el.style.textDecoration = newValue;
+        trackChange(selectedElement.elementId, { 
+          styles: { ...pendingChanges[selectedElement.elementId]?.styles, textDecoration: newValue } 
+        });
         break;
+    }
+  };
+
+  const copyElement = () => {
+    if (selectedElement) {
+      setClipboard({
+        html: selectedElement.element.outerHTML,
+        type: selectedElement.type
+      });
+      toast({ title: 'Скопировано', description: 'Элемент скопирован в буфер' });
+    }
+  };
+
+  const duplicateElement = () => {
+    if (selectedElement) {
+      const clone = selectedElement.element.cloneNode(true) as HTMLElement;
+      clone.removeAttribute('data-testid');
+      clone.id = '';
+      selectedElement.element.parentNode?.insertBefore(clone, selectedElement.element.nextSibling);
+      toast({ title: 'Дублировано', description: 'Элемент продублирован' });
+      closePanel();
+    }
+  };
+
+  const pasteElement = () => {
+    if (clipboard && selectedElement) {
+      const temp = document.createElement('div');
+      temp.innerHTML = clipboard.html;
+      const newElement = temp.firstChild as HTMLElement;
+      if (newElement) {
+        newElement.removeAttribute('data-testid');
+        newElement.id = '';
+        selectedElement.element.parentNode?.insertBefore(newElement, selectedElement.element.nextSibling);
+        toast({ title: 'Вставлено', description: 'Элемент вставлен из буфера' });
+        closePanel();
+      }
+    }
+  };
+
+  const deleteElement = () => {
+    if (selectedElement) {
+      selectedElement.element.remove();
+      toast({ title: 'Удалено', description: 'Элемент удален' });
+      closePanel();
+    }
+  };
+
+  const insertImage = () => {
+    if (selectedElement && newImageUrl) {
+      const img = document.createElement('img');
+      img.src = newImageUrl;
+      img.alt = 'Inserted image';
+      img.className = 'max-w-full h-auto rounded-lg my-4';
+      selectedElement.element.parentNode?.insertBefore(img, selectedElement.element.nextSibling);
+      trackChange(`inserted-img-${Date.now()}`, { src: newImageUrl });
+      toast({ title: 'Изображение добавлено' });
+      setNewImageUrl('');
+      closePanel();
+    }
+  };
+
+  const insertTextBlock = () => {
+    if (selectedElement) {
+      const block = document.createElement('div');
+      block.className = 'p-4 my-4 bg-card rounded-lg';
+      block.innerHTML = '<p class="text-foreground">Новый текстовый блок. Кликните для редактирования.</p>';
+      selectedElement.element.parentNode?.insertBefore(block, selectedElement.element.nextSibling);
+      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан' });
+      closePanel();
     }
   };
 
@@ -186,10 +427,47 @@ export function VisualEditor() {
   return (
     <>
       <div 
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg"
+        className="fixed z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 sm:gap-4 flex-wrap justify-center"
+        style={toolbarPosition.x === -1 
+          ? { top: toolbarPosition.y, left: '50%', transform: 'translateX(-50%)' }
+          : { top: toolbarPosition.y, left: toolbarPosition.x }
+        }
         data-editor-panel
       >
-        Режим редактирования активен - выделите элемент для редактирования
+        <div 
+          className="cursor-grab active:cursor-grabbing p-1 -ml-2 hover:bg-primary-foreground/20 rounded"
+          onMouseDown={handleToolbarDragStart}
+          title="Перетащить панель"
+        >
+          <GripHorizontal className="w-4 h-4" />
+        </div>
+        <span className="text-sm sm:text-base">Режим редактирования</span>
+        {clipboard && (
+          <span className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded flex items-center gap-1">
+            <Clipboard className="w-3 h-3" />
+            В буфере
+          </span>
+        )}
+        <Button 
+          size="sm" 
+          variant="secondary" 
+          onClick={savePageContent} 
+          disabled={isSaving}
+          data-testid="button-save-all"
+        >
+          {isSaving ? 'Сохранение...' : 'Сохранить'}
+          <Check className="w-4 h-4 ml-2" />
+        </Button>
+        <Button 
+          size="sm" 
+          variant="outline" 
+          onClick={() => navigate('/page/new')}
+          data-testid="button-create-page"
+          className="bg-background/80"
+        >
+          <FilePlus className="w-4 h-4 mr-2" />
+          Новая страница
+        </Button>
       </div>
 
       {editPanel && selectedElement && (
@@ -199,7 +477,14 @@ export function VisualEditor() {
           data-editor-panel
         >
           <CardHeader className="flex flex-row items-center justify-between gap-2 pb-2">
-            <CardTitle className="text-sm">
+            <div 
+              className="cursor-grab active:cursor-grabbing p-1 -ml-2 hover:bg-muted rounded"
+              onMouseDown={handlePanelDragStart}
+              title="Перетащить панель"
+            >
+              <GripHorizontal className="w-4 h-4 text-muted-foreground" />
+            </div>
+            <CardTitle className="text-sm flex-1">
               Редактирование: {selectedElement.type === 'text' ? 'Текст' : 
                               selectedElement.type === 'image' ? 'Изображение' :
                               selectedElement.type === 'button' ? 'Кнопка' : 'Ссылка'}
@@ -213,6 +498,7 @@ export function VisualEditor() {
               <TabsList className="w-full">
                 <TabsTrigger value="content" className="flex-1">Контент</TabsTrigger>
                 <TabsTrigger value="style" className="flex-1">Стиль</TabsTrigger>
+                <TabsTrigger value="actions" className="flex-1">Действия</TabsTrigger>
               </TabsList>
 
               <TabsContent value="content" className="space-y-4 mt-4">
@@ -229,6 +515,43 @@ export function VisualEditor() {
                       <Save className="w-4 h-4 mr-2" />
                       Применить
                     </Button>
+                    
+                    <div className="pt-2 border-t">
+                      <Label>Добавить ссылку</Label>
+                      <Input
+                        value={linkUrl}
+                        onChange={(e) => setLinkUrl(e.target.value)}
+                        placeholder="https://..."
+                        className="mt-1"
+                        data-testid="input-add-link-url"
+                      />
+                      <Button 
+                        onClick={() => {
+                          if (selectedElement && linkUrl) {
+                            const el = selectedElement.element;
+                            const link = document.createElement('a');
+                            link.href = linkUrl;
+                            link.textContent = el.textContent || '';
+                            link.style.cssText = el.style.cssText;
+                            link.className = el.className;
+                            link.target = '_blank';
+                            link.rel = 'noopener noreferrer';
+                            el.parentNode?.replaceChild(link, el);
+                            trackChange(selectedElement.elementId, { href: linkUrl, text: textContent });
+                            toast({ title: 'Ссылка добавлена', description: 'Элемент преобразован в ссылку' });
+                            closePanel();
+                          }
+                        }} 
+                        size="sm" 
+                        variant="outline"
+                        className="w-full mt-2" 
+                        disabled={!linkUrl}
+                        data-testid="button-convert-to-link"
+                      >
+                        <Link2 className="w-4 h-4 mr-2" />
+                        Сделать ссылкой
+                      </Button>
+                    </div>
                   </div>
                 )}
 
@@ -339,6 +662,55 @@ export function VisualEditor() {
                       data-testid="input-font-color-text"
                     />
                   </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="actions" className="space-y-3 mt-4">
+                <div className="grid grid-cols-2 gap-2">
+                  <Button variant="outline" size="sm" onClick={copyElement} data-testid="button-copy">
+                    <Copy className="w-4 h-4 mr-1" />
+                    Копировать
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={pasteElement} disabled={!clipboard} data-testid="button-paste">
+                    <Clipboard className="w-4 h-4 mr-1" />
+                    Вставить
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={duplicateElement} data-testid="button-duplicate">
+                    <Plus className="w-4 h-4 mr-1" />
+                    Дублировать
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={insertTextBlock} data-testid="button-add-text-block">
+                    <FileText className="w-4 h-4 mr-1" />
+                    + Блок
+                  </Button>
+                </div>
+
+                <div className="pt-2 border-t space-y-2">
+                  <Label>Вставить изображение по URL</Label>
+                  <Input
+                    value={newImageUrl}
+                    onChange={(e) => setNewImageUrl(e.target.value)}
+                    placeholder="https://example.com/image.jpg"
+                    data-testid="input-insert-image-url"
+                  />
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full" 
+                    onClick={insertImage}
+                    disabled={!newImageUrl}
+                    data-testid="button-insert-image"
+                  >
+                    <ImagePlus className="w-4 h-4 mr-2" />
+                    Вставить изображение
+                  </Button>
+                </div>
+
+                <div className="pt-2 border-t">
+                  <Button variant="destructive" size="sm" className="w-full" onClick={deleteElement} data-testid="button-delete">
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Удалить элемент
+                  </Button>
                 </div>
               </TabsContent>
             </Tabs>

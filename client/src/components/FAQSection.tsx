@@ -22,7 +22,7 @@ export default function FAQSection() {
     <section id="faq" className="py-20 md:py-32 bg-card">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4" data-testid="text-faq-title">
+          <h2 className="font-serif text-fluid-xl font-bold mb-4" data-testid="text-faq-title">
             {t('faq.title')}
           </h2>
         </div>

@@ -42,7 +42,7 @@ export default function FilialsSection() {
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="font-serif text-fluid-xl font-bold mb-4 text-white">
             {t('filials.title')}
           </h2>
         </div>

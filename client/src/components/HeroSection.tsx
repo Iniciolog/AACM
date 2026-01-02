@@ -67,14 +67,12 @@ export default function HeroSection() {
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       />
-      
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
-        <div className="flex items-center justify-center gap-8 mb-8">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center text-white">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8 mb-4 sm:mb-8 flex-wrap px-2">
           {countries.map((country, index) => (
             <div key={index} className="relative group">
               <button
-                className="text-5xl hover:scale-125 transition-all duration-300 cursor-pointer"
+                className="text-2xl sm:text-4xl md:text-5xl hover:scale-110 sm:hover:scale-125 transition-all duration-300 cursor-pointer"
                 style={{
                   filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))',
                 }}
@@ -115,12 +113,13 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className="font-serif md:text-7xl mb-6 font-medium text-[45px]"
+          className="font-serif text-fluid-hero mb-3 sm:mb-6 font-normal max-w-full px-2"
           data-testid="text-hero-title"
+          lang={language}
         >
           {t('hero.title')}
         </h1>
-        <p className="md:text-xl mb-16 text-gray-200 max-w-3xl mx-auto text-[18px]">
+        <p className="text-fluid-base mb-6 sm:mb-12 text-gray-200 max-w-3xl mx-auto">
           {t('hero.subtitle')}
         </p>
 
@@ -133,7 +132,6 @@ export default function HeroSection() {
           {t('hero.cta')}
         </Button>
       </div>
-
       <style>{`
         @keyframes rotate-globe {
           0% {
@@ -151,7 +149,6 @@ export default function HeroSection() {
           animation: rotate-globe 20s ease-in-out infinite;
         }
       `}</style>
-
       <button
         onClick={scrollToResearch}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/80 hover:text-white transition-colors animate-bounce z-10"
@@ -160,7 +157,6 @@ export default function HeroSection() {
       >
         <ChevronDown className="h-8 w-8" />
       </button>
-
     </section>
   );
 }

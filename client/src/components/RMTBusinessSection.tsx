@@ -26,7 +26,7 @@ export default function RMTBusinessSection() {
     <section id="rmt" className="py-20 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4" data-testid="text-rmt-title">
+          <h2 className="font-serif text-fluid-xl font-bold mb-4" data-testid="text-rmt-title">
             {t('rmt.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ассистент Инициолога 3:0</title>
+    <style>
+        /* Стили чат-виджета */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            z-index: 10000;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+        }
+        
+        .chat-iframe {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .widget-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10001;
+        }
+        
+        .widget-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Кнопка открытия чата -->
+    <button class="widget-trigger" onclick="toggleChat()" id="chatTrigger">
+        ИИ
+    </button>
+    
+    <!-- Виджет чата -->
+    <div class="chat-widget widget-hidden" id="chatWidget">
+        <div class="chat-header">
+            <span>Ассистент Инициолога 3:0</span>
+            <button onclick="toggleChat()" style="float: right; background: none; border: none; color: white; font-size: 18px; cursor: pointer;">×</button>
+        </div>
+        <iframe class="chat-iframe" src="https://aiairlab.com/chat/0ac94352-cec4-470c-9dc9-2acf9ce2e572"></iframe>
+    </div>
+    
+    <script>
+        function toggleChat() {
+            const widget = document.getElementById('chatWidget');
+            const trigger = document.getElementById('chatTrigger');
+            
+            if (widget.classList.contains('widget-hidden')) {
+                widget.classList.remove('widget-hidden');
+                trigger.style.display = 'none';
+            } else {
+                widget.classList.add('widget-hidden');
+                trigger.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
