@@ -9,6 +9,7 @@ import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 import { AdminLoginButton } from "@/components/AdminLoginButton";
 import { VisualEditor } from "@/components/VisualEditor";
 import MessengerWidget from "@/components/MessengerWidget";
+import AIAssistantWidget from "@/components/AIAssistantWidget";
 import HomePage from "@/pages/HomePage";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import CookiePolicy from "@/pages/CookiePolicy";
@@ -138,6 +139,7 @@ function Content() {
       </div>
       <AdminLoginButton />
       <VisualEditor />
+      <AIAssistantWidget />
       <MessengerWidget />
     </>
   );
