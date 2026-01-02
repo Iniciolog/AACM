@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Bot } from 'lucide-react';
 
 export default function AIAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,12 +9,12 @@ export default function AIAssistantWidget() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 rounded-full text-white font-bold text-lg cursor-pointer shadow-lg z-[10001] hover:scale-110 transition-transform duration-200"
+          className="fixed bottom-24 right-6 w-14 h-14 rounded-full text-white cursor-pointer shadow-lg z-[10001] hover:scale-110 transition-transform duration-200 flex items-center justify-center"
           style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
           data-testid="button-ai-assistant-open"
           aria-label="Открыть AI ассистент"
         >
-          ИИ
+          <Bot className="w-7 h-7" />
         </button>
       )}
 
