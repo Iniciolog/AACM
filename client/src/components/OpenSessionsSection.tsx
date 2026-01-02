@@ -55,9 +55,11 @@ export default function OpenSessionsSection() {
               <p className="text-foreground/80 mb-6" data-testid="text-sessions-schedule-desc">
                 {t('sessions.schedule.desc')}
               </p>
-              <Button size="lg" className="w-full" data-testid="button-sessions-join">
-                <Users className="w-5 h-5 mr-2" />
-                {t('sessions.cta')}
+              <Button size="lg" className="w-full" asChild data-testid="button-sessions-join">
+                <a href="https://iniciolog.com/sessions" target="_blank" rel="noopener noreferrer">
+                  <Users className="w-5 h-5 mr-2" />
+                  {t('sessions.cta')}
+                </a>
               </Button>
             </CardContent>
           </Card>
