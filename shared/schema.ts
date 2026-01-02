@@ -46,3 +46,23 @@ export const insertImageSchema = createInsertSchema(images).omit({
 
 export type InsertImage = z.infer<typeof insertImageSchema>;
 export type Image = typeof images.$inferSelect;
+
+// Custom pages
+export const pages = pgTable("pages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  language: text("language").notNull().default('ru'),
+  content: text("content").notNull().default('[]'), // JSON array of blocks
+  includeHeader: text("include_header").notNull().default('true'),
+  includeHero: text("include_hero").notNull().default('true'),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+});
+
+export const insertPageSchema = createInsertSchema(pages).omit({
+  id: true,
+});
+
+export type InsertPage = z.infer<typeof insertPageSchema>;
+export type Page = typeof pages.$inferSelect;

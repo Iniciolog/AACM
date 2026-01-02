@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check } from 'lucide-react';
+import { useLocation } from 'wouter';
+import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check, Copy, Clipboard, Plus, ImagePlus, FileText, FilePlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -58,6 +59,7 @@ export function VisualEditor() {
   const { isEditMode } = useEditMode();
   const { language } = useLanguage();
   const { toast } = useToast();
+  const [, navigate] = useLocation();
   const [selectedElement, setSelectedElement] = useState<EditableElement | null>(null);
   const [editPanel, setEditPanel] = useState<{ x: number; y: number } | null>(null);
   const [textContent, setTextContent] = useState('');
@@ -67,6 +69,8 @@ export function VisualEditor() {
   const [fontColor, setFontColor] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
+  const [clipboard, setClipboard] = useState<{ html: string; type: string } | null>(null);
+  const [newImageUrl, setNewImageUrl] = useState('');
 
   // Track a change for an element
   const trackChange = (elementId: string, change: Partial<ElementChange>) => {
@@ -297,15 +301,90 @@ export function VisualEditor() {
     }
   };
 
+  const copyElement = () => {
+    if (selectedElement) {
+      setClipboard({
+        html: selectedElement.element.outerHTML,
+        type: selectedElement.type
+      });
+      toast({ title: 'Скопировано', description: 'Элемент скопирован в буфер' });
+    }
+  };
+
+  const duplicateElement = () => {
+    if (selectedElement) {
+      const clone = selectedElement.element.cloneNode(true) as HTMLElement;
+      clone.removeAttribute('data-testid');
+      clone.id = '';
+      selectedElement.element.parentNode?.insertBefore(clone, selectedElement.element.nextSibling);
+      toast({ title: 'Дублировано', description: 'Элемент продублирован' });
+      closePanel();
+    }
+  };
+
+  const pasteElement = () => {
+    if (clipboard && selectedElement) {
+      const temp = document.createElement('div');
+      temp.innerHTML = clipboard.html;
+      const newElement = temp.firstChild as HTMLElement;
+      if (newElement) {
+        newElement.removeAttribute('data-testid');
+        newElement.id = '';
+        selectedElement.element.parentNode?.insertBefore(newElement, selectedElement.element.nextSibling);
+        toast({ title: 'Вставлено', description: 'Элемент вставлен из буфера' });
+        closePanel();
+      }
+    }
+  };
+
+  const deleteElement = () => {
+    if (selectedElement) {
+      selectedElement.element.remove();
+      toast({ title: 'Удалено', description: 'Элемент удален' });
+      closePanel();
+    }
+  };
+
+  const insertImage = () => {
+    if (selectedElement && newImageUrl) {
+      const img = document.createElement('img');
+      img.src = newImageUrl;
+      img.alt = 'Inserted image';
+      img.className = 'max-w-full h-auto rounded-lg my-4';
+      selectedElement.element.parentNode?.insertBefore(img, selectedElement.element.nextSibling);
+      trackChange(`inserted-img-${Date.now()}`, { src: newImageUrl });
+      toast({ title: 'Изображение добавлено' });
+      setNewImageUrl('');
+      closePanel();
+    }
+  };
+
+  const insertTextBlock = () => {
+    if (selectedElement) {
+      const block = document.createElement('div');
+      block.className = 'p-4 my-4 bg-card rounded-lg';
+      block.innerHTML = '<p class="text-foreground">Новый текстовый блок. Кликните для редактирования.</p>';
+      selectedElement.element.parentNode?.insertBefore(block, selectedElement.element.nextSibling);
+      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан' });
+      closePanel();
+    }
+  };
+
   if (!isEditMode) return null;
 
   return (
     <>
       <div 
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-4"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 sm:gap-4 flex-wrap justify-center"
         data-editor-panel
       >
-        <span>Режим редактирования активен</span>
+        <span className="text-sm sm:text-base">Режим редактирования</span>
+        {clipboard && (
+          <span className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded flex items-center gap-1">
+            <Clipboard className="w-3 h-3" />
+            В буфере
+          </span>
+        )}
         <Button 
           size="sm" 
           variant="secondary" 
@@ -313,8 +392,18 @@ export function VisualEditor() {
           disabled={isSaving}
           data-testid="button-save-all"
         >
-          {isSaving ? 'Сохранение...' : 'Сохранить всё'}
+          {isSaving ? 'Сохранение...' : 'Сохранить'}
           <Check className="w-4 h-4 ml-2" />
+        </Button>
+        <Button 
+          size="sm" 
+          variant="outline" 
+          onClick={() => navigate('/page/new')}
+          data-testid="button-create-page"
+          className="bg-background/80"
+        >
+          <FilePlus className="w-4 h-4 mr-2" />
+          Новая страница
         </Button>
       </div>
 
@@ -339,6 +428,7 @@ export function VisualEditor() {
               <TabsList className="w-full">
                 <TabsTrigger value="content" className="flex-1">Контент</TabsTrigger>
                 <TabsTrigger value="style" className="flex-1">Стиль</TabsTrigger>
+                <TabsTrigger value="actions" className="flex-1">Действия</TabsTrigger>
               </TabsList>
 
               <TabsContent value="content" className="space-y-4 mt-4">
@@ -502,6 +592,55 @@ export function VisualEditor() {
                       data-testid="input-font-color-text"
                     />
                   </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="actions" className="space-y-3 mt-4">
+                <div className="grid grid-cols-2 gap-2">
+                  <Button variant="outline" size="sm" onClick={copyElement} data-testid="button-copy">
+                    <Copy className="w-4 h-4 mr-1" />
+                    Копировать
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={pasteElement} disabled={!clipboard} data-testid="button-paste">
+                    <Clipboard className="w-4 h-4 mr-1" />
+                    Вставить
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={duplicateElement} data-testid="button-duplicate">
+                    <Plus className="w-4 h-4 mr-1" />
+                    Дублировать
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={insertTextBlock} data-testid="button-add-text-block">
+                    <FileText className="w-4 h-4 mr-1" />
+                    + Блок
+                  </Button>
+                </div>
+
+                <div className="pt-2 border-t space-y-2">
+                  <Label>Вставить изображение по URL</Label>
+                  <Input
+                    value={newImageUrl}
+                    onChange={(e) => setNewImageUrl(e.target.value)}
+                    placeholder="https://example.com/image.jpg"
+                    data-testid="input-insert-image-url"
+                  />
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full" 
+                    onClick={insertImage}
+                    disabled={!newImageUrl}
+                    data-testid="button-insert-image"
+                  >
+                    <ImagePlus className="w-4 h-4 mr-2" />
+                    Вставить изображение
+                  </Button>
+                </div>
+
+                <div className="pt-2 border-t">
+                  <Button variant="destructive" size="sm" className="w-full" onClick={deleteElement} data-testid="button-delete">
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Удалить элемент
+                  </Button>
                 </div>
               </TabsContent>
             </Tabs>

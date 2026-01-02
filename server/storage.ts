@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type ContentSection, users, contentSections } from "@shared/schema";
+import { type User, type InsertUser, type ContentSection, type Page, type InsertPage, users, contentSections, pages } from "@shared/schema";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import { eq, and, sql } from "drizzle-orm";
@@ -29,6 +29,18 @@ async function initializeDatabase() {
         url TEXT NOT NULL,
         uploaded_at TEXT NOT NULL
       );
+      
+      CREATE TABLE IF NOT EXISTS pages (
+        id VARCHAR PRIMARY KEY DEFAULT gen_random_uuid(),
+        slug TEXT NOT NULL UNIQUE,
+        title TEXT NOT NULL,
+        language TEXT NOT NULL DEFAULT 'ru',
+        content TEXT NOT NULL DEFAULT '[]',
+        include_header TEXT NOT NULL DEFAULT 'true',
+        include_hero TEXT NOT NULL DEFAULT 'true',
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL
+      );
     `);
     console.log("Database tables initialized successfully");
   } catch (error) {
@@ -47,6 +59,12 @@ export interface IStorage {
   getContentSection(sectionType: string, language: string): Promise<ContentSection | undefined>;
   updateContentSection(sectionType: string, language: string, content: string): Promise<ContentSection>;
   deleteContentSection(sectionType: string, language: string): Promise<void>;
+  
+  getAllPages(): Promise<Page[]>;
+  getPageBySlug(slug: string): Promise<Page | undefined>;
+  createPage(page: InsertPage): Promise<Page>;
+  updatePage(slug: string, updates: Partial<InsertPage>): Promise<Page>;
+  deletePage(slug: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -121,6 +139,35 @@ export class DatabaseStorage implements IStorage {
       )
     );
     console.log(`Deleted section ${sectionType} for ${language} from database`);
+  }
+
+  async getAllPages(): Promise<Page[]> {
+    const result = await db.select().from(pages);
+    return result;
+  }
+
+  async getPageBySlug(slug: string): Promise<Page | undefined> {
+    const result = await db.select().from(pages).where(eq(pages.slug, slug));
+    return result[0];
+  }
+
+  async createPage(page: InsertPage): Promise<Page> {
+    const result = await db.insert(pages).values(page).returning();
+    console.log(`Created page: ${page.slug}`);
+    return result[0];
+  }
+
+  async updatePage(slug: string, updates: Partial<InsertPage>): Promise<Page> {
+    const now = new Date().toISOString();
+    await db.update(pages).set({ ...updates, updatedAt: now }).where(eq(pages.slug, slug));
+    const result = await db.select().from(pages).where(eq(pages.slug, slug));
+    console.log(`Updated page: ${slug}`);
+    return result[0];
+  }
+
+  async deletePage(slug: string): Promise<void> {
+    await db.delete(pages).where(eq(pages.slug, slug));
+    console.log(`Deleted page: ${slug}`);
   }
 }
 
