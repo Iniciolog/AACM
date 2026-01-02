@@ -1,23 +1,31 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import video1Img from '@assets/awards/video1.jpg';
+import video2Img from '@assets/awards/video2.jpg';
+import video3Img from '@assets/awards/video3.jpg';
+import video4Img from '@assets/awards/video4.jpg';
 
 const awardVideos = [
   {
     id: 'yALi_Z90U1g',
     title: 'Премия "Инициолог года" 2024',
+    image: video1Img,
   },
   {
     id: 'gIzUmHsOuVg',
     title: 'Премия "Инициолог года" 2023',
+    image: video2Img,
   },
   {
     id: 'e5hqRhHftJ8',
     title: 'Премия "Инициолог года" 2022',
+    image: video3Img,
   },
   {
     id: '5u1Z6YpBhVk',
     title: 'Премия "Инициолог года" 2021',
+    image: video4Img,
   },
 ];
 
@@ -59,7 +67,7 @@ export default function AwardsPage() {
               >
                 <div className="relative aspect-video bg-muted">
                   <img
-                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    src={video.image}
                     alt={video.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
