@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation } from 'wouter';
-import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check, Copy, Clipboard, Plus, ImagePlus, FileText, FilePlus } from 'lucide-react';
+import { X, Type, Image, Link2, Trash2, Save, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Check, Copy, Clipboard, Plus, ImagePlus, FileText, FilePlus, GripHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -71,6 +71,58 @@ export function VisualEditor() {
   const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
   const [clipboard, setClipboard] = useState<{ html: string; type: string } | null>(null);
   const [newImageUrl, setNewImageUrl] = useState('');
+  const [toolbarPosition, setToolbarPosition] = useState<{ x: number; y: number }>({ x: -1, y: 16 });
+  const [isDraggingToolbar, setIsDraggingToolbar] = useState(false);
+  const [isDraggingPanel, setIsDraggingPanel] = useState(false);
+  const dragOffsetRef = useRef({ x: 0, y: 0 });
+
+  // Drag handlers for toolbar
+  const handleToolbarDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingToolbar(true);
+    const toolbar = (e.target as HTMLElement).closest('[data-editor-panel]') as HTMLElement;
+    if (toolbar) {
+      const rect = toolbar.getBoundingClientRect();
+      dragOffsetRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+  };
+
+  const handlePanelDragStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDraggingPanel(true);
+    if (editPanel) {
+      dragOffsetRef.current = { x: e.clientX - editPanel.x, y: e.clientY - editPanel.y };
+    }
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDraggingToolbar) {
+        const newX = e.clientX - dragOffsetRef.current.x;
+        const newY = Math.max(0, e.clientY - dragOffsetRef.current.y);
+        setToolbarPosition({ x: newX, y: newY });
+      }
+      if (isDraggingPanel && editPanel) {
+        const newX = Math.max(0, Math.min(e.clientX - dragOffsetRef.current.x, window.innerWidth - 320));
+        const newY = Math.max(0, e.clientY - dragOffsetRef.current.y);
+        setEditPanel({ x: newX, y: newY });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDraggingToolbar(false);
+      setIsDraggingPanel(false);
+    };
+
+    if (isDraggingToolbar || isDraggingPanel) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDraggingToolbar, isDraggingPanel, editPanel]);
 
   // Track a change for an element
   const trackChange = (elementId: string, change: Partial<ElementChange>) => {
@@ -375,9 +427,20 @@ export function VisualEditor() {
   return (
     <>
       <div 
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 sm:gap-4 flex-wrap justify-center"
+        className="fixed z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md shadow-lg flex items-center gap-2 sm:gap-4 flex-wrap justify-center"
+        style={toolbarPosition.x === -1 
+          ? { top: toolbarPosition.y, left: '50%', transform: 'translateX(-50%)' }
+          : { top: toolbarPosition.y, left: toolbarPosition.x }
+        }
         data-editor-panel
       >
+        <div 
+          className="cursor-grab active:cursor-grabbing p-1 -ml-2 hover:bg-primary-foreground/20 rounded"
+          onMouseDown={handleToolbarDragStart}
+          title="Перетащить панель"
+        >
+          <GripHorizontal className="w-4 h-4" />
+        </div>
         <span className="text-sm sm:text-base">Режим редактирования</span>
         {clipboard && (
           <span className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded flex items-center gap-1">
@@ -414,7 +477,14 @@ export function VisualEditor() {
           data-editor-panel
         >
           <CardHeader className="flex flex-row items-center justify-between gap-2 pb-2">
-            <CardTitle className="text-sm">
+            <div 
+              className="cursor-grab active:cursor-grabbing p-1 -ml-2 hover:bg-muted rounded"
+              onMouseDown={handlePanelDragStart}
+              title="Перетащить панель"
+            >
+              <GripHorizontal className="w-4 h-4 text-muted-foreground" />
+            </div>
+            <CardTitle className="text-sm flex-1">
               Редактирование: {selectedElement.type === 'text' ? 'Текст' : 
                               selectedElement.type === 'image' ? 'Изображение' :
                               selectedElement.type === 'button' ? 'Кнопка' : 'Ссылка'}
