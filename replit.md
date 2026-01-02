@@ -62,3 +62,12 @@ Preferred communication style: Simple, everyday language.
 
 ### Content Sources
 - Content migrated from iniciolog.ru.
+
+### Educational Organization Info Page (January 2026)
+- **Route**: /educational-info
+- **Purpose**: Russian regulatory compliance page (Rosobrnadzor requirements)
+- **Tabs**: Основные сведения, Структура, Документы, Образование, Руководство, Материально-техническое обеспечение, Платные услуги, Финансы, Вакантные места, Стипендии
+- **Company**: ООО "НИЦ Инициологии и Трансперсональной Психологии"
+- **License**: Л035-01298-77/01122408 от 10 апреля 2024 г.
+- **Footer Link**: "Сведения об образовательной организации"
+- Document links to Yandex Disk for all regulatory documents
