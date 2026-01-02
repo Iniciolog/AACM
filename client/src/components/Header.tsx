@@ -33,10 +33,10 @@ export default function Header() {
         isScrolled ? 'bg-[#0c317d]/90 backdrop-blur-md shadow-md' : 'bg-[#0062f230]'
       }`}>
         <div className="flex items-center justify-between h-20">
-          <button
-            onClick={() => scrollToSection('hero')}
+          <a
+            href="/"
             className="flex items-center gap-3 hover-elevate rounded-md px-3 py-2"
-            data-testid="button-logo"
+            data-testid="link-logo"
           >
             <img src={logoImage} alt="Academy Logo" className="h-12 w-12 rounded-md" />
             <div className="hidden md:block">
@@ -44,7 +44,7 @@ export default function Header() {
                 {t('hero.title')}
               </div>
             </div>
-          </button>
+          </a>
 
           <nav className="hidden lg:flex items-center gap-1">
             <button
