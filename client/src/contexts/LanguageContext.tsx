@@ -30,7 +30,7 @@ const translations = {
     'nav.about': 'About',
     
     // Hero
-    'hero.title': 'International Academy of Initiology',
+    'hero.title': 'Research Center for Initiology and Transpersonal Psychology',
     'hero.subtitle': 'Advancing scientific knowledge through groundbreaking research and global collaboration',
     'hero.cta': 'Explore Our Research',
     
@@ -201,7 +201,7 @@ const translations = {
     
     // Footer
     'footer.about': 'About Academy',
-    'footer.about.desc': 'The International Academy of Initiology is a premier research institution advancing scientific knowledge globally.',
+    'footer.about.desc': 'The Research Center for Initiology and Transpersonal Psychology is a premier research institution advancing scientific knowledge globally.',
     'footer.quicklinks': 'Quick Links',
     'footer.research': 'Research',
     'footer.education': 'Education',
@@ -221,7 +221,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Subscribe to Newsletter',
-    'footer.copyright': '© 2024 International Academy of Initiology. All rights reserved.',
+    'footer.copyright': '© 2024 Research Center for Initiology and Transpersonal Psychology. All rights reserved.',
     
     // Filials
     'filials.title': 'Academic branches',
@@ -247,7 +247,7 @@ const translations = {
     'careers.position1.title': 'Initiologist - Consultant',
     'careers.position1.benefits.title': 'Position Benefits',
     'careers.position1.benefit1': 'Official contract with the Academy',
-    'careers.position1.benefit2': 'Employee ID of the International Academy of Initiology',
+    'careers.position1.benefit2': 'Employee ID of the Research Center for Initiology',
     'careers.position1.benefit3': 'Listing in Academy branches and staff directories',
     'careers.position1.benefit4': 'Right to advertise using Academy benefits as a branch',
     'careers.position1.benefit5': 'Ability to officially work and accept client payments on the Academy website',
@@ -295,7 +295,7 @@ const translations = {
     'nav.about': 'Über uns',
     
     // Hero
-    'hero.title': 'Internationale Akademie für Initiologie',
+    'hero.title': 'Forschungszentrum für Initiologie und Transpersonale Psychologie',
     'hero.subtitle': 'Förderung wissenschaftlicher Erkenntnisse durch bahnbrechende Forschung und globale Zusammenarbeit',
     'hero.cta': 'Unsere Forschung entdecken',
     
@@ -466,7 +466,7 @@ const translations = {
     
     // Footer
     'footer.about': 'Über die Akademie',
-    'footer.about.desc': 'Die Internationale Akademie für Initiologie ist eine führende Forschungseinrichtung zur globalen Förderung wissenschaftlicher Erkenntnisse.',
+    'footer.about.desc': 'Das Forschungszentrum für Initiologie und Transpersonale Psychologie ist eine führende Forschungseinrichtung zur globalen Förderung wissenschaftlicher Erkenntnisse.',
     'footer.quicklinks': 'Schnelllinks',
     'footer.research': 'Forschung',
     'footer.education': 'Bildung',
@@ -486,7 +486,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Newsletter abonnieren',
-    'footer.copyright': '© 2024 Internationale Akademie für Initiologie. Alle Rechte vorbehalten.',
+    'footer.copyright': '© 2024 Forschungszentrum für Initiologie und Transpersonale Psychologie. Alle Rechte vorbehalten.',
     
     // Filials
     'filials.title': 'Akademische Filialen',
@@ -512,7 +512,7 @@ const translations = {
     'careers.position1.title': 'Initiologe - Berater',
     'careers.position1.benefits.title': 'Stellenvorteile',
     'careers.position1.benefit1': 'Offizieller Vertrag mit der Akademie',
-    'careers.position1.benefit2': 'Mitarbeiterausweis der Internationalen Akademie für Initiologie',
+    'careers.position1.benefit2': 'Mitarbeiterausweis des Forschungszentrums für Initiologie',
     'careers.position1.benefit3': 'Aufnahme in die Filial- und Mitarbeiterverzeichnisse der Akademie',
     'careers.position1.benefit4': 'Recht auf Werbung mit den Vorteilen der Akademie als Filiale',
     'careers.position1.benefit5': 'Möglichkeit, offiziell zu arbeiten und Kundenzahlungen auf der Akademie-Website zu akzeptieren',
@@ -731,7 +731,7 @@ const translations = {
     
     // Footer
     'footer.about': 'Об Академии',
-    'footer.about.desc': 'Международная Академия Инициологии - ведущий исследовательский институт, продвигающий научные знания по всему миру.',
+    'footer.about.desc': 'НИЦ Инициологии и трансперсональной психологии - ведущий исследовательский институт, продвигающий научные знания по всему миру.',
     'footer.quicklinks': 'Быстрые ссылки',
     'footer.research': 'Исследования',
     'footer.education': 'Образование',
@@ -751,7 +751,7 @@ const translations = {
     'footer.email': 'initiology@gmail.com',
     'footer.phone': '+1 929 717 4941',
     'footer.newsletter': 'Подписаться на рассылку',
-    'footer.copyright': '© 2024 Международная Академия Инициологии. Все права защищены.',
+    'footer.copyright': '© 2024 НИЦ Инициологии и трансперсональной психологии. Все права защищены.',
     
     // Filials
     'filials.title': 'Академические филиалы',
@@ -777,7 +777,7 @@ const translations = {
     'careers.position1.title': 'Инициолог - консультант',
     'careers.position1.benefits.title': 'Преимущества должности',
     'careers.position1.benefit1': 'Заключение официального договора с Академией',
-    'careers.position1.benefit2': 'Удостоверение сотрудника Международной Академии Инициологии',
+    'careers.position1.benefit2': 'Удостоверение сотрудника НИЦ Инициологии',
     'careers.position1.benefit3': 'Размещение в списках филиалов и сотрудников академии',
     'careers.position1.benefit4': 'Право на рекламу с использованием плюсов Академии на правах филиала',
     'careers.position1.benefit5': 'Возможность официально работать и принимать платежи клиентов на сайте Академии',
