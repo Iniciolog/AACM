@@ -28,6 +28,7 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.contact': 'Contact',
     'nav.about': 'About',
+    'nav.aboutSystem': 'About the System',
     
     // Hero
     'hero.title': 'Research Center for Initiology and Transpersonal Psychology',
@@ -293,6 +294,7 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.contact': 'Kontakt',
     'nav.about': 'Über uns',
+    'nav.aboutSystem': 'Über das System',
     
     // Hero
     'hero.title': 'Forschungszentrum für Initiologie und Transpersonale Psychologie',
@@ -558,6 +560,7 @@ const translations = {
     'nav.faq': 'Вопросы и ответы',
     'nav.contact': 'Контакты',
     'nav.about': 'О нас',
+    'nav.aboutSystem': 'О системе',
     
     // Hero
     'hero.title': 'Научно-исследовательский центр Инициологии и трансперсональной психологии',
