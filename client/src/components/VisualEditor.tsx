@@ -372,27 +372,61 @@ export function VisualEditor() {
     }
   };
 
-  const duplicateElement = () => {
+  const saveBlockToAPI = async (parentLocator: string, htmlContent: string, blockType: string = 'text') => {
+    try {
+      await apiRequest('POST', '/api/blocks', {
+        language: language || 'ru',
+        parentLocator,
+        sortOrder: 0,
+        blockType,
+        htmlContent,
+        styles: '{}',
+      });
+      queryClient.invalidateQueries({ queryKey: [`/api/blocks/${language || 'ru'}`] });
+    } catch (err) {
+      console.error('Failed to save block:', err);
+    }
+  };
+
+  const duplicateElement = async () => {
     if (selectedElement) {
       const clone = selectedElement.element.cloneNode(true) as HTMLElement;
-      clone.removeAttribute('data-testid');
+      const uniqueId = `cloned-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      clone.setAttribute('data-testid', uniqueId);
+      clone.setAttribute('data-inserted-block', 'true');
       clone.id = '';
       selectedElement.element.parentNode?.insertBefore(clone, selectedElement.element.nextSibling);
-      toast({ title: 'Дублировано', description: 'Элемент продублирован' });
+      
+      // Get parent locator
+      const parentLocator = selectedElement.elementId;
+      
+      // Save to database
+      await saveBlockToAPI(parentLocator, clone.outerHTML, 'text');
+      
+      toast({ title: 'Дублировано', description: 'Элемент продублирован и сохранён в базу' });
       closePanel();
     }
   };
 
-  const pasteElement = () => {
+  const pasteElement = async () => {
     if (clipboard && selectedElement) {
       const temp = document.createElement('div');
       temp.innerHTML = clipboard.html;
       const newElement = temp.firstChild as HTMLElement;
       if (newElement) {
-        newElement.removeAttribute('data-testid');
+        const uniqueId = `pasted-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        newElement.setAttribute('data-testid', uniqueId);
+        newElement.setAttribute('data-inserted-block', 'true');
         newElement.id = '';
         selectedElement.element.parentNode?.insertBefore(newElement, selectedElement.element.nextSibling);
-        toast({ title: 'Вставлено', description: 'Элемент вставлен из буфера' });
+        
+        // Get parent locator
+        const parentLocator = selectedElement.elementId;
+        
+        // Save to database
+        await saveBlockToAPI(parentLocator, newElement.outerHTML, 'text');
+        
+        toast({ title: 'Вставлено', description: 'Элемент вставлен и сохранён в базу' });
         closePanel();
       }
     }
@@ -420,13 +454,23 @@ export function VisualEditor() {
     }
   };
 
-  const insertTextBlock = () => {
+  const insertTextBlock = async () => {
     if (selectedElement) {
+      const uniqueId = `block-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const block = document.createElement('div');
       block.className = 'p-4 my-4 bg-card rounded-lg';
+      block.setAttribute('data-testid', uniqueId);
+      block.setAttribute('data-inserted-block', 'true');
       block.innerHTML = '<p class="text-foreground">Новый текстовый блок. Кликните для редактирования.</p>';
       selectedElement.element.parentNode?.insertBefore(block, selectedElement.element.nextSibling);
-      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан' });
+      
+      // Get parent locator
+      const parentLocator = selectedElement.elementId;
+      
+      // Save to database
+      await saveBlockToAPI(parentLocator, block.outerHTML, 'text');
+      
+      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан и сохранён в базу' });
       closePanel();
     }
   };

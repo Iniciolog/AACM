@@ -29,6 +29,17 @@ interface ElementChange {
   styles?: Record<string, string>;
 }
 
+interface InsertedBlock {
+  id: string;
+  language: string;
+  parentLocator: string;
+  sortOrder: number;
+  blockType: string;
+  htmlContent: string;
+  styles: string;
+  createdAt: string;
+}
+
 // Find element by path like "div[0]>div[1]>p[0]"
 function findElementByPath(path: string): HTMLElement | null {
   const parts = path.split('>');
@@ -137,11 +148,76 @@ function applyVisualChanges(changes: Record<string, ElementChange>) {
   });
 }
 
+// Find parent element by its locator
+function findParentByLocator(locator: string): HTMLElement | null {
+  if (locator.startsWith('testid:')) {
+    const testId = locator.replace('testid:', '');
+    return document.querySelector(`[data-testid="${testId}"]`) as HTMLElement;
+  } else if (locator.startsWith('id:')) {
+    const id = locator.replace('id:', '');
+    return document.getElementById(id);
+  } else if (locator.startsWith('path:')) {
+    const path = locator.replace('path:', '');
+    return findElementByPath(path);
+  }
+  return null;
+}
+
+// Render inserted blocks into the DOM
+function renderInsertedBlocks(blocks: InsertedBlock[]) {
+  // Remove previously inserted blocks first
+  document.querySelectorAll('[data-inserted-block="true"]').forEach(el => el.remove());
+  
+  // Sort by parentLocator and sortOrder
+  const sortedBlocks = [...blocks].sort((a, b) => {
+    if (a.parentLocator !== b.parentLocator) return a.parentLocator.localeCompare(b.parentLocator);
+    return a.sortOrder - b.sortOrder;
+  });
+  
+  sortedBlocks.forEach(block => {
+    const parent = findParentByLocator(block.parentLocator);
+    if (!parent) {
+      console.warn(`Parent not found for block: ${block.id}, locator: ${block.parentLocator}`);
+      return;
+    }
+    
+    // Create element from HTML content
+    const temp = document.createElement('div');
+    temp.innerHTML = block.htmlContent;
+    const element = temp.firstChild as HTMLElement;
+    
+    if (element) {
+      element.setAttribute('data-inserted-block', 'true');
+      element.setAttribute('data-block-id', block.id);
+      // Insert after the parent element
+      parent.parentNode?.insertBefore(element, parent.nextSibling);
+    }
+  });
+  
+  console.log(`Rendered ${sortedBlocks.length} inserted blocks`);
+}
+
 function Content() {
   const { language } = useLanguage();
   const { data: visualChanges } = useQuery<any>({
     queryKey: [`/api/content/visual_changes/${language || 'ru'}`],
   });
+  
+  const { data: insertedBlocks } = useQuery<InsertedBlock[]>({
+    queryKey: [`/api/blocks/${language || 'ru'}`],
+  });
+
+  // Render inserted blocks (always cleanup first, even when empty)
+  useEffect(() => {
+    setTimeout(() => {
+      if (insertedBlocks && insertedBlocks.length > 0) {
+        renderInsertedBlocks(insertedBlocks);
+      } else {
+        // Clean up any stale inserted blocks when array is empty
+        document.querySelectorAll('[data-inserted-block="true"]').forEach(el => el.remove());
+      }
+    }, 150);
+  }, [insertedBlocks]);
 
   useEffect(() => {
     console.log("visualChanges received:", visualChanges);
