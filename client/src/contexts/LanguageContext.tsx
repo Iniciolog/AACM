@@ -559,10 +559,10 @@ const translations = {
     'nav.rmt': 'РМТ',
     'nav.awards': 'Премия',
     'nav.news': 'Новости',
-    'nav.faq': 'Вопросы и ответы',
+    'nav.faq': 'FAQ',
     'nav.contact': 'Контакты',
     'nav.about': 'О нас',
-    'nav.aboutSystem': 'О системе',
+    'nav.aboutSystem': 'Система',
     'nav.founder': 'Основатель',
     
     // Hero

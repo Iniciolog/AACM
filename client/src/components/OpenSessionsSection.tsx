@@ -56,7 +56,7 @@ export default function OpenSessionsSection() {
                 {t('sessions.schedule.desc')}
               </p>
               <Button size="lg" className="w-full" asChild data-testid="button-sessions-join">
-                <a href="https://iniciolog.com/sessions" target="_blank" rel="noopener noreferrer">
+                <a href="https://news.iain.su/sessions" target="_blank" rel="noopener noreferrer">
                   <Users className="w-5 h-5 mr-2" />
                   {t('sessions.cta')}
                 </a>
