@@ -207,36 +207,34 @@ function Content() {
     queryKey: [`/api/blocks/${language || 'ru'}`],
   });
 
-  // Render inserted blocks (always cleanup first, even when empty)
+  // Combined effect: First render inserted blocks, then apply visual changes
+  // This ensures proper timing - blocks must exist before changes can be applied
   useEffect(() => {
-    setTimeout(() => {
+    const applyAll = () => {
+      // Step 1: Render inserted blocks (or clean up if empty)
       if (insertedBlocks && insertedBlocks.length > 0) {
         renderInsertedBlocks(insertedBlocks);
-      } else {
+      } else if (insertedBlocks) {
         // Clean up any stale inserted blocks when array is empty
         document.querySelectorAll('[data-inserted-block="true"]').forEach(el => el.remove());
       }
-    }, 150);
-  }, [insertedBlocks]);
-
-  useEffect(() => {
-    console.log("visualChanges received:", visualChanges);
-    if (visualChanges?.content && visualChanges.content !== "" && visualChanges.content !== "{}") {
-      try {
-        // Parse JSON content and apply changes
-        const changes = JSON.parse(visualChanges.content) as Record<string, ElementChange>;
-        console.log("Parsed changes:", changes);
-        
-        // Apply changes after a short delay to ensure DOM is ready
-        setTimeout(() => {
+      
+      // Step 2: Apply visual changes (after blocks are in DOM)
+      if (visualChanges?.content && visualChanges.content !== "" && visualChanges.content !== "{}") {
+        try {
+          const changes = JSON.parse(visualChanges.content) as Record<string, ElementChange>;
+          console.log("Parsed changes:", changes);
           applyVisualChanges(changes);
           console.log("Visual changes applied:", Object.keys(changes).length, "elements");
-        }, 100);
-      } catch (e) {
-        console.error("Failed to apply visual changes", e);
+        } catch (e) {
+          console.error("Failed to apply visual changes", e);
+        }
       }
-    }
-  }, [visualChanges]);
+    };
+    
+    // Wait for DOM to be ready
+    setTimeout(applyAll, 150);
+  }, [insertedBlocks, visualChanges]);
 
   return (
     <>
