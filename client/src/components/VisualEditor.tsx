@@ -432,9 +432,37 @@ export function VisualEditor() {
     }
   };
 
-  const deleteElement = () => {
+  const deleteElement = async () => {
     if (selectedElement) {
-      selectedElement.element.remove();
+      // Check if this is an inserted block - look up the DOM tree for closest block
+      let blockElement = selectedElement.element.closest('[data-block-id]') as HTMLElement | null;
+      const blockId = blockElement?.getAttribute('data-block-id');
+      
+      if (blockId && blockElement) {
+        try {
+          await apiRequest('DELETE', `/api/blocks/${blockId}`);
+          queryClient.invalidateQueries({ queryKey: [`/api/blocks/${language || 'ru'}`] });
+          // Remove the whole block element, not just the selected child
+          blockElement.remove();
+        } catch (err) {
+          console.error('Failed to delete block from database:', err);
+          toast({ title: 'Ошибка', description: 'Не удалось удалить блок из базы', variant: 'destructive' });
+          closePanel();
+          return;
+        }
+      } else {
+        // Regular element, just remove from DOM
+        selectedElement.element.remove();
+      }
+      
+      // Also remove from pending changes
+      const elementId = selectedElement.elementId;
+      setPendingChanges(prev => {
+        const newChanges = { ...prev };
+        delete newChanges[elementId];
+        return newChanges;
+      });
+      
       toast({ title: 'Удалено', description: 'Элемент удален' });
       closePanel();
     }

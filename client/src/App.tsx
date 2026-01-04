@@ -139,9 +139,14 @@ function applyVisualChanges(changes: Record<string, ElementChange>) {
       (element as HTMLAnchorElement).href = change.href;
     }
     
-    // Apply styles
+    // Apply styles (filter out editor-related styles like outline)
     if (change.styles) {
+      const EXCLUDED_STYLE_PROPS = ['outline', 'outlineOffset', 'outlineColor', 'outlineStyle', 'outlineWidth'];
       Object.entries(change.styles).forEach(([prop, value]) => {
+        // Skip outline-related styles that are editor artifacts
+        if (EXCLUDED_STYLE_PROPS.includes(prop)) {
+          return;
+        }
         (element!.style as any)[prop] = value;
       });
     }
