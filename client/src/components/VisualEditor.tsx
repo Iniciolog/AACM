@@ -67,6 +67,7 @@ export function VisualEditor() {
   const [linkUrl, setLinkUrl] = useState('');
   const [fontSize, setFontSize] = useState('');
   const [fontColor, setFontColor] = useState('');
+  const [fontFamily, setFontFamily] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<Record<string, ElementChange>>({});
   const [clipboard, setClipboard] = useState<{ html: string; type: string } | null>(null);
@@ -192,6 +193,12 @@ export function VisualEditor() {
     if (target.closest('[data-editor-panel]') || target.closest('[data-admin-panel]')) {
       return;
     }
+    
+    // Protect header/navigation elements from editing
+    if (target.closest('[data-testid="header-main"]')) {
+      toast({ title: 'Защищённый элемент', description: 'Меню и шапка защищены от редактирования', variant: 'default' });
+      return;
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -220,6 +227,7 @@ export function VisualEditor() {
     const computedStyle = window.getComputedStyle(target);
     setFontSize(computedStyle.fontSize);
     setFontColor(computedStyle.color);
+    setFontFamily(computedStyle.fontFamily);
 
     const rect = target.getBoundingClientRect();
     setEditPanel({
@@ -239,6 +247,7 @@ export function VisualEditor() {
     if (target.closest('[data-editor-panel]') || target.closest('[data-admin-panel]')) {
       return;
     }
+    
 
     if (selectedElement?.element !== target) {
       target.style.outline = '1px dashed hsl(220, 70%, 50%)';
@@ -363,35 +372,97 @@ export function VisualEditor() {
     }
   };
 
-  const duplicateElement = () => {
+  const saveBlockToAPI = async (parentLocator: string, htmlContent: string, blockType: string = 'text') => {
+    try {
+      await apiRequest('POST', '/api/blocks', {
+        language: language || 'ru',
+        parentLocator,
+        sortOrder: 0,
+        blockType,
+        htmlContent,
+        styles: '{}',
+      });
+      queryClient.invalidateQueries({ queryKey: [`/api/blocks/${language || 'ru'}`] });
+    } catch (err) {
+      console.error('Failed to save block:', err);
+    }
+  };
+
+  const duplicateElement = async () => {
     if (selectedElement) {
       const clone = selectedElement.element.cloneNode(true) as HTMLElement;
-      clone.removeAttribute('data-testid');
+      const uniqueId = `cloned-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      clone.setAttribute('data-testid', uniqueId);
+      clone.setAttribute('data-inserted-block', 'true');
       clone.id = '';
       selectedElement.element.parentNode?.insertBefore(clone, selectedElement.element.nextSibling);
-      toast({ title: 'Дублировано', description: 'Элемент продублирован' });
+      
+      // Get parent locator
+      const parentLocator = selectedElement.elementId;
+      
+      // Save to database
+      await saveBlockToAPI(parentLocator, clone.outerHTML, 'text');
+      
+      toast({ title: 'Дублировано', description: 'Элемент продублирован и сохранён в базу' });
       closePanel();
     }
   };
 
-  const pasteElement = () => {
+  const pasteElement = async () => {
     if (clipboard && selectedElement) {
       const temp = document.createElement('div');
       temp.innerHTML = clipboard.html;
       const newElement = temp.firstChild as HTMLElement;
       if (newElement) {
-        newElement.removeAttribute('data-testid');
+        const uniqueId = `pasted-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        newElement.setAttribute('data-testid', uniqueId);
+        newElement.setAttribute('data-inserted-block', 'true');
         newElement.id = '';
         selectedElement.element.parentNode?.insertBefore(newElement, selectedElement.element.nextSibling);
-        toast({ title: 'Вставлено', description: 'Элемент вставлен из буфера' });
+        
+        // Get parent locator
+        const parentLocator = selectedElement.elementId;
+        
+        // Save to database
+        await saveBlockToAPI(parentLocator, newElement.outerHTML, 'text');
+        
+        toast({ title: 'Вставлено', description: 'Элемент вставлен и сохранён в базу' });
         closePanel();
       }
     }
   };
 
-  const deleteElement = () => {
+  const deleteElement = async () => {
     if (selectedElement) {
-      selectedElement.element.remove();
+      // Check if this is an inserted block - look up the DOM tree for closest block
+      let blockElement = selectedElement.element.closest('[data-block-id]') as HTMLElement | null;
+      const blockId = blockElement?.getAttribute('data-block-id');
+      
+      if (blockId && blockElement) {
+        try {
+          await apiRequest('DELETE', `/api/blocks/${blockId}`);
+          queryClient.invalidateQueries({ queryKey: [`/api/blocks/${language || 'ru'}`] });
+          // Remove the whole block element, not just the selected child
+          blockElement.remove();
+        } catch (err) {
+          console.error('Failed to delete block from database:', err);
+          toast({ title: 'Ошибка', description: 'Не удалось удалить блок из базы', variant: 'destructive' });
+          closePanel();
+          return;
+        }
+      } else {
+        // Regular element, just remove from DOM
+        selectedElement.element.remove();
+      }
+      
+      // Also remove from pending changes
+      const elementId = selectedElement.elementId;
+      setPendingChanges(prev => {
+        const newChanges = { ...prev };
+        delete newChanges[elementId];
+        return newChanges;
+      });
+      
       toast({ title: 'Удалено', description: 'Элемент удален' });
       closePanel();
     }
@@ -411,13 +482,23 @@ export function VisualEditor() {
     }
   };
 
-  const insertTextBlock = () => {
+  const insertTextBlock = async () => {
     if (selectedElement) {
+      const uniqueId = `block-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const block = document.createElement('div');
       block.className = 'p-4 my-4 bg-card rounded-lg';
+      block.setAttribute('data-testid', uniqueId);
+      block.setAttribute('data-inserted-block', 'true');
       block.innerHTML = '<p class="text-foreground">Новый текстовый блок. Кликните для редактирования.</p>';
       selectedElement.element.parentNode?.insertBefore(block, selectedElement.element.nextSibling);
-      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан' });
+      
+      // Get parent locator
+      const parentLocator = selectedElement.elementId;
+      
+      // Save to database
+      await saveBlockToAPI(parentLocator, block.outerHTML, 'text');
+      
+      toast({ title: 'Блок добавлен', description: 'Новый текстовый блок создан и сохранён в базу' });
       closePanel();
     }
   };
@@ -619,6 +700,29 @@ export function VisualEditor() {
                   <Button variant="outline" size="icon" onClick={() => applyTextAlignment('right')} data-testid="button-align-right">
                     <AlignRight className="w-4 h-4" />
                   </Button>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Шрифт</Label>
+                  <select
+                    value={fontFamily}
+                    onChange={(e) => {
+                      setFontFamily(e.target.value);
+                      applyStyleChange('fontFamily', e.target.value);
+                    }}
+                    className="w-full h-9 px-3 rounded-md border border-input bg-background text-sm"
+                    data-testid="select-font-family"
+                  >
+                    <option value="">-- Выберите шрифт --</option>
+                    <option value="'Playfair Display', Georgia, serif">Playfair Display (заголовки)</option>
+                    <option value="'Inter', sans-serif">Inter (основной)</option>
+                    <option value="'Cormorant Garamond', Georgia, serif">Cormorant Garamond</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                  </select>
                 </div>
 
                 <div className="space-y-2">

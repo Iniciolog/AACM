@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type ContentSection, type Page, type InsertPage, users, contentSections, pages } from "@shared/schema";
+import { type User, type InsertUser, type ContentSection, type Page, type InsertPage, type InsertedBlock, type InsertInsertedBlock, users, contentSections, pages, insertedBlocks } from "@shared/schema";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import { eq, and, sql } from "drizzle-orm";
@@ -41,6 +41,17 @@ async function initializeDatabase() {
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL
       );
+      
+      CREATE TABLE IF NOT EXISTS inserted_blocks (
+        id VARCHAR PRIMARY KEY DEFAULT gen_random_uuid(),
+        language TEXT NOT NULL DEFAULT 'ru',
+        parent_locator TEXT NOT NULL,
+        sort_order INTEGER NOT NULL DEFAULT 0,
+        block_type TEXT NOT NULL DEFAULT 'text',
+        html_content TEXT NOT NULL,
+        styles TEXT DEFAULT '{}',
+        created_at TEXT NOT NULL
+      );
     `);
     console.log("Database tables initialized successfully");
   } catch (error) {
@@ -65,6 +76,11 @@ export interface IStorage {
   createPage(page: InsertPage): Promise<Page>;
   updatePage(slug: string, updates: Partial<InsertPage>): Promise<Page>;
   deletePage(slug: string): Promise<void>;
+  
+  // Inserted blocks
+  getInsertedBlocks(language: string): Promise<InsertedBlock[]>;
+  createInsertedBlock(block: InsertInsertedBlock): Promise<InsertedBlock>;
+  deleteInsertedBlock(id: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -168,6 +184,23 @@ export class DatabaseStorage implements IStorage {
   async deletePage(slug: string): Promise<void> {
     await db.delete(pages).where(eq(pages.slug, slug));
     console.log(`Deleted page: ${slug}`);
+  }
+
+  // Inserted blocks methods
+  async getInsertedBlocks(language: string): Promise<InsertedBlock[]> {
+    const result = await db.select().from(insertedBlocks).where(eq(insertedBlocks.language, language));
+    return result;
+  }
+
+  async createInsertedBlock(block: InsertInsertedBlock): Promise<InsertedBlock> {
+    const result = await db.insert(insertedBlocks).values(block).returning();
+    console.log(`Created inserted block for ${block.language}`);
+    return result[0];
+  }
+
+  async deleteInsertedBlock(id: string): Promise<void> {
+    await db.delete(insertedBlocks).where(eq(insertedBlocks.id, id));
+    console.log(`Deleted inserted block: ${id}`);
   }
 }
 

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContentSectionSchema, insertPageSchema } from "@shared/schema";
+import { insertContentSectionSchema, insertPageSchema, insertInsertedBlockSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/content/:sectionType/:language", async (req, res) => {
@@ -113,6 +113,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (err) {
       console.error("Failed to delete page:", err);
       res.status(500).json({ error: "Failed to delete page" });
+    }
+  });
+
+  // Inserted Blocks API
+  app.get("/api/blocks/:language", async (req, res) => {
+    try {
+      const blocks = await storage.getInsertedBlocks(req.params.language);
+      res.json(blocks);
+    } catch (err) {
+      console.error("Failed to fetch blocks:", err);
+      res.status(500).json({ error: "Failed to fetch blocks" });
+    }
+  });
+
+  app.post("/api/blocks", async (req, res) => {
+    try {
+      const now = new Date().toISOString();
+      const blockData = {
+        ...req.body,
+        createdAt: now,
+      };
+      const result = insertInsertedBlockSchema.safeParse(blockData);
+      if (!result.success) {
+        return res.status(400).json({ error: "Invalid block data", details: result.error.errors });
+      }
+      const block = await storage.createInsertedBlock(result.data);
+      res.json(block);
+    } catch (err) {
+      console.error("Failed to create block:", err);
+      res.status(500).json({ error: "Failed to create block" });
+    }
+  });
+
+  app.delete("/api/blocks/:id", async (req, res) => {
+    try {
+      await storage.deleteInsertedBlock(req.params.id);
+      res.json({ success: true });
+    } catch (err) {
+      console.error("Failed to delete block:", err);
+      res.status(500).json({ error: "Failed to delete block" });
     }
   });
 
